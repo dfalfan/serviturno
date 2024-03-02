@@ -1,0 +1,233 @@
+/*
+
+
+body {
+  height: 100vh;
+  background: url("../images/logoTransparent.png");
+  background-repeat: no-repeat;
+  background-size: contain;
+}
+
+*/
+
+
+/*body {
+    background: linear-gradient(270deg, #f15005, #106eae, #ffffff);
+    background-size: 600% 600%;
+
+    -webkit-animation: AnimationName 45s ease infinite;
+    -moz-animation: AnimationName 45s ease infinite;
+    animation: AnimationName 45s ease infinite;
+}
+
+@-webkit-keyframes AnimationName {
+    0% {
+        background-position: 0% 50%
+    }
+
+    50% {
+        background-position: 100% 50%
+    }
+
+    100% {
+        background-position: 0% 50%
+    }
+}
+
+@-moz-keyframes AnimationName {
+    0% {
+        background-position: 0% 50%
+    }
+
+    50% {
+        background-position: 100% 50%
+    }
+
+    100% {
+        background-position: 0% 50%
+    }
+}
+
+@keyframes AnimationName {
+    0% {
+        background-position: 0% 50%
+    }
+
+    50% {
+        background-position: 100% 50%
+    }
+
+    100% {
+        background-position: 0% 50%
+    }
+} */
+
+
+
+
+body {
+  background-color: #fff;
+  color: #fff;
+}
+
+/*
+ * Styles essential to the sample
+ * are below
+ */
+
+/* Style the player */
+
+body {
+  margin: 0;
+  background-color: white;
+}
+
+/* Hide the player control bar */
+
+.video-js .vjs-control-bar {
+  display: none;
+}
+
+/* Remove click events on the player */
+
+.video-js {
+  pointer-events: none;
+  position: fixed;
+  right: 0;
+  bottom: 0;
+  min-width: 100%;
+  min-height: 100%;
+
+}
+
+.noselect {
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  -khtml-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+
+.topMargin {
+  margin-top: 10px;
+}
+
+.topMarginContainer {
+  margin-top: 30px;
+}
+
+.logoSize {
+  width: 200px;
+  height: auto;
+}
+
+.ticketStyle {
+  color: #ffffff;
+  text-align: center;
+
+  vertical-align: middle;
+  -webkit-border-radius: 10px;
+  -moz-border-radius: 10px;
+  border-radius: 10px;
+  background: linear-gradient(270deg, #f75c03, #f78603, #f04100, #ff5e00);
+  background-size: 800% 800%;
+
+  -webkit-animation: AnimationName 30s ease infinite;
+  -moz-animation: AnimationName 30s ease infinite;
+  animation: AnimationName 30s ease infinite;
+}
+
+@-webkit-keyframes AnimationName {
+  0% {
+    background-position: 0% 50%;
+  }
+
+  50% {
+    background-position: 100% 50%;
+  }
+
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+@-moz-keyframes AnimationName {
+  0% {
+    background-position: 0% 50%;
+  }
+
+  50% {
+    background-position: 100% 50%;
+  }
+
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+@keyframes AnimationName {
+  0% {
+    background-position: 0% 50%;
+  }
+
+  50% {
+    background-position: 100% 50%;
+  }
+
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+@keyframes hue {
+  from {
+    -webkit-filter: hue-rotate(0deg);
+  }
+
+  to {
+    -webkit-filter: hue-rotate(-360deg);
+  }
+}
+
+
+.ticketStyle-2 {
+  color: #ffffff;
+  text-align: center;
+  background-color: #02182b;
+
+  vertical-align: middle;
+  width: 120px;
+  height: 80px;
+  -webkit-border-radius: 10px;
+  -moz-border-radius: 10px;
+  border-radius: 10px;
+}
+
+.ticketStyle-cliente {
+  color: #ffffff;
+  text-align: left;
+  padding-right: 220px;
+  background-color: #f75c03;
+  vertical-align: middle;
+  -webkit-border-radius: 10px;
+  -moz-border-radius: 10px;
+  border-radius: 10px;
+}
+
+.mainTicketColor {
+  background-color: rgba(255, 0, 0, 0.04);
+}
+
+.mainTicketH1 {
+  font-size: 170px;
+}
+
+.mainTicketH2 {
+  font-size: 60px;
+}
+
+.ticketH1 {
+  color: #ffffff;
+  font-size: 25px;
+}

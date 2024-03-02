@@ -1,0 +1,639 @@
+
+
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    position: fixed;
+    top: 0;
+    width: 100%;
+    z-index: 100;
+    height: 90px;
+    background: white;
+    left: 0;
+    box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16);
+    /* Añade sombra debajo de la navbar */
+
+}
+
+#admissionModal .modal-dialog {
+  transform: translateY(-100%);
+  transition: transform 0.05s ease-out;
+}
+#admissionModal.show .modal-dialog {
+  transform: translateY(0);
+}
+
+#print-ticket-btn {
+  display: none; /* Oculta el botón por defecto */
+}
+
+.tag {
+  display: inline-block;
+  padding: 5px 10px;
+  margin: 2px;
+  background-color: #1a5b8c; /* Color de fondo */
+  color: white; /* Color del texto */
+  border-radius: 15px; /* Bordes redondeados */
+  font-size: 9px;
+}
+
+.tag:hover {
+  background-color: #0e2f49; /* Color de fondo */
+; /* Color de fondo más oscuro al pasar el ratón por encima */
+  opacity: 0.8; /* Efecto de transparencia al pasar el ratón por encima */
+}
+
+
+.circular-button {
+  background-color: #1a5b8c;
+  color: #fff;
+  border: none;
+  border-radius: 50%;
+  width: 40px;
+  height: 40px;
+  font-size: 20px;
+  text-align: center;
+  line-height: 40px;
+  padding-top: 0px;
+  cursor: pointer;
+  margin-bottom: 100px;
+  transition: background-color 0.3s;
+  box-shadow: 0 0 1px #1a5b8c, 0 0 2px #1a5b8c, 0 0 3px #1a5b8c, 0 0 4px #1a5b8c;
+}
+
+.circular-button:hover {
+  background-color: #12375b;
+}
+
+
+@keyframes glow {
+  from {
+    box-shadow: 0 0 5px #1a5b8c, 0 0 0.5px #1a5b8c, 0 0 2.5px #1a5b8c, 0 0 5px #1a5b8c;
+  }
+  to {
+    box-shadow: 0 0 20px #1a5b8c, 0 0 3.25px #1a5b8c, 0 0 5px #1a5b8c, 0 0 6.25px #1a5b8c, 0 0 7.5px #1a5b8c;
+  }
+}
+
+
+.vertical-line-container {
+  position: relative; /* Ajusta la posición de la línea vertical con respecto a este contenedor */
+}
+
+.vertical-line {
+  display: none; 
+  width: 1.5px; /* Grosor de la línea */
+  height: 117px; /* Longitud de la línea */
+  background-color: transparent; /* Fondo transparente */
+  border-left: 1px dashed rgb(139, 139, 139); /* Línea punteada de color gris claro */
+  position: absolute; /* Puedes ajustar la posición usando top y left */
+  top: -117px; /* Ajusta según la posición del botón */
+  left: 50%; /* Centra la línea horizontalmente */
+}
+
+.wide-modal .modal-dialog {
+  max-width: 40%; /* Ajusta este valor según tus necesidades */
+}
+
+/* Estilos para botones de DataTables */
+
+
+
+
+.btn-more-info {
+  background-color: #1a5b8c;
+  color: #fff;
+  border: none;
+  border-radius: 5px;  
+  padding: 2px 10px;
+  margin: 5px;
+  margin-top: 7px;
+  font-size: 10px;
+  transition: background-color 0.3s;
+ 
+  
+}
+
+
+.btn-more-info:hover {
+  background-color: #12375b;
+}
+
+.btn-more-info.has-details {
+  background-color: #eb5b08;
+  color: #fff;
+  border: none;
+  border-radius: 5px;  
+  padding: 2px 10px;
+  margin: 5px;
+  font-size: 10px;
+  transition: background-color 0.3s;
+}
+
+.btn-more-info.has-details:hover {
+  background-color: #eb5b08;
+}
+
+
+
+.btn-vstudies, .btn-cinfint {
+  background-color: #1a5b8c;
+  color: #fff;
+  border: none;
+  border-radius: 5px;  
+  padding: 2px 8px;
+  margin: 5px;
+  margin-top: 7px;
+  font-size: 10px;
+  transition: background-color 0.3s;
+   
+}
+
+.btn-vstudies:hover, .btn-cinfint:hover {
+  background-color: #12375b;
+}
+
+#myTable td:nth-child(9) {
+  text-align: center;
+  vertical-align: middle; 
+}
+
+#myTable td:nth-child(9) button {
+  margin: 0 5px;
+}
+
+
+
+.acciones-container {
+    display: flex;
+    justify-content: space-around;
+    height: 100% !important;
+    align-items: center !important;
+    border: 1px solid #ddd;
+    padding: 8px;
+    text-align: center;
+    font-size: 12px;
+}
+
+
+.btn-call {
+  background-color: #1a5b8c;
+  color: #fff;
+  border: none;
+  border-radius: 5px;  
+  padding: 7px 15px;
+  margin: 5px;
+  font-size: 11px;
+  transition: background-color 0.3s;
+}
+
+.btn-call:hover {
+  background-color: #12375b;
+}
+
+
+
+.dt-button {
+  background-color: #1a5b8c;
+  color: #fff;
+  border: none;
+  border-radius: 5px;  
+  padding: 5px 10px;
+  margin: 5px;
+  font-size: 11px;
+  transition: background-color 0.3s;
+}
+
+.dt-button:hover {
+  background-color: #12375b;
+}
+
+.dt-buttons {
+  position: static; /* default es absolute */
+  font-size: 0.9em;
+}
+
+.dt-buttons .buttons-excel::before {
+  content: "\f1c3";
+  font-family: "Font Awesome 5 Free";
+  margin-right: 5px; 
+}
+
+.dt-buttons .buttons-copy::before {
+  content: "\f0c5";
+  font-family: "Font Awesome 5 Free";
+  margin-right: 5px;
+}
+
+.center-div {
+    display: flex;
+    justify-content: center;
+    margin-top: 25px;
+    
+}
+
+.date-label-wrapper {
+  display: flex;
+  align-items: center;
+}
+
+.date-arrow {
+  background: none;
+  border: none;
+  cursor: pointer;
+  font-size: 18px;
+}
+
+#go-to-today {
+  color: #f47628;
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 16px; /* Tamaño similar a un h1 */
+  font-weight: bold; /* Fuente en negrita */
+  cursor: pointer;
+
+}
+
+
+.selected-date-label-style {
+  color: #054881;
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 16px; /* Tamaño similar a un h1 */
+  font-weight: bold; /* Fuente en negrita */
+  float: left;
+  margin: 10px;
+  margin-left: 0px;
+}
+
+
+.total-studies-label-style {
+  color: #f47628;
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 14px; /* Tamaño similar a un h1 */
+  font-weight: bold; /* Fuente en negrita */
+  float: none;
+  margin: 10px;
+  margin-left: 0px;
+  margin-top: 10px;
+}
+
+  
+
+
+table.display {
+  border-collapse: separate; /* Importante para aplicar bordes redondeados */
+  border-spacing: 0;
+  border-radius: 10px; /* Ajusta el radio según tus preferencias */
+  overflow: hidden; /* Oculta cualquier celda que sobresalga */
+  font-family: Arial, Helvetica, sans-serif;
+  color: #242424;
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1); /* Sombra horizontal, vertical, difuminado, color */
+
+   /* border-collapse: collapse;*/ 
+    /* width: 100%; */
+}
+
+table.display th {
+    background-color: #054881;
+    color: white;
+}
+
+/* Bordes redondeados para la primera celda del encabezado (esquina superior izquierda) */
+table.display th:first-child {
+  border-top-left-radius: 10px;
+}
+
+/* Bordes redondeados para la última celda del encabezado (esquina superior derecha) */
+table.display th:last-child {
+  border-top-right-radius: 10px;
+}
+
+/* Asegúrate de que las celdas intermedias no tengan bordes redondeados */
+table.display th:not(:first-child):not(:last-child) {
+  border-radius: 0;
+}
+
+
+table.display td,
+th {
+    border: 1px solid #ddd;
+    padding: 8px;
+    text-align: center;
+    font-size: 12px;
+}
+
+table.display tr:nth-child(even) {
+    background-color: #ffffff;
+    
+}
+
+table.dataTable tbody tr.odd {
+  background-color: #fff;
+  
+}
+table.display tr:hover {
+    background-color: #e7e7e7;
+      box-shadow: 0 6px 10px rgba(0, 0, 0, 0.3);
+
+}
+table.dataTable tbody tr:hover {
+    background-color: #e7e7e7;
+      box-shadow: 0 6px 10px rgba(0, 0, 0, 0.3);
+
+}
+
+
+.dataTables_wrapper .dataTables_paginate {
+  border-radius: 0 0 10px 10px; /* Solo redondea las esquinas inferiores */
+}
+
+/* Ajustar el tamaño de fuente para los controles de DataTables */
+div.dataTables_wrapper select,
+div.dataTables_wrapper .dataTables_length,
+div.dataTables_wrapper .dataTables_filter,
+div.dataTables_wrapper .dataTables_info,
+div.dataTables_wrapper .paginate_button {
+    font-size: 0.8em;
+
+    /* Ajusta este valor según sea necesario */
+}
+
+.button-container {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    margin-left: -50px;
+    margin-top: 5px;
+  
+    /* Opcional: Añade un margen para separar los botones de la tabla */
+}
+
+.filter-btn {
+    background-color: #1a5b8c;
+    /* Color de fondo azul marino */
+    color: white;
+    /* Color de texto blanco */
+    border: none;
+    /* Quita los bordes por defecto de los botones */
+    padding: 10px 20px;
+    /* Espacio alrededor del texto (arriba/abajo - izquierda/derecha) */
+    margin: 0 10px 10px 0;
+    /* Espacio alrededor de los botones (arriba - derecha - abajo - izquierda) */
+    border-radius: 5px;
+    /* Bordes redondeados */
+    box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.2);
+    /* Sombra para dar algo de profundidad */
+    transition: background-color 0.3s;
+    /* Suaviza el cambio de color */
+    position: relative;
+}
+
+.filter-btn.selected {
+    background-color: #f47628;
+}
+
+.filter-btn:hover {
+    background-color: #12375b;
+    /* Color de fondo un poco más oscuro cuando se pasa el ratón por encima */
+}
+
+
+.notification {
+
+    top: -15px; /* Ajusta la posición superior según sea necesario */
+    right: -10px; /* Ajusta la posición derecha según sea necesario */
+    background-color: #ff0c0c;
+    color: white;
+    font-size: 18px;
+    padding: 0px 8px;
+    border-radius: 100%;
+    min-width: 17px;
+    position: absolute; /* Cambia a absoluto */
+    text-align: center;
+    z-index: 10; /* Añade el z-index para traer al frente */
+   /* box-shadow: -1px 1px 1px 0px rgba(0, 0, 0, 0.5); /* Añade una sombra */
+   width: 28px;
+    height: 28px;
+    align-items: center;
+    justify-content: center;
+    display: flex;
+}
+
+.notification:empty {
+  display: none;
+}
+
+
+.fa-calendar-alt {
+    color: #ffffff;
+    font-size: 26px;
+    /* Puedes cambiar el tamaño aquí. */
+    cursor: pointer;
+}
+
+
+
+#fondo {
+    font-size: 0.94em;
+    background-color: #e8e8e8;
+    /* Fondo blanco */
+    margin: 0 auto;
+    /* Centra el div */
+    margin-top: 100px;
+    max-width: 98%;
+    /* Ajusta a tu gusto para dejar espacio a los lados */
+    overflow: auto;
+    /* Asegura que los elementos interiores se muestren correctamente */
+    padding: 40px;
+    /* Añade algo de espacio alrededor de los elementos interiores */
+    min-height: 100vh;
+    /* Asegura que el div ocupa al menos toda la altura de la ventana del navegador */
+    box-shadow: 15px 19px 17px rgba(0, 0, 0, 0.16);
+    border-radius: 20px; /* Esta línea añade bordes redondeados */
+
+
+}
+
+
+body {
+    font-size: 90%;
+    background: linear-gradient(
+    270deg,
+    #02182b,
+    #022c40,
+    #023855,
+    #02446a,
+    #02507f,
+    #025c94,
+    #0268a9,
+    #0274be,
+    #0280d3,
+    #0b4b83,
+    #416499
+  
+);
+    background-size: 200% 200%;
+    animation: Gradient 20s ease infinite;
+}
+
+@keyframes Gradient {
+    0% {
+        background-position: 0% 0%;
+    }
+    25% {
+        background-position: 100% 0%;
+    }
+    50% {
+        background-position: 100% 100%;
+    }
+    75% {
+        background-position: 0% 100%;
+    }
+    100% {
+        background-position: 0% 0%;
+    }
+}
+
+
+.aux-container {
+    display: flex;
+    justify-content: flex-end; /* Alinea los elementos a la derecha */
+   /* flex-grow: 1; /* Permite que el contenedor crezca para tomar todo el espacio disponible */
+   margin-top: -15px;
+}
+
+#datepicker {
+    position: relative; /* Asegúrate de que tenga una posición relativa o absoluta */
+    top: 20px; /* Ajusta este valor según tus necesidades */
+}
+
+
+
+#refresh-btn {
+    background-color: #1a5b8c;
+    display: flex;
+    align-items: center;     /* Centra los elementos verticalmente */
+    justify-content: center; /* Centra los elementos horizontalmente */
+    color: white;
+    border: none;
+    font-size: 20px;
+    padding: 10px 20px;
+    border-radius: 5px;
+    box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.2);
+    transition: background-color 0.3s;
+    width: 30px;
+    height: 40px;
+    margin-top: 10px;
+    margin-left: 24px;
+    margin-right: 20px;
+}
+
+#datepicker-btn {
+    background-color: #1a5b8c;
+    display: flex;
+    align-items: center;     /* Centra los elementos verticalmente */
+    justify-content: center; /* Centra los elementos horizontalmente */
+    color: white;
+    border: none;
+    font-size: 20px;
+    padding: 10px 20px;
+    border-radius: 5px;
+    box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.2);
+    transition: background-color 0.3s;
+    width: 30px;
+    height: 40px;
+    margin-top: 10px;
+    margin-left: 0px;
+}
+
+#stats-btn {
+    background-color: #1a5b8c;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    border: none;
+    font-size: 20px;
+    padding: 10px 20px;
+    border-radius: 5px;
+    box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.2);
+    transition: background-color 0.3s;
+    width: 30px;
+    height: 40px;
+    margin-top: 10px;
+    margin-left: 24px;
+    margin-right: 20px;
+}
+
+#stats-btn:hover {
+    background-color: #12375b;
+}
+
+
+#refresh-btn:hover {
+    background-color: #12375b;
+}
+
+#datepicker-btn:hover {
+    background-color: #12375b;
+}
+
+/* Ocultar botones por defecto */
+.btn-vstudies, .btn-cinfint {
+  opacity: 0.3; /* o incluso 0 para hacerlo completamente invisible */
+  cursor: not-allowed !important
+}
+
+/* Mostrar botones cuando el técnico está seleccionado */
+.row-with-technician .btn-vstudies.btn-technician-visible, 
+.row-with-technician .btn-cinfint.btn-technician-visible {
+  opacity: 1;
+  cursor:pointer !important
+}
+
+/* btn-more-info siempre visible */
+.btn-more-info {
+  opacity: 1;
+}
+
+
+.row-with-technician {
+  background-color: rgba(199, 199, 199, 0.7) !important; /* Fondo gris claro con transparencia */
+  color: #505050; /* Color de texto gris */
+  cursor: not-allowed; /* Cursor que indica que la fila está deshabilitada */
+}
+
+.row-with-technician td a,
+.row-with-technician td button {
+  /*color: #A0A0A0; /* Color de texto gris para enlaces y botones */
+  /*opacity: 0.6; /* Opacidad para botones */
+}
+
+.row-with-technician:hover {
+  background-color: #c7c7c7b3 !important; /* Mantiene el mismo color de fondo incluso cuando se pasa el mouse por encima */
+}
+
+.row-with-technician .tag {
+  background-color: #6289a7; /* Fondo gris claro */
+  color: #f3f3f3; /* Color de texto gris */
+  cursor: not-allowed; /* Cursor que indica que el elemento está deshabilitado */
+  pointer-events: none; /* Deshabilita clics y eventos de puntero */
+}
+
+.row-with-technician .tag:hover {
+  background-color: #c7c7c7; /* Mantiene el mismo color de fondo incluso cuando se pasa el mouse por encima */
+  opacity: 1; /* Sin efecto de transparencia al pasar el ratón por encima */
+}
+
+.table-scrollable {
+  height: 400px; /* Ajusta la altura según tus necesidades */
+  overflow-y: auto; /* Habilita el desplazamiento vertical */
+  width: 100%;
+}
+
+.dataTables_wrapper .dataTables_scrollHead {
+  overflow: visible !important;
+}
+
+.dataTables_wrapper .dataTables_scrollBody {
+  border-top: none;
+}

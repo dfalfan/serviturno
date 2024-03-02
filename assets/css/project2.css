@@ -1,0 +1,130 @@
+
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f9f9f9;
+            margin: 0;
+            padding: 0;
+        }
+
+        img[src*='orthanc.png'] {
+            max-height: 0% !important;
+            visibility: hidden !important;
+        }
+
+
+        header {
+            background-color: #02182b;
+            color: white;
+            padding: 15px;
+            text-align: center;
+            font-size: 1.5em;
+        }
+
+        .container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+        }
+
+        label,
+        select,
+        button {
+            margin-bottom: 20px;
+            font-size: 1.2em;
+        }
+
+        select {
+            padding: 10px;
+            border-radius: 5px;
+            border: 1px solid #ccc;
+        }
+
+        button {
+            padding: 10px 20px;
+            background-color: rgb(250, 79, 0);
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        button:hover {
+            background-color: #ff7146;
+        }
+
+        #study-details {
+            margin-top: 0px;
+            padding-top: 0px;
+            padding: 20px;
+            border-radius: 5px;
+            background-color: #f2f2f2;
+            transition: max-height 0.4s ease-in-out;
+            overflow: hidden;
+            max-height: 0;
+        }
+
+        #study-details p {
+            margin: 10px 0;
+        }
+
+        .main-content {
+            display: flex;
+            justify-content: space-between;
+            padding: 20px;
+            max-width: 1200px;
+            margin: auto;
+        }
+
+        .form-section,
+        .result-section {
+            flex: 1;
+            padding: 20px;
+            box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+            border-radius: 5px;
+        }
+
+        .form-section {
+            margin-right: 20px;
+        }
+
+        .button-section {
+            text-align: center;
+            margin-top: 20px;
+            margin-bottom: 225px;
+        }
+
+        #download-report,
+        #view-study {
+            padding: 10px 20px;
+            margin: 10px;
+            background-color: rgb(250, 79, 0);
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        #download-report:hover,
+        #view-study:hover {
+            background-color: #ff7146;
+        }
+
+        .page-section,
+        .iframe-section {
+            min-height: 100vh;
+            overflow-y: auto;
+        }
+
+        .iframe-section iframe {
+            width: calc(100% - 40px);
+            height: 100vh;
+            margin-left: 20px;
+            margin-right: 20px;
+            border: medium;
+            background-color: black;
+        }
+   

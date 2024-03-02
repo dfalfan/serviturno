@@ -1,0 +1,32 @@
+/* * The body style is just for the
+ * background color of the codepen.
+ * Do not include in your code.
+ */
+ body {
+    background-color: #fff;
+    color: #fff;
+  }
+  /*
+   * Styles essential to the sample
+   * are below
+   */
+  
+  /* Style the player */
+  
+  body {
+    margin: 0;
+    background-color: white;
+  }
+  
+  /* Hide the player control bar */
+  
+  .video-js .vjs-control-bar {
+    display: none;
+  }
+  
+  /* Remove click events on the player */
+  
+  .video-js {
+    pointer-events: none;
+  }
+  

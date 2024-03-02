@@ -1,0 +1,132 @@
+@-webkit-keyframes glow {
+  from {
+    text-shadow: 0 0 10px rgb(255, 255, 255), 0 0 20px #fff, 0 0 30px #cec9c4,
+      0 0 40px #ebe3e0, 0 0 50px #e4dcd5, 0 0 60px #e6bc00, 0 0 70px #fa761e;
+  }
+
+  to {
+    text-shadow: 0 0 20px rgb(250, 79, 0), 0 0 30px #ff7146, 0 0 40px #e0d6d1fb,
+      0 0 50px #f3e9e6, 0 0 60px #f5e4de, 0 0 70px #f7af8f, 0 0 50px #fffdfc;
+  }
+}
+
+body {
+  height: 100vh;
+  /*background: url("../images/logoTransparent.png");*/
+  background-repeat: no-repeat;
+  background-size: contain;
+  background-color: #e8e8e8
+}
+
+.glow {
+  font-size: 80px;
+  color: #fff;
+
+  -webkit-animation: glow 1s ease-in-out infinite alternate;
+  -moz-animation: glow 1s ease-in-out infinite alternate;
+  animation: glow 1s ease-in-out infinite alternate;
+}
+
+.ticket-card {
+			transition: transform .1s ease
+		}
+
+.ticket-card:hover {
+  transform: scale(1.02)
+}
+
+
+@keyframes glow {
+  0% {
+    text-shadow: 0 0 .5px #f75c03, 0 0 1px #f75c03, 0 0 2.5px #f75c03, 0 0 5px #f75c03
+  }
+
+  50% {
+    text-shadow: 0 0 1px #f75c03, 0 0 2.5px #f75c03, 0 0 5px #f75c03, 0 0 10px #f75c03, 0 0 20px #f75c03
+  }
+
+  100% {
+    text-shadow: 0 0 1px #f75c03, 0 0 2.5px #f75c03, 0 0 5px #f75c03, 0 0 10px #f75c03
+  }
+}
+
+.h2-gradient {
+  background: linear-gradient(270deg, #f75c03, orange);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  font-weight: 700;
+  font-size: 50px;
+  margin-top: 10px;
+  margin-left: 30px
+}
+
+.navbar-logo {
+  float: Left;
+  margin-left: 5px;
+  margin-top: -4px;
+  height: 78px;
+  width: 210px;
+  padding: 20px 5px;
+  text-align: Right;
+  font-size: 40px;
+  line-height: 20px
+}
+
+.noselect {
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  -khtml-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+
+.topMargin {
+  margin-top: 10px;
+}
+
+.topMarginContainer {
+  margin-top: 30px;
+}
+
+.logoSize {
+  width: 200px;
+  height: auto;
+}
+
+.ticketStyle {
+  color: #ffffff;
+  text-align: center;
+  background-color: #02182b;
+  vertical-align: middle;
+  -webkit-border-radius: 10px;
+  -moz-border-radius: 10px;
+  border-radius: 10px;
+}
+
+.ticketStyle-operador {
+  color: #ffffff;
+  text-align: center;
+  background-color: #f75c03;
+  vertical-align: middle;
+  -webkit-border-radius: 10px;
+  -moz-border-radius: 10px;
+  border-radius: 10px;
+}
+
+.mainTicketColor {
+  background-color: rgba(255, 0, 0, 0.04);
+}
+
+.mainTicketH1 {
+  font-size: 170px;
+}
+
+.mainTicketH2 {
+  font-size: 70px;
+}
+
+.ticketH1 {
+  color: #ffffff;
+  font-size: 30px;
+}
