@@ -673,11 +673,6 @@ $(document).ready(function () {
             (patientDetails.detalle ? patientDetails.detalle : "") +
             "</textarea>" +
             "</td></tr>" +
-            "<tr><td><b>Informe:</b><br> " + // Nuevo campo Informe
-            informeLinks +
-            "</td><td><b>Estudio:</b><br> " + // Nuevo campo Estudio
-            informeLinks +
-            "</td></tr>" +
             "</table>"
         );
 
