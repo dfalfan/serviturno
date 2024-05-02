@@ -141,9 +141,6 @@
                             </td>
                             <td>
                                 <button class="btn-more-info<?php echo $dato->detalle ? ' has-details' : ''; ?>"><i class="fas fa-plus"></i></button>
-                                <a href="https://hpacs.cloud/" target="_blank" class="btn-vstudies-link">
-                                    <button class="btn-vstudies"><i class="fas fa-eye"></i></button>
-                                </a> <button class="btn-cinfint"><i class="fas fa-pencil-alt"></i></button>
                             </td>
                             </td>
                             <td>
