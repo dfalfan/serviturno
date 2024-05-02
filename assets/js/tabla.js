@@ -10,6 +10,7 @@ $(document).ready(function () {
 
   var a = $("#myTable").DataTable({
     dom: "frtpB",
+    autoWidth: false,
     // scrollY: "500px", // Altura del área de desplazamiento (ajústala según tus necesidades)
     // scrollCollapse: true,
     // paging: false, // Deshabilita la paginación si deseas desplazarte por todas las filas
@@ -66,6 +67,10 @@ $(document).ready(function () {
 
     columnDefs: [
       {
+        targets: [3], // Índice de la columna "Tipo"
+        autoWidth: true,
+      },
+      {
         targets: [9], // El índice de la columna que contiene los botones
         autoWidth: false,
       },
@@ -79,7 +84,6 @@ $(document).ready(function () {
     drawCallback: function () {
       updateTotalStudies();
     },
-    autoWidth: true,
   });
 
   var id;
@@ -268,11 +272,7 @@ $(document).ready(function () {
                           tecnicoSelect, // Utiliza la variable
                           '<button class="btn btn-more-info ' +
                             btnMoreInfoClass +
-                            '"><i class="fas fa-plus"></i></button>' +
-                            '<a href="https://hpacs.cloud/" target="_blank" class="btn-vstudies-link">' +
-                            '<button class="btn btn-vstudies"><i class="fas fa-eye"></i></button>' +
-                            "</a>" +
-                            '<button class="btn btn-cinfint"><i class="fas fa-pencil-alt"></i></button>',
+                            '"><i class="fas fa-plus"></i></button>',
                           mostrarLlamar
                             ? '<button class="btn btn-call" data-ticket="' +
                               t[r].ticket +
@@ -379,11 +379,7 @@ $(document).ready(function () {
                   tecnicoSelect, // Use the variable
                   '<button class="btn btn-more-info ' +
                     btnMoreInfoClass +
-                    '"><i class="fas fa-plus"></i></button>' +
-                    '<a href="https://hpacs.cloud/" target="_blank" class="btn-vstudies-link">' +
-                    '<button class="btn btn-vstudies"><i class="fas fa-eye"></i></button>' +
-                    "</a>" +
-                    '<button class="btn btn-cinfint"><i class="fas fa-pencil-alt"></i></button>',
+                    '"><i class="fas fa-plus"></i></button>',
                   mostrarLlamar
                     ? '<button class="btn btn-call" data-ticket="' +
                       t[r].ticket +
@@ -499,11 +495,7 @@ $(document).ready(function () {
                 tecnicoSelect, // Use the variable
                 '<button class="btn btn-more-info ' +
                   btnMoreInfoClass +
-                  '"><i class="fas fa-plus"></i></button>' +
-                  '<a href="https://hpacs.cloud/" target="_blank" class="btn-vstudies-link">' +
-                  '<button class="btn btn-vstudies"><i class="fas fa-eye"></i></button>' +
-                  "</a>" +
-                  '<button class="btn btn-cinfint"><i class="fas fa-pencil-alt"></i></button>',
+                  '"><i class="fas fa-plus"></i></button>',
                 mostrarLlamar
                   ? '<button class="btn btn-call" data-ticket="' +
                     t[r].ticket +
@@ -985,11 +977,7 @@ $(document).ready(function () {
                 tecnicoSelect,
                 '<button class="btn btn-more-info ' +
                   btnMoreInfoClass +
-                  '"><i class="fas fa-plus"></i></button>' +
-                  '<a href="https://hpacs.cloud/" target="_blank" class="btn-vstudies-link">' +
-                  '<button class="btn btn-vstudies"><i class="fas fa-eye"></i></button>' +
-                  "</a>" +
-                  '<button class="btn btn-cinfint"><i class="fas fa-pencil-alt"></i></button>',
+                  '"><i class="fas fa-plus"></i></button>',
                 mostrarLlamar
                   ? '<button class="btn btn-call" data-ticket="' +
                     t[r].ticket +

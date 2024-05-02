@@ -28,13 +28,14 @@
 }
 
 .tag {
-  display: inline-block;
+  display: block;
   padding: 5px 10px;
   margin: 2px;
   background-color: #1a5b8c; /* Color de fondo */
   color: white; /* Color del texto */
   border-radius: 15px; /* Bordes redondeados */
   font-size: 9px;
+  margin-bottom: 5px; 
 }
 
 .tag:hover {
@@ -438,12 +439,14 @@ div.dataTables_wrapper .paginate_button {
     /* Fondo blanco */
     margin: 0 auto;
     /* Centra el div */
-    margin-top: 100px;
-    max-width: 98%;
+    margin-top: 110px;
+    margin-bottom: 50px;
+    max-width: 90%;
     /* Ajusta a tu gusto para dejar espacio a los lados */
     overflow: auto;
     /* Asegura que los elementos interiores se muestren correctamente */
     padding: 40px;
+    padding-top: 5px;
     /* Añade algo de espacio alrededor de los elementos interiores */
     min-height: 100vh;
     /* Asegura que el div ocupa al menos toda la altura de la ventana del navegador */
