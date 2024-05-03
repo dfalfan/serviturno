@@ -138,63 +138,62 @@ $(document).ready(function () {
     }
   });
 
- $("#print-ticket-button").click(function () {
-   var admissionNumber = $("#admission-number").val();
-   var selectedCategoryId = $("#selected-category-id").val();
+  $("#print-ticket-button").click(function () {
+    var admissionNumber = $("#admission-number").val();
+    var selectedCategoryId = $("#selected-category-id").val();
 
-   console.log("Número de admisión:", admissionNumber);
-   console.log("ID de categoría seleccionada:", selectedCategoryId);
+    console.log("Número de admisión:", admissionNumber);
+    console.log("ID de categoría seleccionada:", selectedCategoryId);
 
-   if (!/^\d{7,}$/.test(admissionNumber)) {
-     alert("Por favor, ingresa un número de admisión de al menos 7 cifras.");
-     return;
-   }
+    if (!/^\d{7,}$/.test(admissionNumber)) {
+      alert("Por favor, ingresa un número de admisión de al menos 7 cifras.");
+      return;
+    }
 
-   $(this).prop("disabled", true); // Deshabilita el botón para evitar múltiples clics
+    $(this).prop("disabled", true); // Deshabilita el botón para evitar múltiples clics
 
-   $.ajax({
-     type: "POST",
-     url: "Tabla/verificar_admision",
-     data: {
-       admision: admissionNumber,
-       id_categoria: selectedCategoryId,
-     },
-     success: function (response) {
-       console.log("Respuesta de verificar_admision:", response);
-       var data = JSON.parse(response);
-       if (data.existe) {
-         alert(
-           "Ya existe un ticket con esta admisión en la categoría seleccionada."
-         );
-         $("#print-ticket-button").prop("disabled", false); // Habilita el botón nuevamente
-       } else {
-         $.ajax({
-           type: "POST",
-           url: "imprimir/agregar_cola",
-           data: {
-             id_categoria: selectedCategoryId,
-             admision: admissionNumber,
-           },
-           success: function (response) {
-             console.log("Respuesta de agregar_cola:", response);
-             $("#admission-number").val(""); // Borra el campo de texto de la admisión
-             $("#admissionModal").modal("hide"); // Cierra el modal de admisión
-             console.log("Tipos:", response.tipos);
-           },
-           error: function (jqXHR, textStatus, errorThrown) {
-             console.log("Error en agregar_cola:", textStatus, errorThrown);
-             $("#print-ticket-button").prop("disabled", false); // Habilita el botón en caso de error
-           },
-         });
-       }
-     },
-     error: function (jqXHR, textStatus, errorThrown) {
-       console.log("Error en verificar_admision:", textStatus, errorThrown);
-       $("#print-ticket-button").prop("disabled", false); // Habilita el botón en caso de error
-     },
-   });
- });
-
+    $.ajax({
+      type: "POST",
+      url: "Tabla/verificar_admision",
+      data: {
+        admision: admissionNumber,
+        id_categoria: selectedCategoryId,
+      },
+      success: function (response) {
+        console.log("Respuesta de verificar_admision:", response);
+        var data = JSON.parse(response);
+        if (data.existe) {
+          alert(
+            "Ya existe un ticket con esta admisión en la categoría seleccionada."
+          );
+          $("#print-ticket-button").prop("disabled", false); // Habilita el botón nuevamente
+        } else {
+          $.ajax({
+            type: "POST",
+            url: "imprimir/agregar_cola",
+            data: {
+              id_categoria: selectedCategoryId,
+              admision: admissionNumber,
+            },
+            success: function (response) {
+              console.log("Respuesta de agregar_cola:", response);
+              $("#admission-number").val(""); // Borra el campo de texto de la admisión
+              $("#admissionModal").modal("hide"); // Cierra el modal de admisión
+              console.log("Tipos:", response.tipos);
+            },
+            error: function (jqXHR, textStatus, errorThrown) {
+              console.log("Error en agregar_cola:", textStatus, errorThrown);
+              $("#print-ticket-button").prop("disabled", false); // Habilita el botón en caso de error
+            },
+          });
+        }
+      },
+      error: function (jqXHR, textStatus, errorThrown) {
+        console.log("Error en verificar_admision:", textStatus, errorThrown);
+        $("#print-ticket-button").prop("disabled", false); // Habilita el botón en caso de error
+      },
+    });
+  });
 
   // Habilita el botón cuando se cierre el modal
   $("#admissionModal").on("hidden.bs.modal", function () {
@@ -682,9 +681,13 @@ $(document).ready(function () {
             "</td></tr>" +
             "<tr><td><b>Cedula:</b> " +
             patientDetails.cedula +
-            "</td><td></td></tr>" +
-            "<tr><td colspan='2'>" + // Detalle ajustado para ocupar dos columnas
-            "<p style='text-align: center;'><b>Detalle:</b></p>" +
+            "</td><td style='text-align: right;'>" +
+            "<button id='anularTicketBtn' class='btn btn-danger' style='margin-right: 230px;' data-id='" +
+            patientDetails.id +
+            "'>Anular Ticket</button>" +
+            "</td></tr>" +
+            "<tr><td colspan='2'>" +
+            "<p style='text-align: center; margin-top: 50px;'><b>Detalle:</b></p>" +
             "<textarea id='detalle' class='form-control' rows='4' placeholder='Escribe aquí el detalle...' style='width: 100%; margin: 0 auto 10px; padding: 5px;'>" +
             (patientDetails.detalle ? patientDetails.detalle : "") +
             "</textarea>" +
@@ -705,6 +708,34 @@ $(document).ready(function () {
   $("#admissionModal").modal({
     backdrop: "static",
     keyboard: false,
+  });
+
+  $(document).on("click", "#anularTicketBtn", function () {
+    var patientId = $(this).data("id");
+    var confirmation = confirm(
+      "¿Estás seguro de que deseas anular este ticket?"
+    );
+
+    if (confirmation) {
+      // Aquí puedes realizar la lógica para anular el ticket
+      console.log("Anulando ticket para el paciente con ID:", patientId);
+
+      // Ejemplo de llamada AJAX para anular el ticket
+      $.ajax({
+        url: "Tabla/anular_ticket",
+        type: "POST",
+        data: { id: patientId },
+        success: function (response) {
+          console.log("Respuesta del servidor:", response);
+          // Realizar acciones adicionales después de anular el ticket
+          $("#patientDetailsModal").modal("hide");
+          $("#refresh-btn").click();
+        },
+        error: function (error) {
+          console.error("Error al anular el ticket:", error);
+        },
+      });
+    }
   });
 
   $("#save-btn").on("click", function () {
