@@ -107,7 +107,7 @@ class Tabla_model extends CI_Model
 
     public function obtener_detalle_paciente($id_paciente)
     {
-    $query = "
+        $query = "
     SELECT 
         cola.id AS id,
         cola.num_actual AS ticket, 
@@ -128,7 +128,7 @@ class Tabla_model extends CI_Model
             WHEN 's' THEN 'Seguro' 
             ELSE cola.ps 
         END AS ps,
-        GROUP_CONCAT(tipo_estudio.name SEPARATOR ', ') as tipo
+        GROUP_CONCAT(CONCAT(tipo_estudio.name, ' ', COALESCE(cola_tipo.detalle, '')) SEPARATOR ', ') as tipo
     FROM 
         cola
     JOIN 
