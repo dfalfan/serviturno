@@ -44,6 +44,17 @@ class Tabla extends CI_Controller
         $this->Tabla_model->actualizar_detalle_paciente($id_paciente, $detalle);
         echo json_encode(['success' => true]);
     }
+
+    public function verificar_admision()
+    {
+        $admision = $this->input->post('admision');
+        $id_categoria = $this->input->post('id_categoria');
+
+        $existe_admision = $this->tabla_model->verificar_admision($admision, $id_categoria);
+
+        echo json_encode(['existe' => $existe_admision]);
+    }
+
     public function obtener_detalle_paciente()
     {
         $id_paciente = $this->input->get('id');

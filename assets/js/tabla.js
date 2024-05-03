@@ -138,36 +138,63 @@ $(document).ready(function () {
     }
   });
 
-  // Acción al hacer clic en el botón de imprimir del modal
-  $("#print-ticket-button").click(function () {
-    var admissionNumber = $("#admission-number").val();
+ $("#print-ticket-button").click(function () {
+   var admissionNumber = $("#admission-number").val();
+   var selectedCategoryId = $("#selected-category-id").val();
 
-    if (!/^\d{7,}$/.test(admissionNumber)) {
-      alert("Por favor, ingresa un número de admisión de al menos 7 cifras.");
-      return;
-    }
+   console.log("Número de admisión:", admissionNumber);
+   console.log("ID de categoría seleccionada:", selectedCategoryId);
 
-    $(this).prop("disabled", true); // Deshabilita el botón para evitar múltiples clics
+   if (!/^\d{7,}$/.test(admissionNumber)) {
+     alert("Por favor, ingresa un número de admisión de al menos 7 cifras.");
+     return;
+   }
 
-    $.ajax({
-      type: "POST",
-      url: "imprimir/agregar_cola",
-      data: {
-        id_categoria: $("#selected-category-id").val(),
-        admision: admissionNumber,
-      },
-      success: function (response) {
-        $("#admission-number").val(""); // Borra el campo de texto de la admisión
-        $("#admissionModal").modal("hide"); // Cierra el modal de admisión
-        // location.reload(true);
-        console.log("Tipos:", response.tipos);
-      },
-      error: function (jqXHR, textStatus, errorThrown) {
-        console.log(textStatus, errorThrown);
-        $("#print-ticket-button").prop("disabled", false); // Rehabilita el botón en caso de error
-      },
-    });
-  });
+   $(this).prop("disabled", true); // Deshabilita el botón para evitar múltiples clics
+
+   $.ajax({
+     type: "POST",
+     url: "Tabla/verificar_admision",
+     data: {
+       admision: admissionNumber,
+       id_categoria: selectedCategoryId,
+     },
+     success: function (response) {
+       console.log("Respuesta de verificar_admision:", response);
+       var data = JSON.parse(response);
+       if (data.existe) {
+         alert(
+           "Ya existe un ticket con esta admisión en la categoría seleccionada."
+         );
+         $("#print-ticket-button").prop("disabled", false); // Habilita el botón nuevamente
+       } else {
+         $.ajax({
+           type: "POST",
+           url: "imprimir/agregar_cola",
+           data: {
+             id_categoria: selectedCategoryId,
+             admision: admissionNumber,
+           },
+           success: function (response) {
+             console.log("Respuesta de agregar_cola:", response);
+             $("#admission-number").val(""); // Borra el campo de texto de la admisión
+             $("#admissionModal").modal("hide"); // Cierra el modal de admisión
+             console.log("Tipos:", response.tipos);
+           },
+           error: function (jqXHR, textStatus, errorThrown) {
+             console.log("Error en agregar_cola:", textStatus, errorThrown);
+             $("#print-ticket-button").prop("disabled", false); // Habilita el botón en caso de error
+           },
+         });
+       }
+     },
+     error: function (jqXHR, textStatus, errorThrown) {
+       console.log("Error en verificar_admision:", textStatus, errorThrown);
+       $("#print-ticket-button").prop("disabled", false); // Habilita el botón en caso de error
+     },
+   });
+ });
+
 
   // Habilita el botón cuando se cierre el modal
   $("#admissionModal").on("hidden.bs.modal", function () {
@@ -394,7 +421,6 @@ $(document).ready(function () {
                 .attr("data-id", t[r].id);
             }
           a.draw();
-          
         },
       });
     }, 0);
@@ -511,13 +537,11 @@ $(document).ready(function () {
           }
         a.draw();
         checkIfTodayIsSelected(date);
-
       },
     });
 
     var formattedDate = $.datepicker.formatDate("DD, dd/mm/yy", date);
     $("#selected-date-label").text(formattedDate);
-
   }
 
   var datepickerElement = $("#datepicker").datepicker(

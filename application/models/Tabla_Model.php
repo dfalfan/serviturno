@@ -146,6 +146,15 @@ class Tabla_model extends CI_Model
         return $this->db->query($query, array($id_paciente))->row();
     }
 
+    public function verificar_admision($admision, $id_categoria)
+    {
+        $this->db->where('admision', $admision);
+        $this->db->where('id_categoria', $id_categoria);
+        $this->db->where('DATE(fecha)', date('Y-m-d')); // Verifica solo para la fecha actual
+        $query = $this->db->get('cola');
+
+        return $query->num_rows() > 0;
+    }
 
     public function obtener_datos_por_fecha($date)
     {
