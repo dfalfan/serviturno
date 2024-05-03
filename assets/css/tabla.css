@@ -287,7 +287,7 @@ table.display {
   overflow: hidden; /* Oculta cualquier celda que sobresalga */
   font-family: Arial, Helvetica, sans-serif;
   color: #242424;
-  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1); /* Sombra horizontal, vertical, difuminado, color */
+ /* box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1); /* Sombra horizontal, vertical, difuminado, color */
 
    /* border-collapse: collapse;*/ 
     /* width: 100%; */
