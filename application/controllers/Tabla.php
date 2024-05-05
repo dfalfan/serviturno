@@ -55,6 +55,14 @@ class Tabla extends CI_Controller
         echo json_encode(['existe' => $existe_admision]);
     }
 
+    public function anular_ticket()
+    {
+        $id_ticket = $this->input->post('id');
+        $this->tabla_model->anular_ticket($id_ticket);
+        echo json_encode(['success' => true]);
+    }
+
+
     public function obtener_detalle_paciente()
     {
         $id_paciente = $this->input->get('id');

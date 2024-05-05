@@ -640,3 +640,11 @@ body {
 .dataTables_wrapper .dataTables_scrollBody {
   border-top: none;
 }
+
+.ticket-anulado {
+    background-color: #ffdddd !important; /* Color de fondo rojizo para tickets anulados */
+}
+
+.ticket-anulado td {
+    text-decoration: line-through; /* Tachar el texto en las celdas de tickets anulados */
+}

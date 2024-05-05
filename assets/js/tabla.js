@@ -49,6 +49,18 @@ $(document).ready(function () {
       var btnVStudies = $(row).find(".btn-vstudies");
       var btnCinfint = $(row).find(".btn-cinfint");
 
+      //Ocultar el botón "Llamar" si el ticket está anulado:
+      var atendida = data.atendida;
+      var btnCall = $(row).find(".btn-call");
+
+      if (atendida === "2") {
+        btnCall.hide();
+        $(row).addClass("ticket-anulado"); // Agregar la clase "ticket-anulado"
+      } else {
+        btnCall.show();
+        $(row).removeClass("ticket-anulado"); // Remover la clase "ticket-anulado" si el ticket no está anulado
+      }
+
       // btn-more-info siempre visible
       btnMoreInfo.css("opacity", "1");
 
@@ -214,117 +226,136 @@ $(document).ready(function () {
   console.log("selectedDateGlobal after update:", selectedDateGlobal);
 
   var datepickerElement = $("#datepicker").datepicker(
-      $.extend(
-        {
-          dateFormat: "DD, dd/mm/yy",
-          onSelect: function () {
-            var t = datepickerElement.datepicker("getDate"); // Get the selected date
-            selectedDateGlobal = t; // Actualiza la variable global
-            var r = $.datepicker.formatDate("yy-mm-dd", t);
-            console.log("Fecha seleccionada en datepicker: ", t);
-            console.log("Fecha formateada en datepicker: ", r);
-            datepickerElement.val($.datepicker.formatDate("DD, dd/mm/yy", t)),
-              // ...
-              $.ajax({
-                url: "Tabla/obtener_datos_por_fecha",
-                type: "GET",
-                data: { date: r },
-                success: function (e) {
-                  var t = JSON.parse(e);
-                  if ((a.clear(), t.length > 0))
-                    for (var r = 0; r < t.length; r++) {
-                      var tiposHtml = "";
-                      var btnMoreInfoClass = t[r].detalle ? "has-details" : "";
-                      var mostrarLlamar = t[r].mostrar_llamar === "1";
-                      var tipos = t[r].tipo ? t[r].tipo.split(",") : [];
-                      var url = tuBaseURL + "operador/toggle_random/" + t[r].id;
-                      for (var i = 0; i < tipos.length; i++) {
-                        var tipo = tipos[i].trim(); // Eliminar espacios en blanco
-                        if (tipo) {
-                          tiposHtml += '<span class="tag">' + tipo + "</span>";
-                        }
-                      }
-                      var admision = t[r].admision ? t[r].admision : "";
-                      var paciente = t[r].paciente ? t[r].paciente : "";
-                      paciente = capitalizeName(paciente);
-                      var tecnicoSelect = '<select class="tecnico-select"';
-                      if (t[r].atendida != "1" || t[r].tecnico) {
-                        tecnicoSelect += " disabled";
-                      }
-                      tecnicoSelect +=
-                        '><option value="">' +
-                        (t[r].tecnico ? t[r].tecnico : "Técnico") +
-                        "</option>" +
-                        '<option value="N/A">N/A</option>' +
-                        '<option value="YL">YL</option>' +
-                        '<option value="MC">MC</option>' +
-                        '<option value="RS">RS</option>' +
-                        '<option value="YP">YP</option>' +
-                        '<option value="AL">AL</option>' +
-                        '<option value="BA">BA</option>' +
-                        '<option value="AR">AR</option>' +
-                        '<option value="SR">SR</option>' +
-                        '<option value="MH">MH</option>' +
-                        "</select>";
+    $.extend(
+      {
+        dateFormat: "DD, dd/mm/yy",
+        onSelect: function () {
+          var selectedDate = datepickerElement.datepicker("getDate"); // Get the selected date
+          selectedDateGlobal = selectedDate; // Actualiza la variable global
+          var formattedDate = $.datepicker.formatDate("yy-mm-dd", selectedDate);
+          console.log("Fecha seleccionada en datepicker: ", selectedDate);
+          console.log("Fecha formateada en datepicker: ", formattedDate);
+          datepickerElement.val(
+            $.datepicker.formatDate("DD, dd/mm/yy", selectedDate)
+          ),
+            $.ajax({
+              url: "Tabla/obtener_datos_por_fecha",
+              type: "GET",
+              data: { date: formattedDate },
+              success: function (response) {
+                var data = JSON.parse(response);
+                a.clear();
 
-                      a.row
-                        .add([
-                          t[r].especialidad,
-                          '<span style="font-weight: bold; color: #12375b; font-size: 25px;">' +
-                            t[r].ticket +
-                            "</span>",
-                          paciente,
-                          tiposHtml, // use the variable
-                          t[r].hora_de_impresion
-                            ? moment(
-                                t[r].hora_de_impresion,
-                                "YYYY-MM-DD HH:mm:ss"
-                              ).format("hh:mm:ss A")
-                            : "",
-                          t[r].hora_de_llamado
-                            ? moment(
-                                t[r].hora_de_llamado,
-                                "YYYY-MM-DD HH:mm:ss"
-                              ).format("hh:mm:ss A")
-                            : "",
-                          t[r].tiempo_para_atencion &&
-                          "00:00:00" !== t[r].tiempo_para_atencion
-                            ? moment
-                                .utc(t[r].tiempo_para_atencion, "HH:mm:ss")
-                                .format("HH:mm:ss")
-                            : "",
-                          admision,
-                          t[r].ps,
-                          tecnicoSelect, // Utiliza la variable
-                          '<button class="btn btn-more-info ' +
-                            btnMoreInfoClass +
-                            '"><i class="fas fa-plus"></i></button>',
-                          mostrarLlamar
-                            ? '<button class="btn btn-call" data-ticket="' +
-                              t[r].ticket +
-                              '" data-url="' +
-                              url +
-                              '">Llamar</button>'
-                            : "",
-                        ])
-                        .draw(false)
-                        .nodes()
-                        .to$()
-                        .attr("data-id", t[r].id);
+                if (data.length > 0) {
+                  for (var i = 0; i < data.length; i++) {
+                    var tiposHtml = "";
+                    var btnMoreInfoClass = data[i].detalle ? "has-details" : "";
+                    var mostrarLlamar = data[i].mostrar_llamar === "1";
+                    var tipos = data[i].tipo ? data[i].tipo.split(",") : [];
+                    var url =
+                      tuBaseURL + "operador/toggle_random/" + data[i].id;
+
+                    for (var j = 0; j < tipos.length; j++) {
+                      var tipo = tipos[j].trim(); // Eliminar espacios en blanco
+                      if (tipo) {
+                        tiposHtml += '<span class="tag">' + tipo + "</span>";
+                      }
                     }
-                  a.draw();
-                },
-              });
 
-            // Actualiza el contenido del label con la fecha seleccionada
-            var formattedDate = $.datepicker.formatDate("DD, dd/mm/yy", t); // Use 't' instead of 'selectedDate'
-            $("#selected-date-label").text(formattedDate);
-          },
+                    var admision = data[i].admision ? data[i].admision : "";
+                    var paciente = data[i].paciente
+                      ? capitalizeName(data[i].paciente)
+                      : "";
+
+                    var tecnicoSelect = '<select class="tecnico-select"';
+                    if (data[i].atendida != "1" || data[i].tecnico) {
+                      tecnicoSelect += " disabled";
+                    }
+                    tecnicoSelect +=
+                      '><option value="">' +
+                      (data[i].tecnico ? data[i].tecnico : "Técnico") +
+                      "</option>" +
+                      '<option value="N/A">N/A</option>' +
+                      '<option value="YL">YL</option>' +
+                      '<option value="MC">MC</option>' +
+                      '<option value="RS">RS</option>' +
+                      '<option value="YP">YP</option>' +
+                      '<option value="AL">AL</option>' +
+                      '<option value="BA">BA</option>' +
+                      '<option value="AR">AR</option>' +
+                      '<option value="SR">SR</option>' +
+                      '<option value="MH">MH</option>' +
+                      "</select>";
+
+                    var row = a.row
+                      .add([
+                        data[i].especialidad,
+                        '<span style="font-weight: bold; color: #12375b; font-size: 25px;">' +
+                          data[i].ticket +
+                          "</span>",
+                        paciente,
+                        tiposHtml,
+                        data[i].hora_de_impresion
+                          ? moment(
+                              data[i].hora_de_impresion,
+                              "YYYY-MM-DD HH:mm:ss"
+                            ).format("hh:mm:ss A")
+                          : "",
+                        data[i].hora_de_llamado
+                          ? moment(
+                              data[i].hora_de_llamado,
+                              "YYYY-MM-DD HH:mm:ss"
+                            ).format("hh:mm:ss A")
+                          : "",
+                        data[i].tiempo_para_atencion &&
+                        "00:00:00" !== data[i].tiempo_para_atencion
+                          ? moment
+                              .utc(data[i].tiempo_para_atencion, "HH:mm:ss")
+                              .format("HH:mm:ss")
+                          : "",
+                        admision,
+                        data[i].ps,
+                        tecnicoSelect,
+                        '<button class="btn btn-more-info ' +
+                          btnMoreInfoClass +
+                          '"><i class="fas fa-plus"></i></button>',
+                        mostrarLlamar
+                          ? '<button class="btn btn-call" data-ticket="' +
+                            data[i].ticket +
+                            '" data-url="' +
+                            url +
+                            '">Llamar</button>'
+                          : "",
+                      ])
+                      .draw(false)
+                      .node();
+
+                    $(row).attr("data-id", data[i].id);
+
+                    // Agregar la clase "ticket-anulado" si el ticket está anulado
+                    if (data[i].atendida === "2") {
+                      $(row).addClass("ticket-anulado");
+                    }
+                  }
+                }
+
+                a.draw();
+              },
+            });
+
+          // Actualiza el contenido del label con la fecha seleccionada
+          var formattedDate = $.datepicker.formatDate(
+            "DD, dd/mm/yy",
+            selectedDate
+          );
+          $("#selected-date-label").text(formattedDate);
         },
-        $.datepicker.regional.es
-      )
-    ),
-    t = new Date();
+      },
+      $.datepicker.regional.es
+    )
+  );
+
+  var currentDate = new Date();
   datepickerElement.datepicker("setDate", selectedDateGlobal);
 
   $("#refresh-btn").on("click", function () {
@@ -339,29 +370,37 @@ $(document).ready(function () {
         url: "Tabla/obtener_datos_por_fecha",
         type: "GET",
         data: { date: formattedDate },
-        success: function (e) {
-          var t = JSON.parse(e);
-          if ((a.clear(), t.length > 0))
-            for (var r = 0; r < t.length; r++) {
+        success: function (response) {
+          var data = JSON.parse(response);
+          a.clear();
+
+          if (data.length > 0) {
+            for (var i = 0; i < data.length; i++) {
               var tiposHtml = "";
-              var btnMoreInfoClass = t[r].detalle ? "has-details" : "";
-              var mostrarLlamar = t[r].mostrar_llamar === "1";
-              var tipos = t[r].tipo ? t[r].tipo.split(",") : [];
-              var url = tuBaseURL + "operador/toggle_random/" + t[r].id;
-              for (var i = 0; i < tipos.length; i++) {
-                var tipo = tipos[i].trim(); // Eliminar espacios en blanco
+              var btnMoreInfoClass = data[i].detalle ? "has-details" : "";
+              var mostrarLlamar = data[i].mostrar_llamar === "1";
+              var tipos = data[i].tipo ? data[i].tipo.split(",") : [];
+              var url = tuBaseURL + "operador/toggle_random/" + data[i].id;
+
+              for (var j = 0; j < tipos.length; j++) {
+                var tipo = tipos[j].trim();
                 if (tipo) {
                   tiposHtml += '<span class="tag">' + tipo + "</span>";
                 }
               }
-              var paciente = t[r].paciente ? capitalizeName(t[r].paciente) : "";
+
+              var paciente = data[i].paciente
+                ? capitalizeName(data[i].paciente)
+                : "";
               var tecnicoSelect = '<select class="tecnico-select"';
-              if (t[r].atendida != "1" || t[r].tecnico) {
+
+              if (data[i].atendida != "1" || data[i].tecnico) {
                 tecnicoSelect += " disabled";
               }
+
               tecnicoSelect +=
                 '><option value="">' +
-                (t[r].tecnico ? t[r].tecnico : "Técnico") +
+                (data[i].tecnico ? data[i].tecnico : "Técnico") +
                 "</option>" +
                 '<option value="N/A">N/A</option>' +
                 '<option value="YL">YL</option>' +
@@ -374,51 +413,59 @@ $(document).ready(function () {
                 '<option value="SR">SR</option>' +
                 '<option value="MH">MH</option>' +
                 "</select>";
-              a.row
+
+              var row = a.row
                 .add([
-                  t[r].especialidad,
+                  data[i].especialidad,
                   '<span style="font-weight: bold; color: #12375b; font-size: 25px;">' +
-                    t[r].ticket +
+                    data[i].ticket +
                     "</span>",
                   paciente,
                   tiposHtml,
-                  t[r].hora_de_impresion
+                  data[i].hora_de_impresion
                     ? moment(
-                        t[r].hora_de_impresion,
+                        data[i].hora_de_impresion,
                         "YYYY-MM-DD HH:mm:ss"
                       ).format("hh:mm:ss A")
                     : "",
-                  t[r].hora_de_llamado
+                  data[i].hora_de_llamado
                     ? moment(
-                        t[r].hora_de_llamado,
+                        data[i].hora_de_llamado,
                         "YYYY-MM-DD HH:mm:ss"
                       ).format("hh:mm:ss A")
                     : "",
-                  t[r].tiempo_para_atencion &&
-                  "00:00:00" !== t[r].tiempo_para_atencion
+                  data[i].tiempo_para_atencion &&
+                  "00:00:00" !== data[i].tiempo_para_atencion
                     ? moment
-                        .utc(t[r].tiempo_para_atencion, "HH:mm:ss")
+                        .utc(data[i].tiempo_para_atencion, "HH:mm:ss")
                         .format("HH:mm:ss")
                     : "",
-                  t[r].admision,
-                  t[r].ps,
-                  tecnicoSelect, // Use the variable
+                  data[i].admision,
+                  data[i].ps,
+                  tecnicoSelect,
                   '<button class="btn btn-more-info ' +
                     btnMoreInfoClass +
                     '"><i class="fas fa-plus"></i></button>',
                   mostrarLlamar
                     ? '<button class="btn btn-call" data-ticket="' +
-                      t[r].ticket +
+                      data[i].ticket +
                       '" data-url="' +
                       url +
                       '">Llamar</button>'
                     : "",
                 ])
                 .draw(false)
-                .nodes()
-                .to$()
-                .attr("data-id", t[r].id);
+                .node();
+
+              $(row).attr("data-id", data[i].id);
+
+              // Agregar la clase "ticket-anulado" si el ticket está anulado
+              if (data[i].atendida === "2") {
+                $(row).addClass("ticket-anulado");
+              }
             }
+          }
+
           a.draw();
         },
       });
@@ -455,29 +502,37 @@ $(document).ready(function () {
       url: "Tabla/obtener_datos_por_fecha",
       type: "GET",
       data: { date: r },
-      success: function (e) {
-        var t = JSON.parse(e);
-        if ((a.clear(), t.length > 0))
-          for (var r = 0; r < t.length; r++) {
+      success: function (response) {
+        var data = JSON.parse(response);
+        a.clear();
+
+        if (data.length > 0) {
+          for (var i = 0; i < data.length; i++) {
             var tiposHtml = "";
-            var btnMoreInfoClass = t[r].detalle ? "has-details" : "";
-            var mostrarLlamar = t[r].mostrar_llamar === "1";
-            var tipos = t[r].tipo ? t[r].tipo.split(",") : [];
-            var url = tuBaseURL + "operador/toggle_random/" + t[r].id;
-            for (var i = 0; i < tipos.length; i++) {
-              var tipo = tipos[i].trim(); // Eliminar espacios en blanco
+            var btnMoreInfoClass = data[i].detalle ? "has-details" : "";
+            var mostrarLlamar = data[i].mostrar_llamar === "1";
+            var tipos = data[i].tipo ? data[i].tipo.split(",") : [];
+            var url = tuBaseURL + "operador/toggle_random/" + data[i].id;
+
+            for (var j = 0; j < tipos.length; j++) {
+              var tipo = tipos[j].trim(); // Eliminar espacios en blanco
               if (tipo) {
                 tiposHtml += '<span class="tag">' + tipo + "</span>";
               }
             }
-            var paciente = t[r].paciente ? capitalizeName(t[r].paciente) : "";
+
+            var paciente = data[i].paciente
+              ? capitalizeName(data[i].paciente)
+              : "";
             var tecnicoSelect = '<select class="tecnico-select"';
-            if (t[r].atendida != "1" || t[r].tecnico) {
+
+            if (data[i].atendida != "1" || data[i].tecnico) {
               tecnicoSelect += " disabled";
             }
+
             tecnicoSelect +=
               '><option value="">' +
-              (t[r].tecnico ? t[r].tecnico : "Técnico") +
+              (data[i].tecnico ? data[i].tecnico : "Técnico") +
               "</option>" +
               '<option value="N/A">N/A</option>' +
               '<option value="YL">YL</option>' +
@@ -490,50 +545,59 @@ $(document).ready(function () {
               '<option value="SR">SR</option>' +
               '<option value="MH">MH</option>' +
               "</select>";
-            a.row
+
+            var row = a.row
               .add([
-                t[r].especialidad,
+                data[i].especialidad,
                 '<span style="font-weight: bold; color: #12375b; font-size: 25px;">' +
-                  t[r].ticket +
+                  data[i].ticket +
                   "</span>",
                 paciente,
                 tiposHtml,
-                t[r].hora_de_impresion
+                data[i].hora_de_impresion
                   ? moment(
-                      t[r].hora_de_impresion,
+                      data[i].hora_de_impresion,
                       "YYYY-MM-DD HH:mm:ss"
                     ).format("hh:mm:ss A")
                   : "",
-                t[r].hora_de_llamado
-                  ? moment(t[r].hora_de_llamado, "YYYY-MM-DD HH:mm:ss").format(
-                      "hh:mm:ss A"
-                    )
+                data[i].hora_de_llamado
+                  ? moment(
+                      data[i].hora_de_llamado,
+                      "YYYY-MM-DD HH:mm:ss"
+                    ).format("hh:mm:ss A")
                   : "",
-                t[r].tiempo_para_atencion &&
-                "00:00:00" !== t[r].tiempo_para_atencion
+                data[i].tiempo_para_atencion &&
+                "00:00:00" !== data[i].tiempo_para_atencion
                   ? moment
-                      .utc(t[r].tiempo_para_atencion, "HH:mm:ss")
+                      .utc(data[i].tiempo_para_atencion, "HH:mm:ss")
                       .format("HH:mm:ss")
                   : "",
-                t[r].admision,
-                t[r].ps,
-                tecnicoSelect, // Use the variable
+                data[i].admision,
+                data[i].ps,
+                tecnicoSelect,
                 '<button class="btn btn-more-info ' +
                   btnMoreInfoClass +
                   '"><i class="fas fa-plus"></i></button>',
                 mostrarLlamar
                   ? '<button class="btn btn-call" data-ticket="' +
-                    t[r].ticket +
+                    data[i].ticket +
                     '" data-url="' +
                     url +
                     '">Llamar</button>'
                   : "",
               ])
               .draw(false)
-              .nodes()
-              .to$()
-              .attr("data-id", t[r].id);
+              .node();
+
+            $(row).attr("data-id", data[i].id);
+
+            // Agregar la clase "ticket-anulado" si el ticket está anulado
+            if (data[i].atendida === "2") {
+              $(row).addClass("ticket-anulado");
+            }
           }
+        }
+
         a.draw();
         checkIfTodayIsSelected(date);
       },
@@ -682,7 +746,7 @@ $(document).ready(function () {
             "<tr><td><b>Cedula:</b> " +
             patientDetails.cedula +
             "</td><td style='text-align: right;'>" +
-            "<button id='anularTicketBtn' class='btn btn-danger' style='margin-right: 230px;' data-id='" +
+            "<button id='anularTicketBtn' class='btn btn-danger';' data-id='" +
             patientDetails.id +
             "'>Anular Ticket</button>" +
             "</td></tr>" +
@@ -713,23 +777,18 @@ $(document).ready(function () {
   $(document).on("click", "#anularTicketBtn", function () {
     var patientId = $(this).data("id");
     var confirmation = confirm(
-      "¿Estás seguro de que deseas anular este ticket?"
+      "¿Estás seguro de que deseas anular este ticket? Esta acción NO se puede deshacer"
     );
 
     if (confirmation) {
-      // Aquí puedes realizar la lógica para anular el ticket
-      console.log("Anulando ticket para el paciente con ID:", patientId);
-
-      // Ejemplo de llamada AJAX para anular el ticket
       $.ajax({
         url: "Tabla/anular_ticket",
         type: "POST",
         data: { id: patientId },
         success: function (response) {
           console.log("Respuesta del servidor:", response);
-          // Realizar acciones adicionales después de anular el ticket
           $("#patientDetailsModal").modal("hide");
-          $("#refresh-btn").click();
+          a.draw(false); // Actualizar la tabla sin resetear la paginación
         },
         error: function (error) {
           console.error("Error al anular el ticket:", error);
@@ -983,69 +1042,102 @@ $(document).ready(function () {
       url: "Tabla/obtener_datos_por_fecha",
       type: "GET",
       data: { date: t },
-      success: function (e) {
-        var t = JSON.parse(e);
-        if ((a.clear(), t.length > 0))
-          for (var r = 0; r < t.length; r++) {
+      success: function (response) {
+        var data = JSON.parse(response);
+        a.clear();
+
+        if (data.length > 0) {
+          for (var i = 0; i < data.length; i++) {
             var tiposHtml = "";
-            var btnMoreInfoClass = t[r].detalle ? "has-details" : "";
-            var tipos = t[r].tipo ? t[r].tipo.split(",") : [];
-            var mostrarLlamar = t[r].mostrar_llamar === "1";
-            var url = tuBaseURL + "operador/toggle_random/" + t[r].id;
-            for (var i = 0; i < tipos.length; i++) {
-              var tipo = tipos[i].trim(); // Eliminar espacios en blanco
+            var btnMoreInfoClass = data[i].detalle ? "has-details" : "";
+            var tipos = data[i].tipo ? data[i].tipo.split(",") : [];
+            var mostrarLlamar = data[i].mostrar_llamar === "1";
+            var url = tuBaseURL + "operador/toggle_random/" + data[i].id;
+
+            for (var j = 0; j < tipos.length; j++) {
+              var tipo = tipos[j].trim(); // Eliminar espacios en blanco
               if (tipo) {
                 tiposHtml += '<span class="tag">' + tipo + "</span>";
               }
             }
-            var admision = t[r].admision ? t[r].admision : ""; // if admision is null, use an empty string
-            var paciente = t[r].paciente ? t[r].paciente : ""; // if paciente is null, use an empty string
-            var paciente = t[r].paciente ? capitalizeName(t[r].paciente) : ""; // Aplica la función al paciente
 
-            a.row
+            var admision = data[i].admision ? data[i].admision : ""; // if admision is null, use an empty string
+            var paciente = data[i].paciente
+              ? capitalizeName(data[i].paciente)
+              : ""; // Aplica la función al paciente
+
+            var tecnicoSelect = '<select class="tecnico-select"';
+            if (data[i].atendida != "1" || data[i].tecnico) {
+              tecnicoSelect += " disabled";
+            }
+            tecnicoSelect +=
+              '><option value="">' +
+              (data[i].tecnico ? data[i].tecnico : "Técnico") +
+              "</option>" +
+              '<option value="N/A">N/A</option>' +
+              '<option value="YL">YL</option>' +
+              '<option value="MC">MC</option>' +
+              '<option value="RS">RS</option>' +
+              '<option value="YP">YP</option>' +
+              '<option value="AL">AL</option>' +
+              '<option value="BA">BA</option>' +
+              '<option value="AR">AR</option>' +
+              '<option value="SR">SR</option>' +
+              '<option value="MH">MH</option>' +
+              "</select>";
+
+            var row = a.row
               .add([
-                t[r].especialidad,
+                data[i].especialidad,
                 '<span style="font-weight: bold; color: #12375b; font-size: 25px;">' +
-                  t[r].ticket +
+                  data[i].ticket +
                   "</span>",
                 paciente,
                 tiposHtml,
-                t[r].hora_de_impresion
+                data[i].hora_de_impresion
                   ? moment(
-                      t[r].hora_de_impresion,
+                      data[i].hora_de_impresion,
                       "YYYY-MM-DD HH:mm:ss"
                     ).format("hh:mm:ss A")
                   : "",
-                t[r].hora_de_llamado
-                  ? moment(t[r].hora_de_llamado, "YYYY-MM-DD HH:mm:ss").format(
-                      "hh:mm:ss A"
-                    )
+                data[i].hora_de_llamado
+                  ? moment(
+                      data[i].hora_de_llamado,
+                      "YYYY-MM-DD HH:mm:ss"
+                    ).format("hh:mm:ss A")
                   : "",
-                t[r].tiempo_para_atencion &&
-                "00:00:00" !== t[r].tiempo_para_atencion
+                data[i].tiempo_para_atencion &&
+                "00:00:00" !== data[i].tiempo_para_atencion
                   ? moment
-                      .utc(t[r].tiempo_para_atencion, "HH:mm:ss")
+                      .utc(data[i].tiempo_para_atencion, "HH:mm:ss")
                       .format("HH:mm:ss")
                   : "",
                 admision,
-                t[r].ps,
+                data[i].ps,
                 tecnicoSelect,
                 '<button class="btn btn-more-info ' +
                   btnMoreInfoClass +
                   '"><i class="fas fa-plus"></i></button>',
                 mostrarLlamar
                   ? '<button class="btn btn-call" data-ticket="' +
-                    t[r].ticket +
+                    data[i].ticket +
                     '" data-url="' +
                     url +
                     '">Llamar</button>'
                   : "",
               ])
               .draw(false)
-              .nodes()
-              .to$()
-              .attr("data-id", t[r].id);
+              .node();
+
+            $(row).attr("data-id", data[i].id);
+
+            // Agregar la clase "ticket-anulado" si el ticket está anulado
+            if (data[i].atendida === "2") {
+              $(row).addClass("ticket-anulado");
+            }
           }
+        }
+
         a.draw();
       },
     });

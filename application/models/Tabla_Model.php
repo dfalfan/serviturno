@@ -50,7 +50,7 @@ class Tabla_model extends CI_Model
     ) AS first_not_attended
     ON categorias.categoria = first_not_attended.categoria
     WHERE 
-        DATE(cola.fecha) = CURDATE() 
+        DATE(cola.fecha) = CURDATE()   
     GROUP BY 
         cola.id 
     ORDER BY 
@@ -155,6 +155,13 @@ class Tabla_model extends CI_Model
 
         return $query->num_rows() > 0;
     }
+
+    public function anular_ticket($id_ticket)
+    {
+        $this->db->where('id', $id_ticket);
+        $this->db->update('cola', ['atendida' => '2']);
+    }
+
 
     public function obtener_datos_por_fecha($date)
     {
