@@ -139,15 +139,29 @@ $(document).ready(function () {
   });
 
   // Validar el número de admisión
+  // Validar el número de admisión
   $("#admission-number").keydown(function (e) {
-    if (
-      (e.keyCode < 48 || e.keyCode > 57) &&
-      (e.keyCode < 96 || e.keyCode > 105) &&
-      e.keyCode != 8 &&
-      e.keyCode != 46
-    ) {
-      e.preventDefault();
+    // Permitir Ctrl+C (copiar)
+    if (e.ctrlKey && e.keyCode === 67) {
+      return;
     }
+
+    // Permitir Ctrl+V (pegar)
+    if (e.ctrlKey && e.keyCode === 86) {
+      return;
+    }
+
+    // Permitir teclas de números, backspace y delete
+    if (
+      (e.keyCode >= 48 && e.keyCode <= 57) || // Números del teclado principal
+      (e.keyCode >= 96 && e.keyCode <= 105) || // Números del teclado numérico
+      e.keyCode === 8 || // Backspace
+      e.keyCode === 46 // Delete
+    ) {
+      return;
+    }
+
+    e.preventDefault();
   });
 
   $("#print-ticket-button").click(function () {
