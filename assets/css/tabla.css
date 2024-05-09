@@ -648,3 +648,7 @@ body {
 .ticket-anulado td {
     text-decoration: line-through; /* Tachar el texto en las celdas de tickets anulados */
 }
+
+#detalle.required {
+    border-color: red;
+}

@@ -774,6 +774,11 @@ $(document).ready(function () {
     keyboard: false,
   });
 
+
+
+
+  var ticketToCancel = null; // Variable para almacenar el ID del ticket a anular
+
   $(document).on("click", "#anularTicketBtn", function () {
     var patientId = $(this).data("id");
     var confirmation = confirm(
@@ -781,43 +786,51 @@ $(document).ready(function () {
     );
 
     if (confirmation) {
+      $("#detalle").addClass("required"); // Agregar la clase 'required' al textbox
+      ticketToCancel = patientId; // Guardar el ID del ticket a anular
+    }
+  });
+
+  $("#save-btn").on("click", function () {
+    console.log("Botón de guardar clickeado");
+
+    var detalle = $("#detalle").val();
+    var patientId = $("#patientDetailsModal").data("patient-id");
+
+    if ($("#detalle").hasClass("required") && detalle.trim() === "") {
+      alert("Por favor, ingrese un detalle para anular el ticket."); // Mostrar un mensaje de alerta
+      return; // Detener la ejecución si el textbox está vacío
+    }
+
+    if (ticketToCancel !== null) {
+      // Si hay un ticket marcado para anulación
       $.ajax({
         url: "Tabla/anular_ticket",
         type: "POST",
-        data: { id: patientId },
+        data: { id: ticketToCancel },
         success: function (response) {
-          console.log("Respuesta del servidor:", response);
-          $("#patientDetailsModal").modal("hide");
-          a.draw(false); // Actualizar la tabla sin resetear la paginación
+          console.log("Respuesta del servidor al anular el ticket:", response);
         },
         error: function (error) {
           console.error("Error al anular el ticket:", error);
         },
       });
     }
-  });
-
-  $("#save-btn").on("click", function () {
-    console.log("Botón de guardar clickeado"); // Log al hacer clic en el botón de guardar
-
-    var detalle = $("#detalle").val(); // Obtén el valor del textarea
-    var patientId = $("#patientDetailsModal").data("patient-id"); // Obtén el ID del paciente desde el modal
 
     $.ajax({
       url: "Tabla/actualizar_detalle_paciente",
       type: "POST",
       data: { id: patientId, detalle: detalle },
       success: function (data) {
-        console.log("Respuesta del servidor recibida:", data); // Log de la respuesta del servidor
+        console.log("Respuesta del servidor recibida:", data);
         $("#patientDetailsModal").modal("hide");
         $("#refresh-btn").click();
-        // Si la actualización fue exitosa, envía un mensaje a través del WebSocket
-        console.log("Enviando mensaje de edición a través del WebSocket"); // Log antes de enviar el mensaje
         conn.send("Dato editado");
-        console.log("Mensaje de edición enviado"); // Log después de enviar el mensaje
+        console.log("Mensaje de edición enviado");
+        ticketToCancel = null; // Reiniciar la variable después de guardar los cambios
       },
       error: function (error) {
-        console.error("Error en la solicitud de actualización:", error); // Log en caso de error en la solicitud AJAX
+        console.error("Error en la solicitud de actualización:", error);
       },
     });
   });
@@ -851,6 +864,9 @@ $(document).ready(function () {
     });
   });
 
+
+
+  
   //Operador
 
   $(document).on("click", ".btn-call", function () {
