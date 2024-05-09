@@ -54,7 +54,6 @@ class Tabla extends CI_Controller
 
         echo json_encode(['existe' => $existe_admision]);
     }
-
     public function anular_ticket()
     {
         $id_ticket = $this->input->post('id');
@@ -62,11 +61,14 @@ class Tabla extends CI_Controller
         echo json_encode(['success' => true]);
     }
 
-
     public function obtener_detalle_paciente()
     {
         $id_paciente = $this->input->get('id');
         $data = $this->tabla_model->obtener_detalle_paciente($id_paciente);
+
+        // Verificar si el ticket está anulado
+        $data->anulado = ($data->atendida == '2');
+
         echo json_encode($data);
     }
 }

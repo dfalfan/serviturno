@@ -116,6 +116,7 @@ class Tabla_model extends CI_Model
         cola.tiempo_para_atencion AS tiempo_para_atencion, 
         categorias.categoria AS especialidad, 
         cola.admision AS admision,
+        cola.atendida AS atendida,
         cola.paciente AS paciente,
         cola.detalle AS detalle,
         cola.cedula AS cedula,
@@ -160,6 +161,15 @@ class Tabla_model extends CI_Model
     {
         $this->db->where('id', $id_ticket);
         $this->db->update('cola', ['atendida' => '2']);
+    }
+
+    public function verificar_ticket_firmado($id_ticket)
+    {
+        $this->db->where('id', $id_ticket);
+        $this->db->where('tecnico IS NOT NULL');
+        $query = $this->db->get('cola');
+
+        return $query->num_rows() > 0;
     }
 
 

@@ -666,6 +666,7 @@ $(document).ready(function () {
     var row = $(this).closest("tr");
     var patientId = row.data("id");
     $("#patientDetailsModal").data("patient-id", patientId);
+    $("#patientDetailsModal").data("row", row);
 
     $.ajax({
       url: "Tabla/obtener_detalle_paciente",
@@ -673,6 +674,14 @@ $(document).ready(function () {
       data: { id: patientId },
       success: function (data) {
         var patientDetails = JSON.parse(data);
+
+        var anulado = patientDetails.anulado;
+        var anularTicketButton = anulado
+          ? ""
+          : "<button id='anularTicketBtn' class='btn btn-danger' data-id='" +
+            patientDetails.id +
+            "'>Anular Ticket</button>";
+        var detalleStyle = anulado ? "text-decoration: line-through;" : "";
 
         var horaDeImpresion = patientDetails.hora_de_impresion
           ? moment(patientDetails.hora_de_impresion).format("hh:mm A")
@@ -745,14 +754,14 @@ $(document).ready(function () {
             "</td></tr>" +
             "<tr><td><b>Cedula:</b> " +
             patientDetails.cedula +
-            "</td><td style='text-align: right;'>" +
-            "<button id='anularTicketBtn' class='btn btn-danger';' data-id='" +
-            patientDetails.id +
-            "'>Anular Ticket</button>" +
+            "</td><td>" +
+            anularTicketButton +
             "</td></tr>" +
             "<tr><td colspan='2'>" +
             "<p style='text-align: center; margin-top: 50px;'><b>Detalle:</b></p>" +
-            "<textarea id='detalle' class='form-control' rows='4' placeholder='Escribe aquí el detalle...' style='width: 100%; margin: 0 auto 10px; padding: 5px;'>" +
+            "<textarea id='detalle' class='form-control' rows='4' placeholder='Escribe aquí el detalle...' style='width: 100%; margin: 0 auto 10px; padding: 5px; " +
+            detalleStyle +
+            "'>" +
             (patientDetails.detalle ? patientDetails.detalle : "") +
             "</textarea>" +
             "</td></tr>" +
@@ -774,20 +783,52 @@ $(document).ready(function () {
     keyboard: false,
   });
 
-
-
-
   var ticketToCancel = null; // Variable para almacenar el ID del ticket a anular
 
   $(document).on("click", "#anularTicketBtn", function () {
     var patientId = $(this).data("id");
+    var row = $("#patientDetailsModal").data("row"); // Obtener la fila asociada al modal
+
+    console.log("ID del paciente:", patientId);
+
+    if ($(row).hasClass("row-with-technician")) {
+      alert(
+        "El ticket no se puede anular porque ya ha sido firmado por un técnico."
+      );
+      return;
+    }
+
     var confirmation = confirm(
       "¿Estás seguro de que deseas anular este ticket? Esta acción NO se puede deshacer"
     );
 
     if (confirmation) {
-      $("#detalle").addClass("required"); // Agregar la clase 'required' al textbox
-      ticketToCancel = patientId; // Guardar el ID del ticket a anular
+      $("#detalle").addClass("required");
+      ticketToCancel = patientId;
+
+      $.ajax({
+        url: "Tabla/anular_ticket",
+        type: "POST",
+        data: { id: patientId },
+        success: function (response) {
+          console.log("Respuesta del servidor:", response);
+
+          var data = JSON.parse(response);
+          if (data.success) {
+            // El ticket se anuló exitosamente
+            console.log("Ticket anulado exitosamente");
+          } else {
+            // El ticket no se pudo anular
+            console.log("El ticket no se pudo anular. Mensaje:", data.message);
+            alert(data.message);
+          }
+        },
+        error: function (error) {
+          console.error("Error al anular el ticket:", error);
+        },
+      });
+    } else {
+      console.log("Anulación de ticket cancelada por el usuario");
     }
   });
 
@@ -864,9 +905,6 @@ $(document).ready(function () {
     });
   });
 
-
-
-  
   //Operador
 
   $(document).on("click", ".btn-call", function () {
