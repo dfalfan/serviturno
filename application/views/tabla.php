@@ -66,7 +66,7 @@
                     <i class="far fa-calendar-alt"></i>
                 </button>
                 <input type="text" id="datepicker" style="display:none;">
-                <button id="refresh-btn" style="display:block;"><i class="fas fa-sync-alt"></i></button>
+                <button id="refresh-btn" style="display:none;"><i class="fas fa-sync-alt"></i></button>
                 <button id="stats-btn">
                     <i class="fas fa-chart-bar"></i>
                 </button>
