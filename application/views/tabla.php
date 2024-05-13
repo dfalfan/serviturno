@@ -97,7 +97,7 @@
                         <th>Tipo</th>
                         <th>Impresión</th>
                         <th>Llamado</th>
-                        <th>Tiempo</th>
+                        <th>Espera</th>
                         <th>Admisión</th>
                         <th>P/S</th>
                         <th>Técnico</th>
@@ -139,6 +139,7 @@
                                     <option value="AL">AL</option>
                                     <option value="BA">BA</option>
                                     <option value="AR">AR</option>
+                                    <option value="LN">MH</option>
                                     <option value="SR">SR</option>
                                     <option value="MH">MH</option>
 

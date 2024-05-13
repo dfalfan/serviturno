@@ -31,7 +31,7 @@ $(document).ready(function () {
       },
     ],
     language: {
-      url: "//cdn.datatables.net/plug-ins/1.10.22/i18n/Spanish.json",
+      url: "assets/js/Spanish.json",
       buttons: {
         copyTitle: "Copiado al portapapeles",
         copySuccess: "Se copiaron %d filas al portapapeles",
@@ -39,10 +39,11 @@ $(document).ready(function () {
     },
 
     createdRow: function (row, data) {
-      // Cambia el índice 9 al índice de la columna que contiene el técnico
-      var technicianCell = $(row).find("td").eq(8);
-      var technicianOption = $(technicianCell).find("option").eq(0);
+      var technicianCell = $(row).find("td").eq(9);
+      var technicianOption = $(technicianCell).find("option:selected");
       var technician = $(technicianOption).text();
+
+      console.log("Valor de technician:", technician); // Agregar registro de depuración
 
       // Encuentra los botones que quieres manipular
       var btnMoreInfo = $(row).find(".btn-more-info");
@@ -55,22 +56,26 @@ $(document).ready(function () {
 
       if (atendida === "2") {
         btnCall.hide();
-        $(row).addClass("ticket-anulado"); // Agregar la clase "ticket-anulado"
+        $(row).addClass("ticket-anulado");
       } else {
         btnCall.show();
-        $(row).removeClass("ticket-anulado"); // Remover la clase "ticket-anulado" si el ticket no está anulado
+        $(row).removeClass("ticket-anulado");
       }
 
       // btn-more-info siempre visible
       btnMoreInfo.css("opacity", "1");
 
-      if (technician && technician.trim() !== "Técnico") {
+      if (technician !== "Técnico" && technician !== "") {
+        console.log("Aplicando clase 'row-with-technician'"); // Agregar registro de depuración
         $(row).addClass("row-with-technician");
 
         // Añadir la clase para hacer los otros botones visibles
         btnVStudies.addClass("btn-technician-visible");
         btnCinfint.addClass("btn-technician-visible");
       } else {
+        console.log("Removiendo clase 'row-with-technician'"); // Agregar registro de depuración
+        $(row).removeClass("row-with-technician");
+
         // Quitar la clase para hacer los otros botones menos visibles
         btnVStudies.removeClass("btn-technician-visible");
         btnCinfint.removeClass("btn-technician-visible");
@@ -87,8 +92,8 @@ $(document).ready(function () {
         autoWidth: false,
       },
       {
-        targets: [6], // La septima columna (índice 6) "ocultar columna de tiempo promedio"
-        visible: false,
+        targets: [6], // "tiempo esspera"
+        visible: true,
         searchable: false,
       },
     ],
@@ -301,6 +306,36 @@ $(document).ready(function () {
                       '<option value="MH">MH</option>' +
                       "</select>";
 
+                    var tiempoParaAtencionCell = "";
+                    if (data[i].hora_de_llamado) {
+                      // Si el ticket ha sido llamado, muestra el tiempo formateado con la clase 'tiempo-llamado'
+                      tiempoParaAtencionCell =
+                        '<span class="tiempo-llamado">' +
+                        formatTime(data[i].tiempo_para_atencion) +
+                        "</span>";
+                    } else {
+                      // Si el ticket no ha sido llamado, agrega la clase 'tiempo-espera' al elemento <span>
+                      tiempoParaAtencionCell =
+                        '<span class="tiempo-espera" data-hora-impresion="' +
+                        data[i].hora_de_impresion +
+                        '">00:00</span>';
+                    }
+
+                    if (
+                      data[i].tiempo_para_atencion &&
+                      "00:00:00" !== data[i].tiempo_para_atencion
+                    ) {
+                      tiempoParaAtencionCell = formatTime(
+                        data[i].tiempo_para_atencion
+                      );
+                    } else if (!data[i].hora_de_llamado) {
+                      // Si el ticket no ha sido llamado, agrega una clase especial a la celda
+                      tiempoParaAtencionCell =
+                        '<span class="tiempo-espera" data-hora-impresion="' +
+                        data[i].hora_de_impresion +
+                        '">00:00</span>';
+                    }
+
                     var row = a.row
                       .add([
                         data[i].especialidad,
@@ -321,12 +356,8 @@ $(document).ready(function () {
                               "YYYY-MM-DD HH:mm:ss"
                             ).format("hh:mm:ss A")
                           : "",
-                        data[i].tiempo_para_atencion &&
-                        "00:00:00" !== data[i].tiempo_para_atencion
-                          ? moment
-                              .utc(data[i].tiempo_para_atencion, "HH:mm:ss")
-                              .format("HH:mm:ss")
-                          : "",
+                        tiempoParaAtencionCell,
+
                         admision,
                         data[i].ps,
                         tecnicoSelect,
@@ -428,6 +459,36 @@ $(document).ready(function () {
                 '<option value="MH">MH</option>' +
                 "</select>";
 
+              var tiempoParaAtencionCell = "";
+              if (data[i].hora_de_llamado) {
+                // Si el ticket ha sido llamado, muestra el tiempo formateado con la clase 'tiempo-llamado'
+                tiempoParaAtencionCell =
+                  '<span class="tiempo-llamado">' +
+                  formatTime(data[i].tiempo_para_atencion) +
+                  "</span>";
+              } else {
+                // Si el ticket no ha sido llamado, agrega la clase 'tiempo-espera' al elemento <span>
+                tiempoParaAtencionCell =
+                  '<span class="tiempo-espera" data-hora-impresion="' +
+                  data[i].hora_de_impresion +
+                  '">00:00</span>';
+              }
+
+              if (
+                data[i].tiempo_para_atencion &&
+                "00:00:00" !== data[i].tiempo_para_atencion
+              ) {
+                tiempoParaAtencionCell = formatTime(
+                  data[i].tiempo_para_atencion
+                );
+              } else if (!data[i].hora_de_llamado) {
+                // Si el ticket no ha sido llamado, agrega una clase especial a la celda
+                tiempoParaAtencionCell =
+                  '<span class="tiempo-espera" data-hora-impresion="' +
+                  data[i].hora_de_impresion +
+                  '">00:00</span>';
+              }
+
               var row = a.row
                 .add([
                   data[i].especialidad,
@@ -448,12 +509,7 @@ $(document).ready(function () {
                         "YYYY-MM-DD HH:mm:ss"
                       ).format("hh:mm:ss A")
                     : "",
-                  data[i].tiempo_para_atencion &&
-                  "00:00:00" !== data[i].tiempo_para_atencion
-                    ? moment
-                        .utc(data[i].tiempo_para_atencion, "HH:mm:ss")
-                        .format("HH:mm:ss")
-                    : "",
+                  tiempoParaAtencionCell,
                   data[i].admision,
                   data[i].ps,
                   tecnicoSelect,
@@ -560,6 +616,34 @@ $(document).ready(function () {
               '<option value="MH">MH</option>' +
               "</select>";
 
+            var tiempoParaAtencionCell = "";
+            if (data[i].hora_de_llamado) {
+              // Si el ticket ha sido llamado, muestra el tiempo formateado con la clase 'tiempo-llamado'
+              tiempoParaAtencionCell =
+                '<span class="tiempo-llamado">' +
+                formatTime(data[i].tiempo_para_atencion) +
+                "</span>";
+            } else {
+              // Si el ticket no ha sido llamado, agrega la clase 'tiempo-espera' al elemento <span>
+              tiempoParaAtencionCell =
+                '<span class="tiempo-espera" data-hora-impresion="' +
+                data[i].hora_de_impresion +
+                '">00:00</span>';
+            }
+
+            if (
+              data[i].tiempo_para_atencion &&
+              "00:00:00" !== data[i].tiempo_para_atencion
+            ) {
+              tiempoParaAtencionCell = formatTime(data[i].tiempo_para_atencion);
+            } else if (!data[i].hora_de_llamado) {
+              // Si el ticket no ha sido llamado, agrega una clase especial a la celda
+              tiempoParaAtencionCell =
+                '<span class="tiempo-espera" data-hora-impresion="' +
+                data[i].hora_de_impresion +
+                '">00:00</span>';
+            }
+
             var row = a.row
               .add([
                 data[i].especialidad,
@@ -580,12 +664,9 @@ $(document).ready(function () {
                       "YYYY-MM-DD HH:mm:ss"
                     ).format("hh:mm:ss A")
                   : "",
-                data[i].tiempo_para_atencion &&
-                "00:00:00" !== data[i].tiempo_para_atencion
-                  ? moment
-                      .utc(data[i].tiempo_para_atencion, "HH:mm:ss")
-                      .format("HH:mm:ss")
-                  : "",
+                tiempoParaAtencionCell,
+
+                ,
                 data[i].admision,
                 data[i].ps,
                 tecnicoSelect,
@@ -1021,8 +1102,6 @@ $(document).ready(function () {
   };
 
   function triggerServerAction(url) {
-    // Tu lógica para interactuar con el servidor
-    // Por ejemplo, podrías hacer una petición AJAX a la URL proporcionada
     $.ajax({
       url: url,
       type: "GET",
@@ -1102,6 +1181,48 @@ $(document).ready(function () {
     );
   }
 
+  function formatTime(timeString, hora_de_llamado) {
+    var duration = moment.duration(timeString);
+    var hours = duration.hours();
+    var minutes = duration.minutes();
+
+    var formattedTime = "";
+    var tiempoLlamadoClass = "";
+
+    if (hora_de_llamado) {
+      tiempoLlamadoClass = "tiempo-llamado";
+    }
+
+    if (hours > 0) {
+      formattedTime += hours + " hora" + (hours > 1 ? "s" : "") + "<br>";
+    }
+    if (minutes > 0) {
+      formattedTime += minutes + " min";
+    }
+    if (minutes === 0 && hours === 0) {
+      formattedTime += "0 min";
+    }
+
+    return (
+      '<span class="' + tiempoLlamadoClass + '">' + formattedTime + "</span>"
+    );
+  }
+
+  function actualizarContadoresEspera() {
+    $(".tiempo-espera").each(function () {
+      var horaImpresion = $(this).data("hora-impresion");
+      var tiempoTranscurrido = moment().diff(
+        moment(horaImpresion, "YYYY-MM-DD HH:mm:ss")
+      );
+      var tiempoFormateado = formatTime(
+        moment.utc(tiempoTranscurrido).format("HH:mm:ss")
+      );
+      $(this).html(tiempoFormateado);
+    });
+  }
+
+  setInterval(actualizarContadoresEspera, 1000);
+
   //????
   var o = new Date();
   function i(e) {
@@ -1154,6 +1275,34 @@ $(document).ready(function () {
               '<option value="MH">MH</option>' +
               "</select>";
 
+            var tiempoParaAtencionCell = "";
+            if (data[i].hora_de_llamado) {
+              // Si el ticket ha sido llamado, muestra el tiempo formateado con la clase 'tiempo-llamado'
+              tiempoParaAtencionCell =
+                '<span class="tiempo-llamado">' +
+                formatTime(data[i].tiempo_para_atencion) +
+                "</span>";
+            } else {
+              // Si el ticket no ha sido llamado, agrega la clase 'tiempo-espera' al elemento <span>
+              tiempoParaAtencionCell =
+                '<span class="tiempo-espera" data-hora-impresion="' +
+                data[i].hora_de_impresion +
+                '">00:00</span>';
+            }
+
+            if (
+              data[i].tiempo_para_atencion &&
+              "00:00:00" !== data[i].tiempo_para_atencion
+            ) {
+              tiempoParaAtencionCell = formatTime(data[i].tiempo_para_atencion);
+            } else if (!data[i].hora_de_llamado) {
+              // Si el ticket no ha sido llamado, agrega una clase especial a la celda
+              tiempoParaAtencionCell =
+                '<span class="tiempo-espera" data-hora-impresion="' +
+                data[i].hora_de_impresion +
+                '">00:00</span>';
+            }
+
             var row = a.row
               .add([
                 data[i].especialidad,
@@ -1174,12 +1323,7 @@ $(document).ready(function () {
                       "YYYY-MM-DD HH:mm:ss"
                     ).format("hh:mm:ss A")
                   : "",
-                data[i].tiempo_para_atencion &&
-                "00:00:00" !== data[i].tiempo_para_atencion
-                  ? moment
-                      .utc(data[i].tiempo_para_atencion, "HH:mm:ss")
-                      .format("HH:mm:ss")
-                  : "",
+                tiempoParaAtencionCell,
                 admision,
                 data[i].ps,
                 tecnicoSelect,

@@ -154,14 +154,15 @@
   background-color: #12375b;
 }
 
-#myTable td:nth-child(9) {
+#myTable td:nth-child(10) {
   text-align: center;
   vertical-align: middle; 
 }
 
-#myTable td:nth-child(9) button {
+#myTable td:nth-child(10) button {
   margin: 0 5px;
 }
+
 
 
 
@@ -285,11 +286,11 @@ table.display {
   border-spacing: 0;
   border-radius: 10px; /* Ajusta el radio según tus preferencias */
   overflow: hidden; /* Oculta cualquier celda que sobresalga */
-  font-family: Arial, Helvetica, sans-serif;
+ /* font-family: rAial, Helvetica, sans-serif; */
+ font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
   color: #242424;
  /* box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1); /* Sombra horizontal, vertical, difuminado, color */
-
-   /* border-collapse: collapse;*/ 
+  border-collapse: collapse;
     /* width: 100%; */
 }
 
@@ -341,6 +342,20 @@ table.dataTable tbody tr:hover {
       box-shadow: 0 6px 10px rgba(0, 0, 0, 0.3);
 
 }
+
+#myTable td:nth-child(7) {
+  font-weight: bold;
+  white-space: nowrap;
+}
+
+#myTable td:nth-child(7) .tiempo-espera {
+  color: #f47628; /* Color de texto naranja para tickets no llamados */
+}
+
+#myTable td:nth-child(7) .tiempo-llamado {
+  color: #242424; /* Color de texto negro para tickets llamados */
+}
+
 
 
 .dataTables_wrapper .dataTables_paginate {
@@ -600,7 +615,7 @@ body {
 
 
 .row-with-technician {
-  background-color: rgba(199, 199, 199, 0.7) !important; /* Fondo gris claro con transparencia */
+  background-color: rgb(199 199 199 / 0.2) !important; /* Fondo gris claro con transparencia */
   color: #505050; /* Color de texto gris */
   cursor: not-allowed; /* Cursor que indica que la fila está deshabilitada */
 }
