@@ -666,7 +666,6 @@ $(document).ready(function () {
                   : "",
                 tiempoParaAtencionCell,
 
-                ,
                 data[i].admision,
                 data[i].ps,
                 tecnicoSelect,
@@ -720,13 +719,13 @@ $(document).ready(function () {
   $("#prev-date").click(function () {
     selectedDateGlobal.setDate(selectedDateGlobal.getDate() - 1);
     updateTableAndDateLabel(selectedDateGlobal);
-    checkIfTodayIsSelected(t);
+    checkIfTodayIsSelected(selectedDateGlobal);
   });
 
   $("#next-date").click(function () {
     selectedDateGlobal.setDate(selectedDateGlobal.getDate() + 1);
     updateTableAndDateLabel(selectedDateGlobal);
-    checkIfTodayIsSelected(t);
+    checkIfTodayIsSelected(selectedDateGlobal);
   });
 
   $("#myTable").on("init.dt", function () {
