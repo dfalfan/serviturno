@@ -106,7 +106,7 @@ class Imprimir extends CI_Controller
 		try {
 			$ultimo_ticket = $this->imprimir_model->agregar_cola($id_categoria, $numero_admision, $nombre, $ps, $estudios, $cedula, $seguro, $empresa, $edad);
 
-			$connector = new WindowsPrintConnector("smb://WSVLN01IM0X/receipt printer");
+			$connector = new WindowsPrintConnector("smb://WSVLN01IM02/receipt printer");
 			$printer = new Escpos($connector);
 
 			$logo = new EscposImage("assets/images/logo_ticket.png");

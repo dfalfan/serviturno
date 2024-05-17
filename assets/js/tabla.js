@@ -1210,14 +1210,23 @@ $(document).ready(function () {
 
   function actualizarContadoresEspera() {
     $(".tiempo-espera").each(function () {
+      var row = $(this).closest("tr");
       var horaImpresion = $(this).data("hora-impresion");
-      var tiempoTranscurrido = moment().diff(
-        moment(horaImpresion, "YYYY-MM-DD HH:mm:ss")
-      );
-      var tiempoFormateado = formatTime(
-        moment.utc(tiempoTranscurrido).format("HH:mm:ss")
-      );
-      $(this).html(tiempoFormateado);
+
+      // Verificar si el ticket está anulado
+      if (row.hasClass("ticket-anulado")) {
+        // Si el ticket está anulado, mostrar un valor nulo o vacío en lugar del contador
+        $(this).html("");
+      } else {
+        // Si el ticket no está anulado, actualizar el contador normalmente
+        var tiempoTranscurrido = moment().diff(
+          moment(horaImpresion, "YYYY-MM-DD HH:mm:ss")
+        );
+        var tiempoFormateado = formatTime(
+          moment.utc(tiempoTranscurrido).format("HH:mm:ss")
+        );
+        $(this).html(tiempoFormateado);
+      }
     });
   }
 
