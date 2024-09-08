@@ -21,20 +21,9 @@
 
 <body onload=startTime()>
 	<source src=beep.mp3 type=audio/mpeg>
-	<nav class="navbar navbar-default" role=navigation style="box-shadow:0 3px 6px rgba(0,0,0,.23)">
-		<div class=navbar-header>
-			<img class=" navbar-logo" style="width: 300px; height: 100px;" src="<?php echo base_url() . 'assets/images/logo_new.png' ?>">
-		</div>
-		<div class=text style=margin-bottom:-300px;margin-right:300px;text-align:center>
-			Imagenología
-		</div>
-		<div class="collapse navbar-collapse navbar-ex1-collapse">
-			<a class=navbar-hora href=# style=font-size:60px;margin-top:20px;float:right;color:#0b1553>
-				<div id=txt></div>
-			</a>
-		</div>
-	</nav>
+
 	<div class="container noselect tickets">
+
 		<div style=float:left;width:585px;height:700px;margin-top:70px>
 			<h1 style=font-weight:700;font-size:40px;text-align:left;color:#031e36>Atendiendo a:</h1>
 			<?php foreach ($cola as $row) : ?>

@@ -56,5 +56,6 @@ $route['tabla'] = 'tabla/index';
 $route['operadortablet'] = 'operadortablet/index';
 $route['stats'] = 'stats/index';
 $route['pantalla'] = 'pantalla/index';
+$route['pantallatablet'] = 'pantallatablet/index';
 $route['project'] = 'project/index';
 $route['project2'] = 'project2/index';
