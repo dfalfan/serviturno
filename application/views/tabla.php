@@ -228,7 +228,7 @@
 <script>
     var tuBaseURL = "<?php echo base_url(); ?>";
     $("#stats-btn").click(function() {
-        window.open("http://app.prevaler.com/serviturno/imagenologia/stats", '_blank');
+        window.open("http://192.168.5.25:8086/serviturno/stats", '_blank');
     });
 </script>
 

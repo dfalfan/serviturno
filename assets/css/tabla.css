@@ -473,6 +473,16 @@ div.dataTables_wrapper .paginate_button {
 
 
 body {
+  font-size: 90%;
+  background: #022c40;
+
+}
+
+
+022c40
+
+/* 
+body {
     font-size: 90%;
     background: linear-gradient(
     270deg,
@@ -492,6 +502,8 @@ body {
     background-size: 200% 200%;
     animation: Gradient 20s ease infinite;
 }
+
+*/
 
 @keyframes Gradient {
     0% {
