@@ -43,7 +43,6 @@ $(document).ready(function () {
       var technicianOption = $(technicianCell).find("option:selected");
       var technician = $(technicianOption).text();
 
-      console.log("Valor de technician:", technician); // Agregar registro de depuración
 
       // Encuentra los botones que quieres manipular
       var btnMoreInfo = $(row).find(".btn-more-info");
@@ -66,14 +65,12 @@ $(document).ready(function () {
       btnMoreInfo.css("opacity", "1");
 
       if (technician !== "Técnico" && technician !== "") {
-        console.log("Aplicando clase 'row-with-technician'"); // Agregar registro de depuración
         $(row).addClass("row-with-technician");
 
         // Añadir la clase para hacer los otros botones visibles
         btnVStudies.addClass("btn-technician-visible");
         btnCinfint.addClass("btn-technician-visible");
       } else {
-        console.log("Removiendo clase 'row-with-technician'"); // Agregar registro de depuración
         $(row).removeClass("row-with-technician");
 
         // Quitar la clase para hacer los otros botones menos visibles
@@ -128,7 +125,6 @@ $(document).ready(function () {
     $(this).addClass("selected");
 
     var categoryID = $(this).data("id"); // Capturar el ID de la categoría
-    console.log("ID de categoría seleccionada:", categoryID); // Registro en consola
     $("#selected-category-id").val(categoryID); // Almacenar el ID en un campo oculto
 
     handleVisibility(); // Llamar a la función para manejar la visibilidad del botón
@@ -139,7 +135,6 @@ $(document).ready(function () {
 
   $("#print-ticket-btn").click(function () {
     id = $("#selected-category-id").val(); // Obtener el ID de la categoría seleccionada
-    console.log("ID de categoría que se enviará en la solicitud:", id); // Registro en consola
     $("#admissionModal").modal("show");
   });
 
@@ -173,9 +168,7 @@ $(document).ready(function () {
     var admissionNumber = $("#admission-number").val();
     var selectedCategoryId = $("#selected-category-id").val();
 
-    console.log("Número de admisión:", admissionNumber);
-    console.log("ID de categoría seleccionada:", selectedCategoryId);
-
+   
     if (!/^\d{7,}$/.test(admissionNumber)) {
       alert("Por favor, ingresa un número de admisión de al menos 7 cifras.");
       return;
@@ -191,7 +184,6 @@ $(document).ready(function () {
         id_categoria: selectedCategoryId,
       },
       success: function (response) {
-        console.log("Respuesta de verificar_admision:", response);
         var data = JSON.parse(response);
         if (data.existe) {
           alert(
@@ -242,7 +234,6 @@ $(document).ready(function () {
   }
 
   var selectedDateGlobal = new Date();
-  console.log("selectedDateGlobal after update:", selectedDateGlobal);
 
   var datepickerElement = $("#datepicker").datepicker(
     $.extend(
@@ -405,11 +396,8 @@ $(document).ready(function () {
 
   $("#refresh-btn").on("click", function () {
     var formattedDate = $.datepicker.formatDate("yy-mm-dd", selectedDateGlobal);
-    console.log("Fecha seleccionada: ", selectedDateGlobal);
-    console.log("Fecha formateada: ", formattedDate);
     fetchAndDisplayNotifications();
     setTimeout(function () {
-      console.log("Fecha formateada justo antes de AJAX: ", formattedDate);
 
       $.ajax({
         url: "Tabla/obtener_datos_por_fecha",
@@ -1005,8 +993,6 @@ $(document).ready(function () {
     // No muestra el modal inmediatamente
     // $("#myModal").modal("show"); // <-- Comentado
 
-    // Agrega registros de depuración
-    console.log("Botón clickado");
 
     var categorias = {
       42: "Rayos X",
@@ -1042,7 +1028,6 @@ $(document).ready(function () {
       $("#myModal").modal("hide");
       $("#overlay").hide();
       $(".btn-call").prop("disabled", false); // Reactivar el botón
-      console.log("Modal cerrado");
     }, 10000); // 10000 milisegundos son 10 segundos
 
     // Llamar a la función toggleAtendida con los datos recopilados
@@ -1072,13 +1057,11 @@ $(document).ready(function () {
       e.data === "Nuevo ticket impreso" ||
       e.data === "Actualizar detalle"
     ) {
-      console.log("Actualización de datos requerida");
 
       // Llamar al botón de refresh
       $("#refresh-btn").click();
     }
     if (parts[0] === "Actualizar pantalla") {
-      console.log("Programando actualización de pantalla");
       var ticket = parts[1]; // Número de ticket
       var categoryName = parts[2]; // Nombre de la categoría
 
@@ -1088,13 +1071,11 @@ $(document).ready(function () {
 
       // Mostrar el modal y bloquear el cliente por 10 segundos
       $("#myModal").modal("show"); // Corrección aquí
-      console.log("Modal abierto");
 
       // Ocultar el modal después de 10 segundos
       setTimeout(function () {
         $("#myModal").modal("hide");
         $("#overlay").hide();
-        console.log("Modal cerrado");
         $("#refresh-btn").click(); // Recargar los datos después de cerrar el modal
       }, 10000); // 10000 milisegundos son 10 segundos
     }

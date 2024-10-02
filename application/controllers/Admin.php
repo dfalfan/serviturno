@@ -39,14 +39,6 @@ class Admin extends CI_Controller
 		redirect('/tabla');
 	}
 
-
-	public function reiniciar_cola_del_dia()
-	{
-		$this->admin_model->reiniciar_cola_del_dia();
-		redirect('/tabla');
-	}
-
-	
 	public function toggle_categoria($id)
 	{
 		$this->admin_model->toggle_categoria($id);

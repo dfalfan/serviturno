@@ -10,25 +10,31 @@ function startTime() {
       startTime();
     }, 500);
 }
+
 function checkTime(n) {
   return n < 10 && (n = "0" + n), n;
 }
+
 var conn = new WebSocket("ws://192.168.5.25:8080");
-(conn.onopen = function (n) {
-  console.log("Conexi\xf3n establecida!");
-}),
-  (conn.onmessage = function (n) {
-    console.log(n.data),
-      "Actualizar pantalla" === n.data.split("|")[0] &&
-        (console.log("Actualizando pantalla"), location.reload(!0));
-  }),
-  $(document).ready(function () {
-    new Audio("./beep.mp3").play(),
-      $(".tickets").show(),
-      $(".ticket").each(function (n) {
-        $(this)
-          .hide()
-          .delay(200 * n)
-          .fadeIn(500);
-      });
+
+conn.onopen = function (n) {
+  console.log("Conexión establecida!");
+};
+
+conn.onmessage = function (n) {
+  console.log(n.data);
+  if ("Actualizar pantalla" === n.data.split("|")[0]) {
+    console.log("Actualizando pantalla");
+    location.reload(true);
+  }
+};
+
+$(document).ready(function () {
+  $(".tickets").show();
+  $(".ticket").each(function (n) {
+    $(this)
+      .hide()
+      .delay(200 * n)
+      .fadeIn(500);
   });
+});

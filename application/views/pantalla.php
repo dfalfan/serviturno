@@ -1,26 +1,19 @@
-<!doctype html>
-<html>
-
+<!DOCTYPE html>
+<html lang="es">
 <head>
-	<meta name=author content="Daniel Falfán dfalfanm@gmail.com">
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="author" content="Daniel Falfán dfalfanm@gmail.com">
 	<meta name="description" content="Pantalla Serviturno">
-	<meta charset=utf-8>
-	<meta http-equiv=X-UA-Compatible content="IE=edge">
-	<meta name=viewport content="width=device-width,initial-scale=1">
 	<title>ServiTurno</title>
-	<link rel=icon href="<?= base_url() ?>/favicon.ico" type=image/gif>
-	<link rel=stylesheet href="<?php echo base_url() . 'assets/' ?>css/bootstrap.css">
-	<link rel=stylesheet href="<?php echo base_url() . 'assets/' ?>css/pantalla.css">
-	<link rel=stylesheet href="<?php echo base_url() . 'assets/' ?>css/titulo.css">
+	<link rel="icon" href="<?= base_url() ?>/favicon.ico" type="image/x-icon">
+	<link rel="stylesheet" href="<?php echo base_url() . 'assets/' ?>css/bootstrap.css">
+	<link rel="stylesheet" href="<?php echo base_url() . 'assets/' ?>css/pantalla.css">
+	<link rel="stylesheet" href="<?php echo base_url() . 'assets/' ?>css/titulo.css">
 </head>
-<!--
-<video class=video-js autoplay muted loop>
-	<source src=assets/video/304.m4v type=video/mp4>
-</video>
--->
 
-<body onload=startTime()>
-	<source src=beep.mp3 type=audio/mpeg>
+<body onload="actualizarReloj()">
 	<nav class="navbar navbar-default" role=navigation style="box-shadow:0 3px 6px rgba(0,0,0,.23)">
 		<div class=navbar-header>
 			<img class=" navbar-logo" style="width: 300px; height: 100px;" src="<?php echo base_url() . 'assets/images/logo_new.png' ?>">
@@ -68,29 +61,48 @@
 							</h1>
 
 						</div>
-						<h2 style=font-weight:700;font-size:50px;color:#031e36;text-align:center;> <!-- Agregar esta línea -->
+						<h2 style=font-weight:700;font-size:50px;color:#031e36;text-align:center;>
 							<?= $row->paciente ?>
 						</h2>
 					</div>
 				</div>
 				<script>
-					var msg = new SpeechSynthesisUtterance();
-					msg.rate = .85;
-					msg.pitch = 1;
-					msg.text = "Atención: <?= $row->paciente ?>.... Ticket número <?= $row->num_actual ?>, <?= $row->categoria ?> ... Ticket número <?= $row->num_actual ?> , <?= $row->categoria ?>";
+					console.log('Inicializando función hablar');
 
-					function setVoice() {
-						var voices = window.speechSynthesis.getVoices();
-						if (voices.length > 264) { // Asegurarse de que el índice 264 existe
-							msg.voice = voices[264]; // Selecciona la voz con índice 264
+					function hablar(texto) {
+						console.log('Función hablar llamada con texto:', texto);
+						try {
+							console.log('Iniciando síntesis de voz');
+							const utterance = new SpeechSynthesisUtterance(texto);
+							utterance.lang = 'es-VE'; // Configurar el idioma a español de Venezuela
+							utterance.rate = 0.92; // Reducir ligeramente la velocidad de habla
+							utterance.pitch = 1; // Tono normal
+							utterance.volume = 1; // Volumen máximo
+
+							// Configurar la voz específica
+							const voces = speechSynthesis.getVoices();
+							const vozDeseada = voces.find(voz => voz.name === "Microsoft Paola Online (Natural) - Spanish (Venezuela)");
+							if (vozDeseada) {
+								utterance.voice = vozDeseada;
+							} else {
+								console.warn('La voz deseada no está disponible. Se usará la voz predeterminada.');
+							}
+
+							speechSynthesis.speak(utterance);
+
+							console.log('Síntesis de voz iniciada con éxito');
+						} catch (error) {
+							console.error('Error al generar o reproducir el audio:', error);
 						}
-						window.speechSynthesis.speak(msg);
 					}
 
-					// Llamar a setVoice después de que las voces estén cargadas
-					if (speechSynthesis.onvoiceschanged !== undefined) {
-						speechSynthesis.onvoiceschanged = setVoice;
-					}
+					// Asegurarse de que las voces estén cargadas antes de llamar a la función hablar
+					speechSynthesis.onvoiceschanged = function() {
+						// Llamar a esta función cuando se necesite hablar
+						hablar("Atención: <?= $row->paciente ?>. Ticket número <?= $row->num_actual ?>, <?= $row->categoria ?>.");
+					};
+
+					console.log('Script de síntesis de voz cargado');
 				</script>
 			<?php endforeach; ?>
 		</div>
@@ -100,19 +112,27 @@
 	<script src="<?php echo base_url() . 'assets/' ?>js/jquery.fittext.js"></script>
 	<script src="<?php echo base_url() . 'assets/' ?>js/pantalla.js"></script>
 	<script>
-		function startTime() {
-			var e = new Date,
-				t = e.getHours(),
-				n = e.getMinutes(),
-				c = e.getSeconds();
-			n = checkTime(n), c = checkTime(c);
-			var i = "AM";
-			0 == t && (t = 12), t > 12 && (t -= 12, i = "PM"), document.getElementById("txt").innerHTML = t + ":" + n + ":" + c + " " + i;
-			setTimeout(startTime, 500)
+		function actualizarReloj() {
+			const ahora = new Date();
+			const horas = ahora.getHours();
+			const minutos = ahora.getMinutes();
+			const segundos = ahora.getSeconds();
+
+			const horasFormateadas = horas % 12 || 12; // Convierte 0 a 12 para medianoche
+			const ampm = horas >= 12 ? 'PM' : 'AM';
+
+			const tiempoFormateado =
+				padZero(horasFormateadas) + ':' +
+				padZero(minutos) + ':' +
+				padZero(segundos) + ' ' +
+				ampm;
+
+			document.getElementById("txt").textContent = tiempoFormateado;
+			setTimeout(actualizarReloj, 1000);
 		}
 
-		function checkTime(e) {
-			return e < 10 && (e = "0" + e), e
+		function padZero(num) {
+			return num < 10 ? '0' + num : num;
 		}
 	</script>
 </body>

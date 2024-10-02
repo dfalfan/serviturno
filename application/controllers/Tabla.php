@@ -41,7 +41,7 @@ class Tabla extends CI_Controller
         $detalle = $this->input->post('detalle');
         echo json_encode(['id_paciente' => $id_paciente, 'detalle' => $detalle]);
         $this->load->model('Tabla_model');
-        $this->Tabla_model->actualizar_detalle_paciente($id_paciente, $detalle);
+        $this->tabla_model->actualizar_detalle_paciente($id_paciente, $detalle);
         echo json_encode(['success' => true]);
     }
 

@@ -1,68 +1,3 @@
-/*
-
-
-body {
-  height: 100vh;
-  background: url("../images/logoTransparent.png");
-  background-repeat: no-repeat;
-  background-size: contain;
-}
-
-*/
-
-
-/*body {
-    background: linear-gradient(270deg, #f15005, #106eae, #ffffff);
-    background-size: 600% 600%;
-
-    -webkit-animation: AnimationName 45s ease infinite;
-    -moz-animation: AnimationName 45s ease infinite;
-    animation: AnimationName 45s ease infinite;
-}
-
-@-webkit-keyframes AnimationName {
-    0% {
-        background-position: 0% 50%
-    }
-
-    50% {
-        background-position: 100% 50%
-    }
-
-    100% {
-        background-position: 0% 50%
-    }
-}
-
-@-moz-keyframes AnimationName {
-    0% {
-        background-position: 0% 50%
-    }
-
-    50% {
-        background-position: 100% 50%
-    }
-
-    100% {
-        background-position: 0% 50%
-    }
-}
-
-@keyframes AnimationName {
-    0% {
-        background-position: 0% 50%
-    }
-
-    50% {
-        background-position: 100% 50%
-    }
-
-    100% {
-        background-position: 0% 50%
-    }
-} */
-
-
 
 
 body {
@@ -70,25 +5,17 @@ body {
   color: #fff;
 }
 
-/*
- * Styles essential to the sample
- * are below
- */
-
-/* Style the player */
-
 body {
   margin: 0;
   background-color: white;
 }
 
-/* Hide the player control bar */
+
 
 .video-js .vjs-control-bar {
   display: none;
 }
 
-/* Remove click events on the player */
 
 .video-js {
   pointer-events: none;
