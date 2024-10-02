@@ -293,6 +293,7 @@ $(document).ready(function () {
                       '<option value="AL">AL</option>' +
                       '<option value="BA">BA</option>' +
                       '<option value="AR">AR</option>' +
+                      '<option value="LN">LN</option>' +
                       '<option value="SR">SR</option>' +
                       '<option value="MH">MH</option>' +
                       "</select>";
@@ -443,6 +444,7 @@ $(document).ready(function () {
                 '<option value="AL">AL</option>' +
                 '<option value="BA">BA</option>' +
                 '<option value="AR">AR</option>' +
+                '<option value="LN">LN</option>' +
                 '<option value="SR">SR</option>' +
                 '<option value="MH">MH</option>' +
                 "</select>";
@@ -600,6 +602,7 @@ $(document).ready(function () {
               '<option value="AL">AL</option>' +
               '<option value="BA">BA</option>' +
               '<option value="AR">AR</option>' +
+              '<option value="LN">LN</option>' +
               '<option value="SR">SR</option>' +
               '<option value="MH">MH</option>' +
               "</select>";
@@ -999,7 +1002,7 @@ $(document).ready(function () {
       48: "Tomografía ",
       49: "Resonancia",
       50: "Ecografía 1",
-      51: "Ecografía 2",
+      51: "Ecografía",
       52: "Mamografía",
       53: "Densitometría",
       55: "Resultados",
@@ -1260,6 +1263,7 @@ $(document).ready(function () {
               '<option value="AL">AL</option>' +
               '<option value="BA">BA</option>' +
               '<option value="AR">AR</option>' +
+              '<option value="LN">LN</option>' +
               '<option value="SR">SR</option>' +
               '<option value="MH">MH</option>' +
               "</select>";

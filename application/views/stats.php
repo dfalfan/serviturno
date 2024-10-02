@@ -3,18 +3,18 @@
 
 <head>
     <title>Estadísticas | Imagenología</title>
-    <link rel=icon href="<?= base_url() ?>/favicon.ico" type=image/gif>
-
-    <!-- Incluye Bootstrap -->
+    <link rel="icon" href="<?= base_url() ?>assets/images/favicon.ico" type="image/gif">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/choices.js/10.2.0/choices.min.css" integrity="sha512-oW+fEHZatXKwZQ5Lx5td2J93WJnSFLbnALFOFqy/pTuQyffi9gsUylGGZkD3DTSv8zkoOdU7MT7I6LTDcV8GBQ==" crossorigin="anonymous" referrerpolicy="no-referrer" />
-
-    <!-- Incluye la biblioteca Chart.js -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/choices.js/10.2.0/choices.min.css"
+        integrity="sha512-oW+fEHZatXKwZQ5Lx5td2J93WJnSFLbnALFOFqy/pTuQyffi9gsUylGGZkD3DTSv8zkoOdU7MT7I6LTDcV8GBQ=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.0/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.1/moment.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/choices.js/10.2.0/choices.min.js" integrity="sha512-OrRY3yVhfDckdPBIjU2/VXGGDjq3GPcnILWTT39iYiuV6O3cEcAxkgCBVR49viQ99vBFeu+a6/AoFAkNHgFteg==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/choices.js/10.2.0/choices.min.js"
+        integrity="sha512-OrRY3yVhfDckdPBIjU2/VXGGDjq3GPcnILWTT39iYiuV6O3cEcAxkgCBVR49viQ99vBFeu+a6/AoFAkNHgFteg=="
+        crossorigin="anonymous" referrerpolicy="no-referrer"></script>
     <!-- Estilos personalizados para limitar el tamaño de los gráficos -->
     <style>
         #averageAttentionTimeChart {}
@@ -114,7 +114,8 @@
 <body>
     <nav class="navbar">
         <div>
-            <embed style="width: 200px; height: 38px; margin-top: 2px;margin-left: -6px;" class="navbar-logo" src="<?php echo base_url() . 'assets/images/logo_new.png' ?>">
+            <embed style="width: 200px; height: 38px; margin-top: 2px;margin-left: -6px;" class="navbar-logo"
+                src="<?php echo base_url() . 'assets/images/logo_new.png' ?>">
         </div>
     </nav>
 

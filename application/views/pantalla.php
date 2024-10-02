@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="es">
+
 <head>
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
@@ -7,7 +8,7 @@
 	<meta name="author" content="Daniel Falfán dfalfanm@gmail.com">
 	<meta name="description" content="Pantalla Serviturno">
 	<title>ServiTurno</title>
-	<link rel="icon" href="<?= base_url() ?>/favicon.ico" type="image/x-icon">
+	<link rel="icon" href="<?= base_url() ?>assets/images/favicon.ico" type="image/gif">
 	<link rel="stylesheet" href="<?php echo base_url() . 'assets/' ?>css/bootstrap.css">
 	<link rel="stylesheet" href="<?php echo base_url() . 'assets/' ?>css/pantalla.css">
 	<link rel="stylesheet" href="<?php echo base_url() . 'assets/' ?>css/titulo.css">
@@ -16,7 +17,8 @@
 <body onload="actualizarReloj()">
 	<nav class="navbar navbar-default" role=navigation style="box-shadow:0 3px 6px rgba(0,0,0,.23)">
 		<div class=navbar-header>
-			<img class=" navbar-logo" style="width: 300px; height: 100px;" src="<?php echo base_url() . 'assets/images/logo_new.png' ?>">
+			<img class=" navbar-logo" style="width: 300px; height: 100px;"
+				src="<?php echo base_url() . 'assets/images/logo_new.png' ?>">
 		</div>
 		<div class=text style=margin-bottom:-300px;margin-right:300px;text-align:center>
 			Imagenología
@@ -30,7 +32,7 @@
 	<div class="container noselect tickets">
 		<div style=float:left;width:585px;height:700px;margin-top:70px>
 			<h1 style=font-weight:700;font-size:40px;text-align:left;color:#031e36>Atendiendo a:</h1>
-			<?php foreach ($cola as $row) : ?>
+			<?php foreach ($cola as $row): ?>
 				<div class=row style=height:80px>
 					<div class=col-md-6 style=width:390px;height:90px>
 						<button type=button class="btn3 btn-primary" style=width:349px;height:82px>
@@ -38,7 +40,8 @@
 						</button>
 					</div>
 					<div class="col-sm-2 ticket" style=width:140px;height:50px;padding-left:10px;padding-top:4px>
-						<div class="panel-body ticketStyle" style=width:100px;height:75px;padding-top:0;border-top-width:5px;margin-top:0;background-color:#02182b;padding-bottom:0>
+						<div class="panel-body ticketStyle"
+							style=width:100px;height:75px;padding-top:0;border-top-width:5px;margin-top:0;background-color:#02182b;padding-bottom:0>
 							<h1 style=font-weight:700;font-size:50px;margin-top:10px>
 								<?= isset($row->num_actual) ? $row->num_actual : '0' ?>
 							</h1>
@@ -48,7 +51,7 @@
 			<?php endforeach; ?>
 		</div>
 		<div style=float:left;width:555px;height:700px>
-			<?php foreach ($fetch_categoria->result() as $row) : ?>
+			<?php foreach ($fetch_categoria->result() as $row): ?>
 				<div class="col-md-3 col-xs-3 ticket" style=display:block;left:45px;padding-left:50px;width:495px>
 					<div class=panel style="background:0 0;width:552.5px;border-top-width:60px;margin-top:0px">
 						<h1 style=font-weight:700;font-size:40px;text-align:center;color:#031e36>Último ticket llamado:</h1>
@@ -97,7 +100,7 @@
 					}
 
 					// Asegurarse de que las voces estén cargadas antes de llamar a la función hablar
-					speechSynthesis.onvoiceschanged = function() {
+					speechSynthesis.onvoiceschanged = function () {
 						// Llamar a esta función cuando se necesite hablar
 						hablar("Atención: <?= $row->paciente ?>. Ticket número <?= $row->num_actual ?>, <?= $row->categoria ?>.");
 					};
