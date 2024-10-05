@@ -506,8 +506,20 @@ div.dataTables_wrapper .paginate_button {
 
 body {
   font-size: 90%;
-  background: #022c40;
-
+  background: linear-gradient(270deg,
+      #02182b,
+      #022c40,
+      #023855,
+      #02446a,
+      #02507f,
+      #025c94,
+      #0268a9,
+      #0274be,
+      #0280d3,
+      #0b4b83,
+      #416499);
+  background-size: 200% 200%;
+  animation: Gradient 20s ease infinite;
 }
 
 
@@ -712,4 +724,288 @@ body {
 
 #detalle.required {
   border-color: red;
+}
+
+/* Estilos para el modo oscuro */
+body.dark-mode {
+  background: #1e2227; /* Un gris muy oscuro con un toque azulado */
+  color: #e8e6e3;
+}
+
+body.dark-mode #fondo {
+  background-color: #262b33; /* Un gris oscuro un poco más claro que el fondo */
+  color: #e8e6e3;
+}
+
+body.dark-mode .navbar {
+  background: #1e2227; /* Mismo color que el fondo del body */
+  box-shadow: 0 3px 6px rgba(0, 0, 0, 0.2);
+}
+
+body.dark-mode .selected-date-label-style {
+  color: #ffffff;
+}
+
+body.dark-mode .total-studies-label-style {
+  color: #d85e27;
+}
+
+body.dark-mode .mode-toggle {
+  background-color: #1a5b8c;
+}
+
+body.dark-mode .circular-button {
+  background-color: #1a5b8c;
+  color: #ffffff;
+  box-shadow: 0 0 1px #1a5b8c, 0 0 2px #1a5b8c, 0 0 3px #1a5b8c, 0 0 4px #1a5b8c;
+}
+
+body.dark-mode .circular-button:hover {
+  background-color: #12375b;
+}
+
+.mode-toggle {
+    background-color: #1a5b8c;
+    color: #ffffff;
+    border: none;
+    border-radius: 50%;
+    width: 40px;
+    height: 40px;
+    font-size: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: background-color 0.3s;
+    margin-left: 10px;
+}
+
+.mode-toggle:hover {
+    background-color: #12375b;
+}
+
+body.dark-mode .mode-toggle {
+    background-color: #d85e27;
+}
+
+body.dark-mode .mode-toggle:hover {
+    background-color: #b74d1f;
+}
+
+/* Estilos para la tabla en modo oscuro */
+body.dark-mode table.display {
+  color: #e8e6e3;
+  background-color: #1c1e1f;
+}
+
+body.dark-mode table.display th {
+  background-color: #1c1e1f;
+  color: #e8e6e3;
+  border-color: #2d3235;
+}
+
+body.dark-mode table.display td {
+  background-color: #1c1e1f;
+  border-color: #2d3235;
+}
+
+body.dark-mode table.display tr:nth-child(even) td {
+  background-color: #222426;
+}
+
+body.dark-mode table.display tr:hover td {
+  background-color: #2b2e30;
+}
+
+body.dark-mode #myTable td:nth-child(2) {
+  color: #3498db !important;
+}
+
+body.dark-mode .tag {
+  background-color: #34393b;
+  color: #e8e6e3;
+}
+
+body.dark-mode .btn-more-info,
+body.dark-mode .btn-call {
+  background-color: #34393b;
+  color: #e8e6e3;
+}
+
+body.dark-mode .btn-more-info:hover,
+body.dark-mode .btn-call:hover {
+  background-color: #3e4446;
+}
+
+body.dark-mode .tecnico-select {
+  background-color: #1c1e1f;
+  color: #e8e6e3;
+  border-color: #2d3235;
+}
+
+body.dark-mode .row-with-technician td {
+  background-color: #222426 !important;
+  color: #b8b5b2;
+}
+
+body.dark-mode .row-with-technician:hover td {
+  background-color: #2b2e30 !important;
+}
+
+body.dark-mode .ticket-anulado {
+  background-color: #3a2020 !important;
+}
+
+body.dark-mode .ticket-anulado td {
+  color: #e8e6e3;
+}
+
+/* Ajustes para el modo oscuro */
+body.dark-mode table.display {
+  color: #e8e6e3;
+  background-color: #1e2227; /* Fondo general más claro */
+}
+
+body.dark-mode table.display td {
+  background-color: #1e2227; /* Mismo color que el fondo de la tabla */
+  border-color: #2d3235;
+}
+
+body.dark-mode table.display tr:nth-child(even) td,
+body.dark-mode table.display tr:nth-child(odd) td {
+  background-color: #1e2227; /* Mismo color de fondo para filas pares e impares */
+}
+
+body.dark-mode table.display tr:hover td {
+  background-color: #262b33; /* Color de hover ligeramente más oscuro */
+}
+
+/* Ajustes para las filas sin técnico (abiertas) */
+body.dark-mode table.display tr:not(.row-with-technician) td {
+  background-color: #1e2227 !important; /* Más claro para filas abiertas */
+  color: #e8e6e3; /* Color de texto claro para mejor contraste */
+}
+
+body.dark-mode table.display tr:not(.row-with-technician):hover td {
+  background-color: #262b33 !important; /* Ligeramente más oscuro al hacer hover */
+}
+
+/* Ajustes para las filas con técnico (cerradas) */
+body.dark-mode .row-with-technician td {
+  background-color: #161819 !important; /* Más oscuro para filas cerradas */
+  color: #727272; /* Color de texto más oscuro para casi coincidir con el fondo */
+}
+
+body.dark-mode .row-with-technician:hover td {
+  background-color: #1a1c1d !important; /* Ligeramente más claro al hacer hover en filas cerradas */
+}
+
+/* Ajuste para tickets anulados en modo oscuro */
+body.dark-mode .ticket-anulado td {
+  background-color: #3a0000 !important; /* Rojo más oscuro y negruzco */
+  color: #a0a0a0 !important; /* Color de texto más apagado para tickets anulados */
+}
+
+/* Ajuste para el número de ticket en modo oscuro */
+body.dark-mode #myTable td:nth-child(2) {
+  color: #ffffff !important; /* Blanco para los números de ticket */
+  font-weight: bold;
+  font-size: 25px;
+}
+
+/* Ajuste para el logo en modo oscuro */
+body.dark-mode .navbar-logo {
+  content: url('../images/logocompletoblanco.png');
+}
+
+/* Estilos generales para modales en modo oscuro */
+body.dark-mode .modal .modal-content {
+  background-color: #1e2227;
+  color: #e8e6e3;
+}
+
+body.dark-mode .modal .modal-header {
+  border-bottom-color: #2d3235;
+}
+
+body.dark-mode .modal .modal-footer {
+  border-top-color: #2d3235;
+}
+
+body.dark-mode .modal .form-control {
+  background-color: #262b33;
+  color: #e8e6e3;
+  border-color: #2d3235;
+}
+
+body.dark-mode .modal .btn-primary {
+  background-color: #1a5b8c;
+  border-color: #1a5b8c;
+}
+
+body.dark-mode .modal .btn-primary:hover {
+  background-color: #12375b;
+  border-color: #12375b;
+}
+
+body.dark-mode .modal .btn-secondary {
+  background-color: #34393b;
+  border-color: #34393b;
+  color: #e8e6e3;
+}
+
+body.dark-mode .modal .btn-secondary:hover {
+  background-color: #3e4446;
+  border-color: #3e4446;
+}
+
+/* Estilos específicos para el modal de detalles del paciente */
+body.dark-mode #patientDetailsModal .modal-content {
+  /* Añade estilos específicos si es necesario */
+}
+
+/* Estilos específicos para el modal de llamada al paciente */
+body.dark-mode #myModal .modal-content {
+  /* Añade estilos específicos si es necesario */
+}
+
+/* Estilos para el modal de admisión en modo oscuro */
+body.dark-mode #admissionModal .modal-content {
+  background-color: #1e2227;
+  color: #e8e6e3;
+}
+
+body.dark-mode #admissionModal .modal-header {
+  border-bottom-color: #2d3235;
+}
+
+body.dark-mode #admissionModal .modal-footer {
+  border-top-color: #2d3235;
+}
+
+body.dark-mode #admissionModal .form-control {
+  background-color: #262b33;
+  color: #e8e6e3;
+  border-color: #2d3235;
+}
+
+body.dark-mode #admissionModal .btn-primary {
+  background-color: #1a5b8c;
+  border-color: #1a5b8c;
+}
+
+body.dark-mode #admissionModal .btn-primary:hover {
+  background-color: #12375b;
+  border-color: #12375b;
+}
+
+body.dark-mode #admissionModal .btn-secondary {
+  background-color: #34393b;
+  border-color: #34393b;
+  color: #e8e6e3;
+}
+
+body.dark-mode #admissionModal .btn-secondary:hover {
+  background-color: #3e4446;
+  border-color: #3e4446;
 }

@@ -48,8 +48,8 @@
 <body>
     <div id="fondo">
         <nav class="navbar">
-            <embed style="width: 200px; height: 38px; margin-top: -10px;margin-left: 15px;" class="navbar-logo"
-                src="<?php echo base_url() . 'assets/images/logo_new.png' ?>">
+            <img style="width: 200px; height: 38px; margin-top: -10px;margin-left: 15px;" class="navbar-logo"
+                src="<?php echo base_url() . 'assets/images/logo_new.png' ?>" alt="Logo">
 
             <div class=" button-container" ">
             <!-- Botones para filtrar por categoría -->
@@ -78,6 +78,10 @@
                 <button id="refresh-btn" style="display:none;"><i class="fas fa-sync-alt"></i></button>
                 <button id="stats-btn">
                     <i class="fas fa-chart-bar"></i>
+                </button>
+                <!-- Añadimos el botón de modo oscuro aquí -->
+                <button class="mode-toggle" id="mode-toggle">
+                    <i class="fas fa-moon"></i>
                 </button>
             </div>
 
@@ -252,4 +256,45 @@
     });
 </script>
 
+<script>
+    function actualizarModales() {
+        const modales = ['#admissionModal', '#patientDetailsModal', '#myModal'];
+        const esModoOscuro = document.body.classList.contains('dark-mode');
+        
+        modales.forEach(modal => {
+            if (esModoOscuro) {
+                $(modal).addClass('dark-mode');
+            } else {
+                $(modal).removeClass('dark-mode');
+            }
+        });
+    }
+
+    function toggleDarkMode() {
+        document.body.classList.toggle('dark-mode');
+        const icon = document.querySelector('.mode-toggle i');
+        if (document.body.classList.contains('dark-mode')) {
+            icon.classList.remove('fa-moon');
+            icon.classList.add('fa-sun');
+        } else {
+            icon.classList.remove('fa-sun');
+            icon.classList.add('fa-moon');
+        }
+        localStorage.setItem('darkMode', document.body.classList.contains('dark-mode'));
+        $('body').trigger('darkModeChanged');
+        actualizarModales();
+    }
+
+    document.getElementById('mode-toggle').addEventListener('click', toggleDarkMode);
+
+    // Verificar la preferencia guardada al cargar la página
+    if (localStorage.getItem('darkMode') === 'true') {
+        toggleDarkMode();
+    }
+
+    // Asegurarse de que los modales se actualicen cuando se abren
+    $('.modal').on('show.bs.modal', function () {
+        actualizarModales();
+    });
+</script>
 </html>

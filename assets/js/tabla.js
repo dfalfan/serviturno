@@ -25,8 +25,7 @@ $(document).ready(function () {
           columns: [0, 1, 2, 3, 4, 5, 7, 8, 9], // Define las columnas que quieres exportar (excluye 6, 10 y 11)
         },
         customize: function (xlsx) {
-          // Aquí puedes acceder a las celdas y personalizar su contenido
-          // Por ejemplo, si necesitas ajustar los nombres de los técnicos o los tipos de estudio
+       
         },
       },
     ],
@@ -805,8 +804,7 @@ $(document).ready(function () {
               .join("<br>") // Separar los enlaces con saltos de línea
           : "No disponible";
 
-        $("#patientDetailsModal .modal-body").html(
-          "<table style='width: 100%; border-collapse: separate; border-spacing: 10px;'>" +
+        var modalContent = "<table style='width: 100%; border-collapse: separate; border-spacing: 10px;'>" +
             "<tr><td style='width: 50%;'><b>Especialidad:</b> " +
             patientDetails.especialidad +
             "</td><td style='width: 50%;'><b>P/S:</b> " +
@@ -850,8 +848,15 @@ $(document).ready(function () {
             (patientDetails.detalle ? patientDetails.detalle : "") +
             "</textarea>" +
             "</td></tr>" +
-            "</table>"
-        );
+            "</table>";
+
+        if ($("body").hasClass("dark-mode")) {
+          $("#patientDetailsModal .modal-content").addClass("dark-mode");
+        } else {
+          $("#patientDetailsModal .modal-content").removeClass("dark-mode");
+        }
+
+        $("#patientDetailsModal .modal-body").html(modalContent);
 
         $("#patientDetailsModal").modal("show");
       },
