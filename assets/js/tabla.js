@@ -5,6 +5,7 @@ conn.onopen = function (e) {
 
 $(document).ready(function () {
   var ticketsByCategory = {};
+  var ticketToCancel = null;
 
   fetchAndDisplayNotifications();
 
@@ -24,9 +25,7 @@ $(document).ready(function () {
         exportOptions: {
           columns: [0, 1, 2, 3, 4, 5, 7, 8, 9], // Define las columnas que quieres exportar (excluye 6, 10 y 11)
         },
-        customize: function (xlsx) {
-       
-        },
+        customize: function (xlsx) {},
       },
     ],
     language: {
@@ -41,7 +40,6 @@ $(document).ready(function () {
       var technicianCell = $(row).find("td").eq(9);
       var technicianOption = $(technicianCell).find("option:selected");
       var technician = $(technicianOption).text();
-
 
       // Encuentra los botones que quieres manipular
       var btnMoreInfo = $(row).find(".btn-more-info");
@@ -167,7 +165,6 @@ $(document).ready(function () {
     var admissionNumber = $("#admission-number").val();
     var selectedCategoryId = $("#selected-category-id").val();
 
-   
     if (!/^\d{7,}$/.test(admissionNumber)) {
       alert("Por favor, ingresa un número de admisión de al menos 7 cifras.");
       return;
@@ -238,22 +235,22 @@ $(document).ready(function () {
     dateFormat: "D, d M Y",
     locale: "es",
     defaultDate: selectedDateGlobal,
-    onChange: function(selectedDates, dateStr, instance) {
+    onChange: function (selectedDates, dateStr, instance) {
       selectedDateGlobal = selectedDates[0];
       updateTableAndDateLabel(selectedDateGlobal);
     },
-    onReady: function(selectedDates, dateStr, instance) {
+    onReady: function (selectedDates, dateStr, instance) {
       updateTableAndDateLabel(selectedDateGlobal);
-    }
+    },
   });
 
-  $("#prev-date").click(function() {
+  $("#prev-date").click(function () {
     var newDate = new Date(selectedDateGlobal);
     newDate.setDate(newDate.getDate() - 1);
     fpInstance.setDate(newDate);
   });
 
-  $("#next-date").click(function() {
+  $("#next-date").click(function () {
     var newDate = new Date(selectedDateGlobal);
     newDate.setDate(newDate.getDate() + 1);
     fpInstance.setDate(newDate);
@@ -261,7 +258,7 @@ $(document).ready(function () {
 
   function updateTableAndDateLabel(date) {
     var formattedDate = flatpickr.formatDate(date, "Y-m-d");
-    
+
     // Actualizar la tabla con la nueva fecha
     fetchDataForDate(formattedDate);
   }
@@ -282,7 +279,7 @@ $(document).ready(function () {
 
         a.draw();
         updateTotalStudies();
-      }
+      },
     });
   }
 
@@ -290,7 +287,6 @@ $(document).ready(function () {
     var formattedDate = $.datepicker.formatDate("yy-mm-dd", selectedDateGlobal);
     fetchAndDisplayNotifications();
     setTimeout(function () {
-
       $.ajax({
         url: "Tabla/obtener_datos_por_fecha",
         type: "GET",
@@ -443,7 +439,6 @@ $(document).ready(function () {
     datepickerElement.datepicker("setDate", today); // Esto también disparará el evento 'onSelect'
     updateTableAndDateLabel(today);
   });
-
 
   $("#myTable").on("init.dt", function () {
     $("#date-label-wrapper").insertBefore(".dataTables_filter");
@@ -606,8 +601,6 @@ $(document).ready(function () {
     $("#selected-date-label").text(formattedDate);
   }
 
- 
-
   $("#prev-date").click(function () {
     selectedDateGlobal.setDate(selectedDateGlobal.getDate() - 1);
     updateTableAndDateLabel(selectedDateGlobal);
@@ -647,11 +640,11 @@ $(document).ready(function () {
   // Modal de paciente
 
   $(document).on("click", ".btn-more-info", function () {
-    console.log("Botón 'más' clickeado");
     var row = $(this).closest("tr");
     var patientId = row.data("id");
     console.log("ID del paciente:", patientId);
     $("#patientDetailsModal").data("row", row);
+    $("#patientDetailsModal").data("patient-id", patientId); // Guardamos el ID del paciente
 
     $.ajax({
       url: "Tabla/obtener_detalle_paciente",
@@ -772,7 +765,7 @@ $(document).ready(function () {
 
   $(document).on("click", "#anularTicketBtn", function () {
     var patientId = $(this).data("id");
-    var row = $("#patientDetailsModal").data("row"); // Obtener la fila asociada al modal
+    var row = $("#patientDetailsModal").data("row");
 
     console.log("ID del paciente:", patientId);
 
@@ -791,75 +784,63 @@ $(document).ready(function () {
       $("#detalle").addClass("required");
       ticketToCancel = patientId;
 
-      $.ajax({
-        url: "Tabla/anular_ticket",
-        type: "POST",
-        data: { id: patientId },
-        success: function (response) {
-          console.log("Respuesta del servidor:", response);
-
-          var data = JSON.parse(response);
-          if (data.success) {
-            // El ticket se anuló exitosamente
-            console.log("Ticket anulado exitosamente");
-          } else {
-            // El ticket no se pudo anular
-            console.log("El ticket no se pudo anular. Mensaje:", data.message);
-            alert(data.message);
-          }
-        },
-        error: function (error) {
-          console.error("Error al anular el ticket:", error);
-        },
-      });
+      // No anulamos el ticket aquí, solo marcamos que se debe anular
+      console.log("Ticket marcado para anulación:", ticketToCancel);
     } else {
       console.log("Anulación de ticket cancelada por el usuario");
     }
   });
 
-  $("#save-btn").on("click", function () {
+  $(document).on("click", "#save-btn", function () {
     console.log("Botón de guardar clickeado");
 
     var detalle = $("#detalle").val();
     var patientId = $("#patientDetailsModal").data("patient-id");
 
+    console.log("ID del paciente:", patientId);
+
     if ($("#detalle").hasClass("required") && detalle.trim() === "") {
-      alert("Por favor, ingrese un detalle para anular el ticket."); // Mostrar un mensaje de alerta
-      return; // Detener la ejecución si el textbox está vacío
+      alert("Por favor, ingrese un detalle para anular el ticket.");
+      return;
     }
 
     if (ticketToCancel !== null) {
-      // Si hay un ticket marcado para anulación
       $.ajax({
         url: "Tabla/anular_ticket",
         type: "POST",
         data: { id: ticketToCancel },
         success: function (response) {
           console.log("Respuesta del servidor al anular el ticket:", response);
+          actualizarDetallePaciente(patientId, detalle);
         },
         error: function (error) {
           console.error("Error al anular el ticket:", error);
+          alert("Error al anular el ticket. Por favor, inténtelo de nuevo.");
         },
       });
+    } else {
+      actualizarDetallePaciente(patientId, detalle);
     }
+  });
 
+  function actualizarDetallePaciente(patientId, detalle) {
     $.ajax({
       url: "Tabla/actualizar_detalle_paciente",
       type: "POST",
       data: { id: patientId, detalle: detalle },
       success: function (data) {
-        console.log("Respuesta del servidor recibida:", data);
         $("#patientDetailsModal").modal("hide");
         $("#refresh-btn").click();
         conn.send("Dato editado");
         console.log("Mensaje de edición enviado");
-        ticketToCancel = null; // Reiniciar la variable después de guardar los cambios
+        ticketToCancel = null; // Reseteamos la variable
       },
       error: function (error) {
         console.error("Error en la solicitud de actualización:", error);
+        alert("Error al actualizar el detalle. Por favor, inténtelo de nuevo.");
       },
     });
-  });
+  }
 
   $("#btn-closer").click(function () {
     $("#patientDetailsModal").modal("hide");
@@ -895,7 +876,6 @@ $(document).ready(function () {
   $(document).on("click", ".btn-call", function () {
     // No muestra el modal inmediatamente
     // $("#myModal").modal("show"); // <-- Comentado
-
 
     var categorias = {
       42: "Rayos X",
@@ -960,7 +940,6 @@ $(document).ready(function () {
       e.data === "Nuevo ticket impreso" ||
       e.data === "Actualizar detalle"
     ) {
-
       // Llamar al botón de refresh
       $("#refresh-btn").click();
     }
