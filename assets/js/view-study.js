@@ -90,15 +90,27 @@ $(document).ready(function () {
     );
 
     Promise.all(studyPromises).then(studyDetails => {
-      var subestudios = patientDetails.subestudios.split(';;');
+      var subestudios = patientDetails.subestudios ? patientDetails.subestudios.split(';;') : [];
       
+      if (subestudios.length === 0) {
+        $("#study-list").html('<div class="alert alert-info">No hay estudios disponibles para este paciente.</div>');
+        return;
+      }
+
       subestudios.forEach(function (subestudio, index) {
         var [studyName, estudioId, linkedStudyInstanceUID, linkedStudyDescription, detalle] = subestudio.split('|');
         console.log("Procesando subestudio:", studyName, "con ID:", estudioId);
 
+        // Usar valores predeterminados si los campos están vacíos
+        studyName = studyName.trim() || "Estudio sin nombre";
+        estudioId = estudioId.trim() || "0";
+        detalle = detalle.trim() || "Sin detalle";
+
+        var displayName = studyName + (detalle !== "Sin detalle" ? " - " + detalle : "");
+
         var studyHtml = `
           <div class="row study-item align-items-center">
-            <div class="col-md-3">${studyName} - ${detalle}</div>
+            <div class="col-md-3">${displayName}</div>
             <div class="col-md-5">
               <select class="form-control orthanc-studies" data-index="${index}" data-estudio-id="${estudioId}" data-linked-uid="${linkedStudyInstanceUID}">
                 ${studyDetails
@@ -161,7 +173,7 @@ $(document).ready(function () {
               alert("Estudio enlazado correctamente");
               // Actualizar el atributo data-linked-uid con el nuevo StudyInstanceUID
               $(`.orthanc-studies[data-index="${index}"]`).attr('data-linked-uid', studyInstanceUID);
-              updateButtonStates(index, true);
+              updateButtonStates(index);
             } else {
               alert("Error al enlazar el estudio: " + result.message);
             }
@@ -188,6 +200,7 @@ $(document).ready(function () {
 
     }).catch(error => {
       console.error("Error al obtener detalles de los estudios:", error);
+      $("#study-list").html('<div class="alert alert-danger">Error al cargar los detalles de los estudios. Por favor, intente de nuevo más tarde.</div>');
     });
   }
 
@@ -202,15 +215,24 @@ $(document).ready(function () {
     viewButton.prop('disabled', !isStudySelected);
     
     if (isStudySelected) {
-      if (linkedStudyUID && linkedStudyUID === selectedStudyUID) {
-        linkButton.html('<i class="fas fa-link"></i> Enlazado');
-        linkButton.prop('disabled', true);
+      if (linkedStudyUID) {
+        if (linkedStudyUID === selectedStudyUID) {
+          linkButton.html('<i class="fas fa-link"></i> Enlazado');
+          linkButton.removeClass('btn-success btn-warning btn-link-highlight').addClass('btn-linked');
+          linkButton.prop('disabled', true);
+        } else {
+          linkButton.html('<i class="fas fa-edit"></i> Corregir enlace');
+          linkButton.removeClass('btn-success btn-linked btn-link-highlight').addClass('btn-correct-link');
+          linkButton.prop('disabled', false);
+        }
       } else {
         linkButton.html('<i class="fas fa-link"></i> Enlazar');
+        linkButton.removeClass('btn-linked btn-correct-link').addClass('btn-success btn-link-highlight');
         linkButton.prop('disabled', false);
       }
     } else {
       linkButton.html('<i class="fas fa-link"></i> Enlazar');
+      linkButton.removeClass('btn-success btn-linked btn-correct-link btn-link-highlight').addClass('btn-secondary');
       linkButton.prop('disabled', true);
     }
   }
