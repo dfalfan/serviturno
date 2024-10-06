@@ -149,7 +149,62 @@
   background-color: #eb5b08;
 }
 
+.action-buttons {
+  display: flex;
+  justify-content: space-around;
+}
 
+.btn-action {
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+  padding: 5px;
+  margin: 0 2px;
+  border-radius: 50%;
+  width: 30px;
+  height: 30px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background-color 0.3s;
+}
+
+.btn-action:hover {
+  background-color: rgba(0, 0, 0, 0.1);
+}
+
+.btn-action i {
+  font-size: 14px;
+}
+
+.btn-view-study i {
+  color: #007bff;
+}
+
+.btn-transcribe i {
+  color: #28a745;
+}
+
+.btn-process i {
+  color: #ffc107;
+}
+
+/* Estilos para modo oscuro */
+body.dark-mode .btn-action:hover {
+  background-color: rgba(255, 255, 255, 0.1);
+}
+
+body.dark-mode .btn-view-study i {
+  color: #4da3ff;
+}
+
+body.dark-mode .btn-transcribe i {
+  color: #5cd675;
+}
+
+body.dark-mode .btn-process i {
+  color: #ffd54f;
+}
 
 .btn-vstudies,
 .btn-cinfint {

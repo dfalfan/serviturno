@@ -172,7 +172,14 @@
                                 <?php endif; ?>
                             </td>
                             <td>
-                                <button class="btn-dummy">No hace nada</button> <!-- Botón que no hace nada -->
+                                <div class="action-buttons">
+                                    <button class="btn-action btn-view-study" title="Ver estudio"><i
+                                            class="fas fa-eye"></i></button>
+                                    <button class="btn-action btn-transcribe" title="Transcribir"><i
+                                            class="fas fa-microphone"></i></button>
+                                    <button class="btn-action btn-process" title="Procesar"><i
+                                            class="fas fa-play"></i></button>
+                                </div>
                             </td>
                         </tr>
                     <?php endforeach; ?>
@@ -298,4 +305,5 @@
         actualizarModales();
     });
 </script>
+
 </html>

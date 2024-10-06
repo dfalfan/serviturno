@@ -407,7 +407,11 @@ $(document).ready(function () {
                       url +
                       '">Llamar</button>'
                     : "",
-                  '<button class="btn-dummy">No hace nada</button>', // Nueva columna "Acción"
+                  '<div class="action-buttons">' +
+                    '<button class="btn-action btn-view-study" title="Ver estudio"><i class="fas fa-eye"></i></button>' +
+                    '<button class="btn-action btn-transcribe" title="Transcribir"><i class="fas fa-microphone"></i></button>' +
+                    '<button class="btn-action btn-process" title="Procesar"><i class="fas fa-play"></i></button>' +
+                    "</div>",
                 ])
                 .draw(false)
                 .node();
@@ -587,7 +591,11 @@ $(document).ready(function () {
                     url +
                     '">Llamar</button>'
                   : "",
-                '<button class="btn-dummy">No hace nada</button>', // Nueva columna "Acción"
+                '<div class="action-buttons">' +
+                  '<button class="btn-action btn-view-study" title="Ver estudio"><i class="fas fa-eye"></i></button>' +
+                  '<button class="btn-action btn-transcribe" title="Transcribir"><i class="fas fa-microphone"></i></button>' +
+                  '<button class="btn-action btn-process" title="Procesar"><i class="fas fa-play"></i></button>' +
+                  "</div>",
               ])
               .draw(false)
               .node();
@@ -1218,7 +1226,11 @@ $(document).ready(function () {
                     url +
                     '">Llamar</button>'
                   : "",
-                '<button class="btn-dummy">No hace nada</button>', // Nueva columna "Acción"
+                '<div class="action-buttons">' +
+                  '<button class="btn-action btn-view-study" title="Ver estudio"><i class="fas fa-eye"></i></button>' +
+                  '<button class="btn-action btn-transcribe" title="Transcribir"><i class="fas fa-microphone"></i></button>' +
+                  '<button class="btn-action btn-process" title="Procesar"><i class="fas fa-play"></i></button>' +
+                  "</div>",
               ])
               .draw(false)
               .node();
