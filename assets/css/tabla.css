@@ -1056,6 +1056,14 @@ body.dark-mode #admissionModal .btn-secondary:hover {
   border-color: #3e4446;
 }
 
+.modal-backdrop {
+  opacity: 0.85 !important;
+}
+
+body.dark-mode .modal-backdrop {
+  opacity: 0.85 !important;
+}
+
 #date-picker-wrapper {
     display: flex;
     justify-content: flex-start;

@@ -32,7 +32,6 @@
     <script type="text/javascript" src="https://cdn.datatables.net/buttons/2.1.0/js/buttons.html5.min.js"></script>
 
     <!-- JS de Bootstrap -->
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
     <link rel="stylesheet" href="assets/css/tabla.css">
     <script src="assets/js/tabla.js"></script>
@@ -41,6 +40,10 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
     <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
     <script src="https://npmcdn.com/flatpickr/dist/l10n/es.js"></script>
+
+    <script src="assets/js/view-study.js"></script>
+    <script src="assets/js/transcribe.js"></script>
+    <script src="assets/js/process.js"></script>
 </head>
 
 <script>
@@ -203,7 +206,6 @@
             <div class="modal-content">
                 <div class="modal-header">
                     <h5 class="modal-title" id="patientDetailsModalLabel">Detalles del Estudio</h5>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
                     <!-- El contenido se llenará dinámicamente -->
@@ -253,7 +255,62 @@
         </div>
     </div>
 
+    <!-- Modal para Ver Estudio -->
+    <div class="modal fade" id="viewStudyModal" tabindex="-1" role="dialog" aria-labelledby="viewStudyModalLabel"
+        aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="viewStudyModalLabel">Ver Estudio</h5>
+                </div>
+                <div class="modal-body">
+                    <!-- El contenido se llenará dinámicamente -->
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-primary" id="view-study-accept-btn">Aceptar</button>
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+                </div>
+            </div>
+        </div>
+    </div>
 
+    <!-- Modal para Transcribir -->
+    <div class="modal fade" id="transcribeModal" tabindex="-1" role="dialog" aria-labelledby="transcribeModalLabel"
+        aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="transcribeModalLabel">Transcribir</h5>
+                </div>
+                <div class="modal-body">
+                    <!-- El contenido se llenará dinámicamente -->
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-primary" id="transcribe-accept-btn">Aceptar</button>
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal para Procesar -->
+    <div class="modal fade" id="processModal" tabindex="-1" role="dialog" aria-labelledby="processModalLabel"
+        aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="processModalLabel">Procesar</h5>
+                </div>
+                <div class="modal-body">
+                    <!-- El contenido se llenará dinámicamente -->
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-primary" id="process-accept-btn">Aceptar</button>
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+                </div>
+            </div>
+        </div>
+    </div>
 
 </body>
 <script>
