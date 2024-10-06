@@ -264,7 +264,13 @@
                     <h5 class="modal-title" id="viewStudyModalLabel">Ver Estudio</h5>
                 </div>
                 <div class="modal-body">
-                    <!-- El contenido se llenará dinámicamente -->
+                    <div class="patient-info">
+                        <p><strong>Nombre:</strong> <span id="patient-name"></span></p>
+                        <p><strong>Admisión:</strong> <span id="patient-admission"></span></p>
+                        <p><strong>Categoría:</strong> <span id="patient-category"></span></p>
+                    </div>
+                    <hr>
+                    <!-- Aquí puedes añadir más contenido del estudio si es necesario -->
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-primary" id="view-study-accept-btn">Aceptar</button>
@@ -283,7 +289,13 @@
                     <h5 class="modal-title" id="transcribeModalLabel">Transcribir</h5>
                 </div>
                 <div class="modal-body">
-                    <!-- El contenido se llenará dinámicamente -->
+                    <div class="patient-info">
+                        <p><strong>Nombre:</strong> <span id="transcribe-patient-name"></span></p>
+                        <p><strong>Admisión:</strong> <span id="transcribe-patient-admission"></span></p>
+                        <p><strong>Categoría:</strong> <span id="transcribe-patient-category"></span></p>
+                    </div>
+                    <hr>
+                    <!-- Aquí puedes añadir más contenido para la transcripción si es necesario -->
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-primary" id="transcribe-accept-btn">Aceptar</button>
@@ -302,7 +314,13 @@
                     <h5 class="modal-title" id="processModalLabel">Procesar</h5>
                 </div>
                 <div class="modal-body">
-                    <!-- El contenido se llenará dinámicamente -->
+                    <div class="patient-info">
+                        <p><strong>Nombre:</strong> <span id="process-patient-name"></span></p>
+                        <p><strong>Admisión:</strong> <span id="process-patient-admission"></span></p>
+                        <p><strong>Categoría:</strong> <span id="process-patient-category"></span></p>
+                    </div>
+                    <hr>
+                    <!-- Aquí puedes añadir más contenido para el procesamiento si es necesario -->
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-primary" id="process-accept-btn">Aceptar</button>
