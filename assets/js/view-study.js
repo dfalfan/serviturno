@@ -83,33 +83,67 @@ $(document).ready(function () {
     console.log("Número de estudios de Orthanc:", orthancStudies.length);
     console.log("Tipos de estudio en la tabla:", studyTypes.length);
 
-    studyTypes.each(function (index) {
-      var studyName = $(this).text();
-      console.log("Procesando estudio de la tabla:", studyName);
+    var studyPromises = orthancStudies.map(studyId => 
+      $.ajax({
+        url: baseUrl + "orthanc/get_study_details/" + studyId,
+        method: "GET"
+      })
+    );
 
-      var studyHtml = `
-                <div class="row study-item">
-                    <div class="col-md-4">${studyName}</div>
-                    <div class="col-md-4">
-                        <select class="form-control orthanc-studies">
-                            <option value="">Seleccione un estudio de Orthanc</option>
-                            ${orthancStudies
-                              .map(
-                                (study) =>
-                                  `<option value="${study.ID}">${
-                                    study.MainDicomTags.StudyDescription ||
-                                    study.MainDicomTags.StudyInstanceUID
-                                  }</option>`
-                              )
-                              .join("")}
-                        </select>
-                    </div>
-                    <div class="col-md-4">
-                        <input type="radio" name="selected-study" value="${index}">
-                    </div>
-                </div>
-            `;
-      $("#study-list").append(studyHtml);
+    Promise.all(studyPromises).then(studyDetails => {
+      studyTypes.each(function (index) {
+        var studyName = $(this).text();
+        console.log("Procesando estudio de la tabla:", studyName);
+
+        var studyHtml = `
+          <div class="row study-item">
+            <div class="col-md-4">${studyName}</div>
+            <div class="col-md-6">
+              <select class="form-control orthanc-studies" data-index="${index}">
+                <option value="">Seleccione un estudio de Orthanc</option>
+                ${studyDetails
+                  .map(
+                    (study) => `
+                      <option value="${study.ID}" data-study-instance-uid="${study.MainDicomTags.StudyInstanceUID}">
+                        ${study.MainDicomTags.StudyDescription || 'Sin descripción'} - ${study.MainDicomTags.StudyInstanceUID}
+                      </option>
+                    `
+                  )
+                  .join("")}
+              </select>
+            </div>
+            <div class="col-md-2 text-center">
+              <button class="btn btn-primary btn-sm view-study-btn" data-index="${index}" disabled>
+                <i class="fas fa-eye"></i> Ver
+              </button>
+            </div>
+          </div>
+        `;
+        $("#study-list").append(studyHtml);
+      });
+
+      // Habilitar/deshabilitar botón "Ver" cuando se selecciona un estudio
+      $(".orthanc-studies").on("change", function() {
+        var index = $(this).data("index");
+        var viewButton = $(`.view-study-btn[data-index="${index}"]`);
+        viewButton.prop("disabled", !$(this).val());
+      });
+
+      // Manejar clic en el botón "Ver"
+      $(".view-study-btn").on("click", function() {
+        var index = $(this).data("index");
+        var selectedOption = $(`.orthanc-studies[data-index="${index}"] option:selected`);
+        var studyInstanceUID = selectedOption.data("study-instance-uid");
+        
+        if (studyInstanceUID) {
+          var viewerUrl = `http://192.168.5.21:3001/viewer?StudyInstanceUIDs=${studyInstanceUID}`;
+          window.open(viewerUrl, '_blank');
+        } else {
+          console.error("No se pudo obtener el StudyInstanceUID");
+        }
+      });
+    }).catch(error => {
+      console.error("Error al obtener detalles de los estudios:", error);
     });
   }
 

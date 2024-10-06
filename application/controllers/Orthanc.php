@@ -35,4 +35,22 @@ class Orthanc extends CI_Controller {
             ->set_content_type('application/json')
             ->set_output($response);
     }
+
+    public function get_study_details($studyId) {
+        $url = 'http://192.168.5.21:8042/studies/' . $studyId;
+
+        $ch = curl_init($url);
+        curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+        $response = curl_exec($ch);
+
+        if(curl_errno($ch)){
+            echo 'Error:' . curl_error($ch);
+        }
+
+        curl_close($ch);
+
+        $this->output
+            ->set_content_type('application/json')
+            ->set_output($response);
+    }
 }
