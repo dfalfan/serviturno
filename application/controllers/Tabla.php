@@ -78,6 +78,11 @@ class Tabla extends CI_Controller
         $study_instance_uid = $this->input->post('study_instance_uid');
         $study_description = $this->input->post('study_description');
 
+        if (empty($study_instance_uid) || empty($study_description)) {
+            echo json_encode(['success' => false, 'message' => 'No se ha seleccionado ningún estudio']);
+            return;
+        }
+
         $result = $this->tabla_model->enlazar_estudio($cola_id, $study_instance_uid, $study_description);
 
         if ($result) {

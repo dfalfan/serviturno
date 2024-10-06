@@ -150,7 +150,10 @@ class Tabla_model extends CI_Model
             WHEN 's' THEN 'Seguro' 
             ELSE cola.ps 
         END AS ps,
-        GROUP_CONCAT(CONCAT(tipo_estudio.name, '|', cola_tipo.cola_id) SEPARATOR ', ') as tipo_con_id
+        GROUP_CONCAT(CONCAT(tipo_estudio.name, '|', cola_tipo.cola_id, '|', 
+                            COALESCE(cola_tipo.study_instance_uid, ''), '|', 
+                            COALESCE(cola_tipo.study_description, '')) 
+                     SEPARATOR ', ') as tipo_con_id
     FROM 
         cola
     JOIN 

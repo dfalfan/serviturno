@@ -92,7 +92,7 @@ $(document).ready(function () {
 
     Promise.all(studyPromises).then(studyDetails => {
       studyTypesWithId.forEach(function (studyTypeWithId, index) {
-        var [studyName, colaId] = studyTypeWithId.split('|');
+        var [studyName, colaId, linkedStudyInstanceUID, linkedStudyDescription] = studyTypeWithId.split('|');
         console.log("Procesando estudio de la tabla:", studyName, "con ID:", colaId);
 
         var studyHtml = `
@@ -100,11 +100,13 @@ $(document).ready(function () {
             <div class="col-md-3">${studyName}</div>
             <div class="col-md-5">
               <select class="form-control orthanc-studies" data-index="${index}" data-cola-id="${colaId}">
-                <option value="">Seleccione un estudio de Orthanc</option>
                 ${studyDetails
                   .map(
-                    (study) => `
-                      <option value="${study.ID}" data-study-instance-uid="${study.MainDicomTags.StudyInstanceUID}">
+                    (study, i) => `
+                      <option value="${study.ID}" 
+                              data-study-instance-uid="${study.MainDicomTags.StudyInstanceUID}"
+                              ${study.MainDicomTags.StudyInstanceUID === linkedStudyInstanceUID ? 'selected' : 
+                                (i === 0 && !linkedStudyInstanceUID ? 'selected' : '')}>
                         ${study.MainDicomTags.StudyDescription || 'Sin descripción'} - ${study.MainDicomTags.StudyInstanceUID}
                       </option>
                     `
@@ -113,50 +115,36 @@ $(document).ready(function () {
               </select>
             </div>
             <div class="col-md-2 text-center">
-              <button class="btn btn-primary btn-sm view-study-btn" data-index="${index}" disabled>
-                <i class="fas fa-eye"></i> Ver
+              <button class="btn btn-success btn-sm link-study-btn" data-index="${index}" data-cola-id="${colaId}">
+                <i class="fas fa-link"></i> ${linkedStudyInstanceUID ? 'Enlazado' : 'Enlazar'}
               </button>
             </div>
             <div class="col-md-2 text-center">
-              <button class="btn btn-success btn-sm link-study-btn" data-index="${index}" data-cola-id="${colaId}" disabled>
-                <i class="fas fa-link"></i> Enlazar
+              <button class="btn btn-primary btn-sm view-study-btn" data-index="${index}">
+                <i class="fas fa-eye"></i> Ver
               </button>
             </div>
           </div>
         `;
         $("#study-list").append(studyHtml);
+
+        // Actualizar el estado de los botones
+        updateButtonStates(index);
       });
 
-      // Habilitar/deshabilitar botones cuando se selecciona un estudio
+      // Manejar cambios en la selección de estudios
       $(".orthanc-studies").on("change", function() {
         var index = $(this).data("index");
-        var viewButton = $(`.view-study-btn[data-index="${index}"]`);
-        var linkButton = $(`.link-study-btn[data-index="${index}"]`);
-        var isStudySelected = $(this).val() !== "";
-        viewButton.prop("disabled", !isStudySelected);
-        linkButton.prop("disabled", !isStudySelected);
-      });
-
-      // Manejar clic en el botón "Ver"
-      $(".view-study-btn").on("click", function() {
-        var index = $(this).data("index");
-        var selectedOption = $(`.orthanc-studies[data-index="${index}"] option:selected`);
-        var studyInstanceUID = selectedOption.data("study-instance-uid");
-        
-        if (studyInstanceUID) {
-          var viewerUrl = `http://192.168.5.21:3001/viewer?StudyInstanceUIDs=${studyInstanceUID}`;
-          window.open(viewerUrl, '_blank');
-        } else {
-          console.error("No se pudo obtener el StudyInstanceUID");
-        }
+        updateButtonStates(index);
       });
 
       // Manejar clic en el botón "Enlazar"
-      $(document).on("click", ".link-study-btn", function() {
+      $(".link-study-btn").on("click", function() {
+        var index = $(this).data("index");
         var colaId = $(this).data("cola-id");
-        var selectedOption = $(`.orthanc-studies[data-cola-id="${colaId}"] option:selected`);
+        var selectedOption = $(`.orthanc-studies[data-index="${index}"] option:selected`);
         var studyInstanceUID = selectedOption.data("study-instance-uid");
-        var studyDescription = selectedOption.text().split(' - ')[0];
+        var studyDescription = selectedOption.text();
 
         $.ajax({
           url: baseUrl + "tabla/enlazar_estudio",
@@ -170,6 +158,7 @@ $(document).ready(function () {
             var result = JSON.parse(response);
             if (result.success) {
               alert("Estudio enlazado correctamente");
+              updateButtonStates(index, true);
             } else {
               alert("Error al enlazar el estudio: " + result.message);
             }
@@ -179,9 +168,41 @@ $(document).ready(function () {
           }
         });
       });
+
+      // Manejar clic en el botón "Ver"
+      $(".view-study-btn").on("click", function() {
+        var index = $(this).data("index");
+        var selectedOption = $(`.orthanc-studies[data-index="${index}"] option:selected`);
+        var studyInstanceUID = selectedOption.data("study-instance-uid");
+        
+        if (studyInstanceUID) {
+          var viewerUrl = `http://192.168.5.21:3001/viewer?StudyInstanceUIDs=${studyInstanceUID}`;
+          window.open(viewerUrl, '_blank');
+        } else {
+          alert("No se ha seleccionado ningún estudio para ver");
+        }
+      });
+
     }).catch(error => {
       console.error("Error al obtener detalles de los estudios:", error);
     });
+  }
+
+  function updateButtonStates(index, forceEnlazado = false) {
+    var select = $(`.orthanc-studies[data-index="${index}"]`);
+    var viewButton = $(`.view-study-btn[data-index="${index}"]`);
+    var linkButton = $(`.link-study-btn[data-index="${index}"]`);
+    var isStudySelected = select.val() !== "";
+
+    viewButton.prop("disabled", !isStudySelected);
+    
+    if (forceEnlazado || (isStudySelected && linkButton.text().includes("Enlazado"))) {
+      linkButton.html('<i class="fas fa-link"></i> Enlazado');
+      linkButton.prop("disabled", true);
+    } else {
+      linkButton.html('<i class="fas fa-link"></i> Enlazar');
+      linkButton.prop("disabled", !isStudySelected);
+    }
   }
 
   $("#view-study-accept-btn").on("click", function () {
