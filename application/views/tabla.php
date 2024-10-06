@@ -33,7 +33,7 @@
 
     <!-- JS de Bootstrap -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
     <link rel="stylesheet" href="assets/css/tabla.css">
     <script src="assets/js/tabla.js"></script>
 
@@ -80,8 +80,9 @@
                 <button id="stats-btn" class="header-button">
                     <i class="fas fa-chart-bar"></i>
                 </button>
-                <button id="mode-toggle" class="header-button">
+                <button class="mode-toggle header-button">
                     <i class="fas fa-moon"></i>
+                    <i class="fas fa-sun"></i>
                 </button>
             </div>
         </nav>
@@ -186,7 +187,8 @@
         </div>
     </div>
 
-    <div class="modal fade" id="patientDetailsModal" tabindex="-1" role="dialog" aria-labelledby="patientDetailsModalLabel" aria-hidden="true">
+    <div class="modal fade" id="patientDetailsModal" tabindex="-1" role="dialog"
+        aria-labelledby="patientDetailsModalLabel" aria-hidden="true">
         <div class="modal-dialog" role="document">
             <div class="modal-content">
                 <div class="modal-header">
@@ -255,7 +257,7 @@
     function actualizarModales() {
         const modales = ['#admissionModal', '#patientDetailsModal', '#myModal'];
         const esModoOscuro = document.body.classList.contains('dark-mode');
-        
+
         modales.forEach(modal => {
             if (esModoOscuro) {
                 $(modal).addClass('dark-mode');
@@ -267,20 +269,21 @@
 
     function toggleDarkMode() {
         document.body.classList.toggle('dark-mode');
-        const icon = document.querySelector('.mode-toggle i');
+        const moonIcon = document.querySelector('.mode-toggle .fa-moon');
+        const sunIcon = document.querySelector('.mode-toggle .fa-sun');
         if (document.body.classList.contains('dark-mode')) {
-            icon.classList.remove('fa-moon');
-            icon.classList.add('fa-sun');
+            moonIcon.style.display = 'none';
+            sunIcon.style.display = 'inline-block';
         } else {
-            icon.classList.remove('fa-sun');
-            icon.classList.add('fa-moon');
+            moonIcon.style.display = 'inline-block';
+            sunIcon.style.display = 'none';
         }
         localStorage.setItem('darkMode', document.body.classList.contains('dark-mode'));
         $('body').trigger('darkModeChanged');
         actualizarModales();
     }
 
-    document.getElementById('mode-toggle').addEventListener('click', toggleDarkMode);
+    document.querySelector('.mode-toggle').addEventListener('click', toggleDarkMode);
 
     // Verificar la preferencia guardada al cargar la página
     if (localStorage.getItem('darkMode') === 'true') {

@@ -262,6 +262,11 @@
   border: none;
   cursor: pointer;
   font-size: 18px;
+  color: #1a5b8c; /* Color azul marino para modo claro */
+}
+
+.date-arrow:hover {
+  color: #12375b; /* Color más oscuro al pasar el mouse en modo claro */
 }
 
 #go-to-today {
@@ -294,7 +299,7 @@
   font-family: Arial, Helvetica, sans-serif;
   font-size: 14px;
   font-weight: bold;
-  margin-left: 50px;
+  margin-top: 10px;
 }
 
 
@@ -665,6 +670,21 @@ body {
   /* Tachar el texto en las celdas de tickets anulados */
 }
 
+#patientDetailsModal .modal-body {
+  text-decoration: none !important;
+}
+
+#patientDetailsModal .modal-body * {
+  text-decoration: inherit !important;
+}
+
+#patientDetailsModal #detalle {
+  text-decoration: none !important;
+  width: 100%;
+  margin: 0 auto 10px;
+  padding: 5px;
+}
+
 #detalle.required {
   border-color: red;
 }
@@ -986,6 +1006,7 @@ body.dark-mode #admissionModal .btn-secondary:hover {
     justify-content: flex-start;
     align-items: center;
     margin-top: 25px;
+    margin-left: -30px;
 }
 
 #datepicker {
@@ -1148,4 +1169,56 @@ body.dark-mode .flatpickr-day:hover {
     width: calc(50% - 10px);
     margin: 5px;
   }
+}
+
+/* Estilos para las flechas de navegación en modo oscuro */
+body.dark-mode .date-arrow {
+  color: #3498db; /* Color azul claro para modo oscuro */
+}
+
+body.dark-mode .date-arrow:hover {
+  color: #2980b9; /* Color más oscuro al pasar el mouse en modo oscuro */
+}
+
+/* Estilos para el botón de cambio de modo */
+.mode-toggle {
+  background-color: #1a5b8c;
+  color: #ffffff;
+  border: none;
+  border-radius: 50%;
+  width: 40px;
+  height: 40px;
+  font-size: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: background-color 0.3s;
+  margin-left: 10px;
+}
+
+.mode-toggle:hover {
+  background-color: #12375b;
+}
+
+/* Cambio de ícono en modo oscuro */
+body.dark-mode .mode-toggle .fa-moon {
+  display: none;
+}
+
+body.dark-mode .mode-toggle .fa-sun {
+  display: inline-block;
+}
+
+body.dark-mode .mode-toggle {
+  background-color: #d85e27;
+}
+
+body.dark-mode .mode-toggle:hover {
+  background-color: #b74d1f;
+}
+
+/* Ocultar el ícono del sol por defecto */
+.mode-toggle .fa-sun {
+  display: none;
 }
