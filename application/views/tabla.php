@@ -114,6 +114,7 @@
                         <th>Técnico</th>
                         <th>Más</th>
                         <th>Llamar</th>
+                        <th>Acción</th> <!-- Nueva columna -->
                     </tr>
                 </thead>
                 <tbody>
@@ -163,13 +164,15 @@
                                 <button class="btn-more-info<?php echo $dato->detalle ? ' has-details' : ''; ?>"><i
                                         class="fas fa-plus"></i></button>
                             </td>
-                            </td>
                             <td>
                                 <?php if ($dato->mostrar_llamar): ?>
                                     <button class="btn-call" data-ticket="<?php echo $dato->ticket; ?>"
                                         data-categoria="<?php echo $dato->especialidad; ?>"
                                         data-url="<?php echo base_url('operador/toggle_random/' . $dato->id); ?>">Llamar</button>
                                 <?php endif; ?>
+                            </td>
+                            <td>
+                                <button class="btn-dummy">No hace nada</button> <!-- Botón que no hace nada -->
                             </td>
                         </tr>
                     <?php endforeach; ?>

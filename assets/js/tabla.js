@@ -90,6 +90,11 @@ $(document).ready(function () {
         visible: true,
         searchable: false,
       },
+      {
+        targets: [12], //  columna "Acción"
+        orderable: false,
+        searchable: false,
+      },
     ],
     pageLength: 50,
     drawCallback: function () {
@@ -103,16 +108,18 @@ $(document).ready(function () {
   handleVisibility();
 
   function handleVisibility() {
-    var categoryID = $("#selected-category-id").val(); // Obtener el ID de la categoría seleccionada
+    var categoryID = $("#selected-category-id").val();
 
     if (categoryID === "undefined" || categoryID === undefined) {
       $("#print-ticket-btn").hide();
       $(".vertical-line").hide();
-      a.column(11).visible(false); // Ocultar la columna "Llamar" (índice base 0)
+      a.column(11).visible(false); // Ocultar la columna "Llamar"
+      a.column(12).visible(false); // Ocultar la columna "Acción"
     } else {
       $("#print-ticket-btn").show();
       $(".vertical-line").show();
-      a.column(11).visible(true); // Mostrar la columna "Llamar" (índice base 0)
+      a.column(11).visible(true); // Mostrar la columna "Llamar"
+      a.column(12).visible(true); // Mostrar la columna "Acción"
     }
   }
 
@@ -400,6 +407,7 @@ $(document).ready(function () {
                       url +
                       '">Llamar</button>'
                     : "",
+                  '<button class="btn-dummy">No hace nada</button>', // Nueva columna "Acción"
                 ])
                 .draw(false)
                 .node();
@@ -579,6 +587,7 @@ $(document).ready(function () {
                     url +
                     '">Llamar</button>'
                   : "",
+                '<button class="btn-dummy">No hace nada</button>', // Nueva columna "Acción"
               ])
               .draw(false)
               .node();
@@ -1209,6 +1218,7 @@ $(document).ready(function () {
                     url +
                     '">Llamar</button>'
                   : "",
+                '<button class="btn-dummy">No hace nada</button>', // Nueva columna "Acción"
               ])
               .draw(false)
               .node();
