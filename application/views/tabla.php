@@ -33,7 +33,7 @@
 
     <!-- JS de Bootstrap -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.min.js"></script>
-
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
     <link rel="stylesheet" href="assets/css/tabla.css">
     <script src="assets/js/tabla.js"></script>
 
@@ -186,19 +186,19 @@
         </div>
     </div>
 
-    <div class="modal fade wide-modal" id="patientDetailsModal" tabindex="-1" role="dialog"
-        aria-labelledby="patientDetailsModalLabel" aria-hidden="true" data-backdrop="static" data-keyboard="false">
+    <div class="modal fade" id="patientDetailsModal" tabindex="-1" role="dialog" aria-labelledby="patientDetailsModalLabel" aria-hidden="true">
         <div class="modal-dialog" role="document">
             <div class="modal-content">
                 <div class="modal-header">
                     <h5 class="modal-title" id="patientDetailsModalLabel">Detalles del Estudio</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
-
+                    <!-- El contenido se llenará dinámicamente -->
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-primary" id="save-btn">Guardar</button>
-                    <button id="btn-closer" type="button" class="btn btn-secondary">Cerrar</button>
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
                 </div>
             </div>
         </div>

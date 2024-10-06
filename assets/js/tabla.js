@@ -472,11 +472,9 @@ $(document).ready(function () {
     updateTotalStudies();
   });
 
-  var currentDate = new Date(); // Establecer la fecha actual en el datepicker y actualizar el label
-  datepickerElement.datepicker("setDate", currentDate);
-  selectedDateGlobal = currentDate; // Actualiza la variable global con la fecha actual
-  var formattedDate = $.datepicker.formatDate("DD, dd/mm/yy", currentDate);
-  $("#selected-date-label").text(formattedDate);
+  var currentDate = new Date();
+  fpInstance.setDate(currentDate);
+  selectedDateGlobal = currentDate;
 
   $("#datepicker-btn").on("click", function () {
     datepickerElement.datepicker("widget").is(":visible")
@@ -662,11 +660,9 @@ $(document).ready(function () {
     updateTotalStudies();
   });
 
-  var currentDate = new Date(); // Establecer la fecha actual en el datepicker y actualizar el label
-  datepickerElement.datepicker("setDate", currentDate);
-  selectedDateGlobal = currentDate; // Actualiza la variable global con la fecha actual
-  var formattedDate = $.datepicker.formatDate("DD, dd/mm/yy", currentDate);
-  $("#selected-date-label").text(formattedDate);
+  var currentDate = new Date();
+  fpInstance.setDate(currentDate);
+  selectedDateGlobal = currentDate;
 
   $("#datepicker-btn").on("click", function () {
     datepickerElement.datepicker("widget").is(":visible")
@@ -677,9 +673,10 @@ $(document).ready(function () {
   // Modal de paciente
 
   $(document).on("click", ".btn-more-info", function () {
+    console.log("Botón 'más' clickeado");
     var row = $(this).closest("tr");
     var patientId = row.data("id");
-    $("#patientDetailsModal").data("patient-id", patientId);
+    console.log("ID del paciente:", patientId);
     $("#patientDetailsModal").data("row", row);
 
     $.ajax({
@@ -734,51 +731,52 @@ $(document).ready(function () {
               .join("<br>") // Separar los enlaces con saltos de línea
           : "No disponible";
 
-        var modalContent = "<table style='width: 100%; border-collapse: separate; border-spacing: 10px;'>" +
-            "<tr><td style='width: 50%;'><b>Especialidad:</b> " +
-            patientDetails.especialidad +
-            "</td><td style='width: 50%;'><b>P/S:</b> " +
-            patientDetails.ps +
-            "</td></tr>" +
-            "<tr><td><b>Ticket:</b> " +
-            patientDetails.ticket +
-            "</td><td><b>Seguro:</b> " +
-            patientDetails.seguro +
-            "</td></tr>" +
-            "<tr><td><b>Paciente:</b> " +
-            patientDetails.paciente +
-            "</td><td><b>Empresa:</b> " +
-            patientDetails.empresa +
-            "</td></tr>" +
-            "<tr><td><b>Edad:</b> " +
-            patientDetails.edad +
-            "</td><td><b>Hora de Impresión:</b> " +
-            horaDeImpresion +
-            "</td></tr>" +
-            "<tr><td><b>Tipo de estudio:</b> " +
-            patientDetails.tipo +
-            "</td><td><b>Hora de Llamado:</b> " +
-            horaDeLlamado +
-            "</td></tr>" +
-            "<tr><td><b>Admision:</b> " +
-            patientDetails.admision +
-            "</td><td><b>Tiempo para Atención:</b> " +
-            tiempoParaAtencion +
-            "</td></tr>" +
-            "<tr><td><b>Cedula:</b> " +
-            patientDetails.cedula +
-            "</td><td>" +
-            anularTicketButton +
-            "</td></tr>" +
-            "<tr><td colspan='2'>" +
-            "<p style='text-align: center; margin-top: 50px;'><b>Detalle:</b></p>" +
-            "<textarea id='detalle' class='form-control' rows='4' placeholder='Escribe aquí el detalle...' style='width: 100%; margin: 0 auto 10px; padding: 5px; " +
-            detalleStyle +
-            "'>" +
-            (patientDetails.detalle ? patientDetails.detalle : "") +
-            "</textarea>" +
-            "</td></tr>" +
-            "</table>";
+        var modalContent =
+          "<table style='width: 100%; border-collapse: separate; border-spacing: 10px;'>" +
+          "<tr><td style='width: 50%;'><b>Especialidad:</b> " +
+          patientDetails.especialidad +
+          "</td><td style='width: 50%;'><b>P/S:</b> " +
+          patientDetails.ps +
+          "</td></tr>" +
+          "<tr><td><b>Ticket:</b> " +
+          patientDetails.ticket +
+          "</td><td><b>Seguro:</b> " +
+          patientDetails.seguro +
+          "</td></tr>" +
+          "<tr><td><b>Paciente:</b> " +
+          patientDetails.paciente +
+          "</td><td><b>Empresa:</b> " +
+          patientDetails.empresa +
+          "</td></tr>" +
+          "<tr><td><b>Edad:</b> " +
+          patientDetails.edad +
+          "</td><td><b>Hora de Impresión:</b> " +
+          horaDeImpresion +
+          "</td></tr>" +
+          "<tr><td><b>Tipo de estudio:</b> " +
+          patientDetails.tipo +
+          "</td><td><b>Hora de Llamado:</b> " +
+          horaDeLlamado +
+          "</td></tr>" +
+          "<tr><td><b>Admision:</b> " +
+          patientDetails.admision +
+          "</td><td><b>Tiempo para Atención:</b> " +
+          tiempoParaAtencion +
+          "</td></tr>" +
+          "<tr><td><b>Cedula:</b> " +
+          patientDetails.cedula +
+          "</td><td>" +
+          anularTicketButton +
+          "</td></tr>" +
+          "<tr><td colspan='2'>" +
+          "<p style='text-align: center; margin-top: 50px;'><b>Detalle:</b></p>" +
+          "<textarea id='detalle' class='form-control' rows='4' placeholder='Escribe aquí el detalle...' style='width: 100%; margin: 0 auto 10px; padding: 5px; " +
+          detalleStyle +
+          "'>" +
+          (patientDetails.detalle ? patientDetails.detalle : "") +
+          "</textarea>" +
+          "</td></tr>" +
+          "</table>";
 
         if ($("body").hasClass("dark-mode")) {
           $("#patientDetailsModal .modal-content").addClass("dark-mode");
@@ -797,12 +795,6 @@ $(document).ready(function () {
     backdrop: "static",
     keyboard: false,
   });
-
-  $("#admissionModal").modal({
-    backdrop: "static",
-    keyboard: false,
-  });
-  var ticketToCancel = null; // Variable para almacenar el ID del ticket a anular
 
   $(document).on("click", "#anularTicketBtn", function () {
     var patientId = $(this).data("id");
@@ -1282,4 +1274,3 @@ $(document).ready(function () {
     });
   }
 });
-
