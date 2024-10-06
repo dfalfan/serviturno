@@ -58,3 +58,4 @@ $route['pantalla'] = 'pantalla/index';
 $route['orthanc/find_studies'] = 'orthanc/find_studies';
 $route['orthanc/get_study_details/(:any)'] = 'orthanc/get_study_details/$1';
 $route['Tabla/obtener_detalle_paciente'] = 'tabla/obtener_detalle_paciente';
+$route['tabla/enlazar_estudio'] = 'tabla/enlazar_estudio';

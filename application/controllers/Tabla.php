@@ -71,4 +71,19 @@ class Tabla extends CI_Controller
 
         echo json_encode($data);
     }
+
+    public function enlazar_estudio()
+    {
+        $cola_id = $this->input->post('cola_id');
+        $study_instance_uid = $this->input->post('study_instance_uid');
+        $study_description = $this->input->post('study_description');
+
+        $result = $this->tabla_model->enlazar_estudio($cola_id, $study_instance_uid, $study_description);
+
+        if ($result) {
+            echo json_encode(['success' => true]);
+        } else {
+            echo json_encode(['success' => false, 'message' => 'Error al enlazar el estudio']);
+        }
+    }
 }

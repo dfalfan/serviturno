@@ -26,6 +26,7 @@ class Tabla_model extends CI_Model
         cola.tecnico AS tecnico,
         cola.atendida AS atendida,
         cola.detalle AS detalle,
+        cola.cedula AS cedula,
         IF(
             (cola.id_categoria IN (48, 49) AND cola.atendida IS NULL) 
             OR 
@@ -59,6 +60,26 @@ class Tabla_model extends CI_Model
         return $this->db->query($query)->result();
     }
 
+    public function obtener_resumen_tickets()
+    {
+        $query = "
+    SELECT 
+        categorias.categoria AS especialidad,
+        COUNT(cola.id) AS total_tickets,
+        COUNT(DISTINCT cola.cedula) AS pacientes_unicos,
+        SUM(CASE WHEN cola.atendida IS NULL THEN 1 ELSE 0 END) AS tickets_no_llamados
+    FROM 
+        cola
+    JOIN 
+        categorias ON cola.id_categoria = categorias.id
+    WHERE 
+        DATE(cola.fecha) = CURDATE()
+    GROUP BY 
+        categorias.categoria
+    ";
+
+        return $this->db->query($query)->result();
+    }
 
     public function obtener_tickets_no_llamados()
     {
@@ -129,7 +150,7 @@ class Tabla_model extends CI_Model
             WHEN 's' THEN 'Seguro' 
             ELSE cola.ps 
         END AS ps,
-        GROUP_CONCAT(CONCAT(tipo_estudio.name, ' ', COALESCE(cola_tipo.detalle, '')) SEPARATOR ', ') as tipo
+        GROUP_CONCAT(CONCAT(tipo_estudio.name, '|', cola_tipo.cola_id) SEPARATOR ', ') as tipo_con_id
     FROM 
         cola
     JOIN 
@@ -172,7 +193,39 @@ class Tabla_model extends CI_Model
         return $query->num_rows() > 0;
     }
 
+    public function enlazar_estudio($cola_id, $study_instance_uid, $study_description)
+    {
+        $data = array(
+            'study_instance_uid' => $study_instance_uid,
+            'study_description' => $study_description
+        );
 
+        $this->db->where('cola_id', $cola_id);
+        $result = $this->db->update('cola_tipo', $data);
+
+        if (!$result) {
+            log_message('error', 'Error al enlazar el estudio: ' . $this->db->error());
+            return false;
+        }
+
+        return true;
+    }
+
+    public function obtener_tipo_estudio_id($cola_id, $nombre_estudio)
+    {
+        $this->db->select('cola_tipo.tipo_estudio_id');
+        $this->db->from('cola_tipo');
+        $this->db->join('tipo_estudio', 'cola_tipo.tipo_estudio_id = tipo_estudio.id');
+        $this->db->where('cola_tipo.cola_id', $cola_id);
+        $this->db->where('tipo_estudio.name', $nombre_estudio);
+        $query = $this->db->get();
+
+        if ($query->num_rows() > 0) {
+            return $query->row()->tipo_estudio_id;
+        }
+
+        return null;
+    }
     public function obtener_datos_por_fecha($date)
     {
         $query = "
