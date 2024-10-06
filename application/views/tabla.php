@@ -41,7 +41,7 @@
     <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
     <script src="https://npmcdn.com/flatpickr/dist/l10n/es.js"></script>
 
-    <script src="assets/js/view-study.js"></script>
+    <script src="<?php echo base_url('assets/js/view-study.js'); ?>"></script>
     <script src="assets/js/transcribe.js"></script>
     <script src="assets/js/process.js"></script>
 </head>
@@ -338,7 +338,9 @@
             </div>
         </div>
     </div>
-
+<script>
+    var baseUrl = '<?php echo base_url(); ?>';
+</script>
 </body>
 <script>
     var tuBaseURL = "<?php echo base_url(); ?>";

@@ -55,3 +55,5 @@ $route['translate_uri_dashes'] = FALSE;
 $route['tabla'] = 'tabla/index';
 $route['stats'] = 'stats/index';
 $route['pantalla'] = 'pantalla/index';
+$route['orthanc/find_studies'] = 'orthanc/find_studies';
+$route['Tabla/obtener_detalle_paciente'] = 'tabla/obtener_detalle_paciente';
