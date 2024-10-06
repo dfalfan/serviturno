@@ -1284,4 +1284,20 @@ body.dark-mode .mode-toggle:hover {
 /* Ocultar el ícono del sol por defecto */
 .mode-toggle .fa-sun {
   display: none;
+
+}
+
+.study-details .header {
+  font-weight: bold;
+  margin-bottom: 10px;
+}
+
+.study-item {
+  margin-bottom: 10px;
+  align-items: center;
+}
+
+.study-item select,
+.study-item input[type="radio"] {
+  margin: 0;
 }

@@ -258,7 +258,7 @@
     <!-- Modal para Ver Estudio -->
     <div class="modal fade" id="viewStudyModal" tabindex="-1" role="dialog" aria-labelledby="viewStudyModalLabel"
         aria-hidden="true">
-        <div class="modal-dialog" role="document">
+        <div class="modal-dialog modal-lg" role="document">
             <div class="modal-content">
                 <div class="modal-header">
                     <h5 class="modal-title" id="viewStudyModalLabel">Ver Estudio</h5>
@@ -270,7 +270,16 @@
                         <p><strong>Categoría:</strong> <span id="patient-category"></span></p>
                     </div>
                     <hr>
-                    <!-- Aquí puedes añadir más contenido del estudio si es necesario -->
+                    <div class="study-details">
+                        <div class="row header">
+                            <div class="col-md-4">Estudio</div>
+                            <div class="col-md-4">Opciones</div>
+                            <div class="col-md-4">Seleccionar</div>
+                        </div>
+                        <div id="study-list">
+                            <!-- Los estudios se agregarán aquí dinámicamente -->
+                        </div>
+                    </div>
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-primary" id="view-study-accept-btn">Aceptar</button>
