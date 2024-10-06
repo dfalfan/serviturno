@@ -444,19 +444,6 @@ $(document).ready(function () {
     updateTableAndDateLabel(today);
   });
 
-  // Botones de flechas
-
-  $("#prev-date").click(function () {
-    selectedDateGlobal.setDate(selectedDateGlobal.getDate() - 1);
-    updateTableAndDateLabel(selectedDateGlobal);
-    checkIfTodayIsSelected(selectedDateGlobal);
-  });
-
-  $("#next-date").click(function () {
-    selectedDateGlobal.setDate(selectedDateGlobal.getDate() + 1);
-    updateTableAndDateLabel(selectedDateGlobal);
-    checkIfTodayIsSelected(selectedDateGlobal);
-  });
 
   $("#myTable").on("init.dt", function () {
     $("#date-label-wrapper").insertBefore(".dataTables_filter");
@@ -619,20 +606,7 @@ $(document).ready(function () {
     $("#selected-date-label").text(formattedDate);
   }
 
-  var datepickerElement = $("#datepicker").datepicker(
-    $.extend(
-      {
-        dateFormat: "DD, dd/mm/yy",
-        onSelect: function () {
-          var t = datepickerElement.datepicker("getDate");
-          selectedDateGlobal = t;
-          updateTableAndDateLabel(t);
-          checkIfTodayIsSelected(t);
-        },
-      },
-      $.datepicker.regional.es
-    )
-  );
+ 
 
   $("#prev-date").click(function () {
     selectedDateGlobal.setDate(selectedDateGlobal.getDate() - 1);
