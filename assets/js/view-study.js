@@ -53,7 +53,7 @@ $(document).ready(function () {
           success: function (orthancStudies) {
             console.log("Respuesta de Orthanc:", orthancStudies);
             // Procesar los estudios de Orthanc
-            processOrthancStudies(orthancStudies, patientDetails.tipo_con_id.split(', '), patientId);
+            processOrthancStudies(orthancStudies, patientDetails);
           },
           error: function (xhr, status, error) {
             console.error("Error al obtener datos de Orthanc:", error);
@@ -78,10 +78,9 @@ $(document).ready(function () {
   });
 
 
-  function processOrthancStudies(orthancStudies, studyTypesWithId, patientId) {
+  function processOrthancStudies(orthancStudies, patientDetails) {
     console.log("Procesando estudios de Orthanc:");
     console.log("Número de estudios de Orthanc:", orthancStudies.length);
-    console.log("Tipos de estudio en la tabla:", studyTypesWithId.length);
 
     var studyPromises = orthancStudies.map(studyId => 
       $.ajax({
@@ -91,22 +90,24 @@ $(document).ready(function () {
     );
 
     Promise.all(studyPromises).then(studyDetails => {
-      studyTypesWithId.forEach(function (studyTypeWithId, index) {
-        var [studyName, colaId, linkedStudyInstanceUID, linkedStudyDescription] = studyTypeWithId.split('|');
-        console.log("Procesando estudio de la tabla:", studyName, "con ID:", colaId);
+      var subestudios = patientDetails.subestudios.split(';;');
+      
+      subestudios.forEach(function (subestudio, index) {
+        var [studyName, estudioId, linkedStudyInstanceUID, linkedStudyDescription, detalle] = subestudio.split('|');
+        console.log("Procesando subestudio:", studyName, "con ID:", estudioId);
 
         var studyHtml = `
           <div class="row study-item align-items-center">
-            <div class="col-md-3">${studyName}</div>
+            <div class="col-md-3">${studyName} - ${detalle}</div>
             <div class="col-md-5">
-              <select class="form-control orthanc-studies" data-index="${index}" data-cola-id="${colaId}">
+              <select class="form-control orthanc-studies" data-index="${index}" data-estudio-id="${estudioId}" data-linked-uid="${linkedStudyInstanceUID}">
                 ${studyDetails
                   .map(
                     (study, i) => `
                       <option value="${study.ID}" 
                               data-study-instance-uid="${study.MainDicomTags.StudyInstanceUID}"
                               ${study.MainDicomTags.StudyInstanceUID === linkedStudyInstanceUID ? 'selected' : 
-                                (i === 0 && !linkedStudyInstanceUID ? 'selected' : '')}>
+                                (!linkedStudyInstanceUID && i === 0 ? 'selected' : '')}>
                         ${study.MainDicomTags.StudyDescription || 'Sin descripción'} - ${study.MainDicomTags.StudyInstanceUID}
                       </option>
                     `
@@ -115,7 +116,7 @@ $(document).ready(function () {
               </select>
             </div>
             <div class="col-md-2 text-center">
-              <button class="btn btn-success btn-sm link-study-btn" data-index="${index}" data-cola-id="${colaId}">
+              <button class="btn btn-success btn-sm link-study-btn" data-index="${index}" data-estudio-id="${estudioId}">
                 <i class="fas fa-link"></i> ${linkedStudyInstanceUID ? 'Enlazado' : 'Enlazar'}
               </button>
             </div>
@@ -141,7 +142,7 @@ $(document).ready(function () {
       // Manejar clic en el botón "Enlazar"
       $(".link-study-btn").on("click", function() {
         var index = $(this).data("index");
-        var colaId = $(this).data("cola-id");
+        var estudioId = $(this).data("estudio-id");
         var selectedOption = $(`.orthanc-studies[data-index="${index}"] option:selected`);
         var studyInstanceUID = selectedOption.data("study-instance-uid");
         var studyDescription = selectedOption.text();
@@ -150,7 +151,7 @@ $(document).ready(function () {
           url: baseUrl + "tabla/enlazar_estudio",
           method: "POST",
           data: {
-            cola_id: colaId,
+            estudio_id: estudioId,
             study_instance_uid: studyInstanceUID,
             study_description: studyDescription
           },
@@ -158,6 +159,8 @@ $(document).ready(function () {
             var result = JSON.parse(response);
             if (result.success) {
               alert("Estudio enlazado correctamente");
+              // Actualizar el atributo data-linked-uid con el nuevo StudyInstanceUID
+              $(`.orthanc-studies[data-index="${index}"]`).attr('data-linked-uid', studyInstanceUID);
               updateButtonStates(index, true);
             } else {
               alert("Error al enlazar el estudio: " + result.message);
@@ -188,20 +191,27 @@ $(document).ready(function () {
     });
   }
 
-  function updateButtonStates(index, forceEnlazado = false) {
+  function updateButtonStates(index) {
     var select = $(`.orthanc-studies[data-index="${index}"]`);
     var viewButton = $(`.view-study-btn[data-index="${index}"]`);
     var linkButton = $(`.link-study-btn[data-index="${index}"]`);
     var isStudySelected = select.val() !== "";
+    var linkedStudyUID = select.data('linked-uid');
+    var selectedStudyUID = select.find('option:selected').data('study-instance-uid');
 
-    viewButton.prop("disabled", !isStudySelected);
+    viewButton.prop('disabled', !isStudySelected);
     
-    if (forceEnlazado || (isStudySelected && linkButton.text().includes("Enlazado"))) {
-      linkButton.html('<i class="fas fa-link"></i> Enlazado');
-      linkButton.prop("disabled", true);
+    if (isStudySelected) {
+      if (linkedStudyUID && linkedStudyUID === selectedStudyUID) {
+        linkButton.html('<i class="fas fa-link"></i> Enlazado');
+        linkButton.prop('disabled', true);
+      } else {
+        linkButton.html('<i class="fas fa-link"></i> Enlazar');
+        linkButton.prop('disabled', false);
+      }
     } else {
       linkButton.html('<i class="fas fa-link"></i> Enlazar');
-      linkButton.prop("disabled", !isStudySelected);
+      linkButton.prop('disabled', true);
     }
   }
 

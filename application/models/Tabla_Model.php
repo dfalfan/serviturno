@@ -130,7 +130,7 @@ class Tabla_model extends CI_Model
     {
         $query = "
     SELECT 
-        cola.id AS id,
+        cola.id AS cola_id,
         cola.num_actual AS ticket, 
         cola.fecha AS hora_de_impresion, 
         cola.fecha_atendida AS hora_de_llamado, 
@@ -150,10 +150,15 @@ class Tabla_model extends CI_Model
             WHEN 's' THEN 'Seguro' 
             ELSE cola.ps 
         END AS ps,
-        GROUP_CONCAT(CONCAT(tipo_estudio.name, '|', cola_tipo.cola_id, '|', 
-                            COALESCE(cola_tipo.study_instance_uid, ''), '|', 
-                            COALESCE(cola_tipo.study_description, '')) 
-                     SEPARATOR ', ') as tipo_con_id
+        GROUP_CONCAT(
+            CONCAT(
+                tipo_estudio.name, '|',
+                cola_tipo.estudio_id, '|',
+                COALESCE(cola_tipo.study_instance_uid, ''), '|',
+                COALESCE(cola_tipo.study_description, ''), '|',
+                cola_tipo.detalle
+            ) SEPARATOR ';;'
+        ) as subestudios
     FROM 
         cola
     JOIN 
@@ -196,14 +201,14 @@ class Tabla_model extends CI_Model
         return $query->num_rows() > 0;
     }
 
-    public function enlazar_estudio($cola_id, $study_instance_uid, $study_description)
+    public function enlazar_estudio($estudio_id, $study_instance_uid, $study_description)
     {
         $data = array(
             'study_instance_uid' => $study_instance_uid,
             'study_description' => $study_description
         );
 
-        $this->db->where('cola_id', $cola_id);
+        $this->db->where('estudio_id', $estudio_id);
         $result = $this->db->update('cola_tipo', $data);
 
         if (!$result) {
