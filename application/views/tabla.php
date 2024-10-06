@@ -36,6 +36,11 @@
 
     <link rel="stylesheet" href="assets/css/tabla.css">
     <script src="assets/js/tabla.js"></script>
+
+    <!-- Añade estos enlaces para Flatpickr -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
+    <script src="https://npmcdn.com/flatpickr/dist/l10n/es.js"></script>
 </head>
 
 <script>
@@ -51,9 +56,9 @@
             <img style="width: 200px; height: 38px; margin-top: -10px;margin-left: 15px;" class="navbar-logo"
                 src="<?php echo base_url() . 'assets/images/logo_new.png' ?>" alt="Logo">
 
-            <div class=" button-container" ">
-            <!-- Botones para filtrar por categoría -->
-            <button class=" filter-btn selected" data-filter="" data-id="undefined">Todos</button>
+            <div class="button-container">
+                <!-- Botones para filtrar por categoría -->
+                <button class="filter-btn selected" data-filter="" data-id="undefined">Todos</button>
                 <button class="filter-btn" data-filter="Densitometría" data-id="53">Densitometría<span
                         class="notification"></span></button>
                 <button class="filter-btn" data-filter="Ecografía" data-id="51">Ecografía<span
@@ -70,37 +75,27 @@
                 <!-- Agrega más botones según las categorías que tengas -->
             </div>
 
-            <div class="aux-container">
-                <button id="datepicker-btn">
-                    <i class="far fa-calendar-alt"></i>
-                </button>
-                <input type="text" id="datepicker" style="display:none;">
+            <div class="header-buttons-container">
                 <button id="refresh-btn" style="display:none;"><i class="fas fa-sync-alt"></i></button>
-                <button id="stats-btn">
+                <button id="stats-btn" class="header-button">
                     <i class="fas fa-chart-bar"></i>
                 </button>
-                <!-- Añadimos el botón de modo oscuro aquí -->
-                <button class="mode-toggle" id="mode-toggle">
+                <button id="mode-toggle" class="header-button">
                     <i class="fas fa-moon"></i>
                 </button>
             </div>
-
         </nav>
 
 
 
 
         <input type="hidden" id="selected-category-id" value="">
-        <div id="date-label-wrapper">
-            <span id="prev-date" class="date-arrow" style="font-weight: bold; color: #12375b;"><i
-                    class=" fas fa-arrow-left"></i></span>
-            <label id="selected-date-label" class="selected-date-label-style"></label>
-            <span id="next-date" class="date-arrow" style="font-weight: bold; color: #12375b;"><i
-                    class=" fas fa-arrow-right"></i></span>
-            <label id="go-to-today" style="display: none;">Ir a Hoy</label>
-
+        <div id="date-picker-wrapper">
+            <button id="prev-date" class="date-arrow"><i class="fas fa-chevron-left"></i></button>
+            <input type="text" id="datepicker" class="form-control" placeholder="Seleccionar fecha">
+            <button id="next-date" class="date-arrow"><i class="fas fa-chevron-right"></i></button>
+            <label id="total-studies-label" class="total-studies-label-style"></label>
         </div>
-        <label id="total-studies-label" class="total-studies-label-style"></label>
 
         <div class="center-div">
             <table id="myTable" class="display" style="width: 100%;">

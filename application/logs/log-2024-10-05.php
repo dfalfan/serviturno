@@ -1416,3 +1416,644 @@ ERROR - 2024-10-05 21:12:24 --> $config['composer_autoload'] is set to TRUE but 
 DEBUG - 2024-10-05 21:12:24 --> UTF-8 Support Enabled
 DEBUG - 2024-10-05 21:12:24 --> Global POST, GET and COOKIE data sanitized
 DEBUG - 2024-10-05 21:12:24 --> Total execution time: 0.1922
+ERROR - 2024-10-05 21:36:13 --> $config['composer_autoload'] is set to TRUE but C:\app\_desarrollo\serviturno\application\vendor/autoload.php was not found.
+DEBUG - 2024-10-05 21:36:13 --> UTF-8 Support Enabled
+DEBUG - 2024-10-05 21:36:13 --> Global POST, GET and COOKIE data sanitized
+DEBUG - 2024-10-05 21:36:13 --> Total execution time: 0.1942
+ERROR - 2024-10-05 21:36:14 --> $config['composer_autoload'] is set to TRUE but C:\app\_desarrollo\serviturno\application\vendor/autoload.php was not found.
+DEBUG - 2024-10-05 21:36:14 --> UTF-8 Support Enabled
+DEBUG - 2024-10-05 21:36:14 --> Global POST, GET and COOKIE data sanitized
+DEBUG - 2024-10-05 21:36:14 --> Total execution time: 0.1793
+ERROR - 2024-10-05 21:36:23 --> $config['composer_autoload'] is set to TRUE but C:\app\_desarrollo\serviturno\application\vendor/autoload.php was not found.
+DEBUG - 2024-10-05 21:36:23 --> UTF-8 Support Enabled
+DEBUG - 2024-10-05 21:36:23 --> Global POST, GET and COOKIE data sanitized
+DEBUG - 2024-10-05 21:36:23 --> Total execution time: 0.1230
+ERROR - 2024-10-05 21:36:24 --> $config['composer_autoload'] is set to TRUE but C:\app\_desarrollo\serviturno\application\vendor/autoload.php was not found.
+DEBUG - 2024-10-05 21:36:24 --> UTF-8 Support Enabled
+DEBUG - 2024-10-05 21:36:24 --> Global POST, GET and COOKIE data sanitized
+DEBUG - 2024-10-05 21:36:24 --> Total execution time: 0.2028
+ERROR - 2024-10-05 22:37:17 --> $config['composer_autoload'] is set to TRUE but C:\app\_desarrollo\serviturno\application\vendor/autoload.php was not found.
+DEBUG - 2024-10-05 22:37:17 --> UTF-8 Support Enabled
+DEBUG - 2024-10-05 22:37:17 --> No URI present. Default controller set.
+DEBUG - 2024-10-05 22:37:17 --> Global POST, GET and COOKIE data sanitized
+DEBUG - 2024-10-05 22:37:17 --> Total execution time: 0.2633
+ERROR - 2024-10-05 22:37:18 --> $config['composer_autoload'] is set to TRUE but C:\app\_desarrollo\serviturno\application\vendor/autoload.php was not found.
+DEBUG - 2024-10-05 22:37:18 --> UTF-8 Support Enabled
+DEBUG - 2024-10-05 22:37:18 --> Global POST, GET and COOKIE data sanitized
+ERROR - 2024-10-05 22:37:18 --> $config['composer_autoload'] is set to TRUE but C:\app\_desarrollo\serviturno\application\vendor/autoload.php was not found.
+ERROR - 2024-10-05 22:37:18 --> $config['composer_autoload'] is set to TRUE but C:\app\_desarrollo\serviturno\application\vendor/autoload.php was not found.
+DEBUG - 2024-10-05 22:37:18 --> UTF-8 Support Enabled
+DEBUG - 2024-10-05 22:37:18 --> UTF-8 Support Enabled
+DEBUG - 2024-10-05 22:37:18 --> Global POST, GET and COOKIE data sanitized
+DEBUG - 2024-10-05 22:37:18 --> Global POST, GET and COOKIE data sanitized
+DEBUG - 2024-10-05 22:37:18 --> Total execution time: 0.1302
+DEBUG - 2024-10-05 22:37:18 --> Total execution time: 0.1382
+DEBUG - 2024-10-05 22:37:18 --> Total execution time: 0.2596
+ERROR - 2024-10-05 22:37:43 --> $config['composer_autoload'] is set to TRUE but C:\app\_desarrollo\serviturno\application\vendor/autoload.php was not found.
+DEBUG - 2024-10-05 22:37:43 --> UTF-8 Support Enabled
+DEBUG - 2024-10-05 22:37:43 --> Global POST, GET and COOKIE data sanitized
+DEBUG - 2024-10-05 22:37:44 --> Total execution time: 0.2727
+ERROR - 2024-10-05 22:41:02 --> $config['composer_autoload'] is set to TRUE but C:\app\_desarrollo\serviturno\application\vendor/autoload.php was not found.
+DEBUG - 2024-10-05 22:41:03 --> UTF-8 Support Enabled
+DEBUG - 2024-10-05 22:41:03 --> No URI present. Default controller set.
+DEBUG - 2024-10-05 22:41:03 --> Global POST, GET and COOKIE data sanitized
+DEBUG - 2024-10-05 22:41:04 --> Total execution time: 1.8460
+ERROR - 2024-10-05 22:41:04 --> $config['composer_autoload'] is set to TRUE but C:\app\_desarrollo\serviturno\application\vendor/autoload.php was not found.
+DEBUG - 2024-10-05 22:41:04 --> UTF-8 Support Enabled
+DEBUG - 2024-10-05 22:41:04 --> Global POST, GET and COOKIE data sanitized
+ERROR - 2024-10-05 22:41:04 --> $config['composer_autoload'] is set to TRUE but C:\app\_desarrollo\serviturno\application\vendor/autoload.php was not found.
+ERROR - 2024-10-05 22:41:04 --> $config['composer_autoload'] is set to TRUE but C:\app\_desarrollo\serviturno\application\vendor/autoload.php was not found.
+DEBUG - 2024-10-05 22:41:05 --> UTF-8 Support Enabled
+DEBUG - 2024-10-05 22:41:05 --> UTF-8 Support Enabled
+DEBUG - 2024-10-05 22:41:05 --> Global POST, GET and COOKIE data sanitized
+DEBUG - 2024-10-05 22:41:05 --> Global POST, GET and COOKIE data sanitized
+DEBUG - 2024-10-05 22:41:05 --> Total execution time: 0.1334
+DEBUG - 2024-10-05 22:41:05 --> Total execution time: 0.1379
+DEBUG - 2024-10-05 22:41:05 --> Total execution time: 0.2395
+ERROR - 2024-10-05 22:41:07 --> $config['composer_autoload'] is set to TRUE but C:\app\_desarrollo\serviturno\application\vendor/autoload.php was not found.
+DEBUG - 2024-10-05 22:41:07 --> UTF-8 Support Enabled
+DEBUG - 2024-10-05 22:41:07 --> Global POST, GET and COOKIE data sanitized
+DEBUG - 2024-10-05 22:41:07 --> Total execution time: 0.2465
+ERROR - 2024-10-05 22:42:25 --> $config['composer_autoload'] is set to TRUE but C:\app\_desarrollo\serviturno\application\vendor/autoload.php was not found.
+DEBUG - 2024-10-05 22:42:25 --> UTF-8 Support Enabled
+DEBUG - 2024-10-05 22:42:25 --> No URI present. Default controller set.
+DEBUG - 2024-10-05 22:42:25 --> Global POST, GET and COOKIE data sanitized
+DEBUG - 2024-10-05 22:42:26 --> Total execution time: 0.2262
+ERROR - 2024-10-05 22:42:26 --> $config['composer_autoload'] is set to TRUE but C:\app\_desarrollo\serviturno\application\vendor/autoload.php was not found.
+DEBUG - 2024-10-05 22:42:26 --> UTF-8 Support Enabled
+DEBUG - 2024-10-05 22:42:26 --> Global POST, GET and COOKIE data sanitized
+ERROR - 2024-10-05 22:42:26 --> $config['composer_autoload'] is set to TRUE but C:\app\_desarrollo\serviturno\application\vendor/autoload.php was not found.
+DEBUG - 2024-10-05 22:42:26 --> UTF-8 Support Enabled
+ERROR - 2024-10-05 22:42:26 --> $config['composer_autoload'] is set to TRUE but C:\app\_desarrollo\serviturno\application\vendor/autoload.php was not found.
+DEBUG - 2024-10-05 22:42:26 --> UTF-8 Support Enabled
+DEBUG - 2024-10-05 22:42:26 --> Global POST, GET and COOKIE data sanitized
+DEBUG - 2024-10-05 22:42:26 --> Global POST, GET and COOKIE data sanitized
+DEBUG - 2024-10-05 22:42:26 --> Total execution time: 0.1253
+DEBUG - 2024-10-05 22:42:26 --> Total execution time: 0.1370
+DEBUG - 2024-10-05 22:42:26 --> Total execution time: 0.2149
+ERROR - 2024-10-05 22:43:09 --> $config['composer_autoload'] is set to TRUE but C:\app\_desarrollo\serviturno\application\vendor/autoload.php was not found.
+DEBUG - 2024-10-05 22:43:09 --> UTF-8 Support Enabled
+DEBUG - 2024-10-05 22:43:09 --> Global POST, GET and COOKIE data sanitized
+DEBUG - 2024-10-05 22:43:09 --> Total execution time: 0.2646
+ERROR - 2024-10-05 22:44:45 --> $config['composer_autoload'] is set to TRUE but C:\app\_desarrollo\serviturno\application\vendor/autoload.php was not found.
+DEBUG - 2024-10-05 22:44:45 --> UTF-8 Support Enabled
+DEBUG - 2024-10-05 22:44:45 --> No URI present. Default controller set.
+DEBUG - 2024-10-05 22:44:45 --> Global POST, GET and COOKIE data sanitized
+DEBUG - 2024-10-05 22:44:45 --> Total execution time: 0.2607
+ERROR - 2024-10-05 22:44:46 --> $config['composer_autoload'] is set to TRUE but C:\app\_desarrollo\serviturno\application\vendor/autoload.php was not found.
+DEBUG - 2024-10-05 22:44:46 --> UTF-8 Support Enabled
+DEBUG - 2024-10-05 22:44:46 --> Global POST, GET and COOKIE data sanitized
+ERROR - 2024-10-05 22:44:46 --> $config['composer_autoload'] is set to TRUE but C:\app\_desarrollo\serviturno\application\vendor/autoload.php was not found.
+ERROR - 2024-10-05 22:44:46 --> $config['composer_autoload'] is set to TRUE but C:\app\_desarrollo\serviturno\application\vendor/autoload.php was not found.
+DEBUG - 2024-10-05 22:44:46 --> UTF-8 Support Enabled
+DEBUG - 2024-10-05 22:44:46 --> Global POST, GET and COOKIE data sanitized
+DEBUG - 2024-10-05 22:44:46 --> UTF-8 Support Enabled
+DEBUG - 2024-10-05 22:44:46 --> Global POST, GET and COOKIE data sanitized
+DEBUG - 2024-10-05 22:44:46 --> Total execution time: 0.1474
+DEBUG - 2024-10-05 22:44:46 --> Total execution time: 0.1230
+DEBUG - 2024-10-05 22:44:46 --> Total execution time: 0.2304
+ERROR - 2024-10-05 22:44:52 --> $config['composer_autoload'] is set to TRUE but C:\app\_desarrollo\serviturno\application\vendor/autoload.php was not found.
+DEBUG - 2024-10-05 22:44:52 --> UTF-8 Support Enabled
+DEBUG - 2024-10-05 22:44:52 --> No URI present. Default controller set.
+DEBUG - 2024-10-05 22:44:52 --> Global POST, GET and COOKIE data sanitized
+DEBUG - 2024-10-05 22:44:52 --> Total execution time: 0.2373
+ERROR - 2024-10-05 22:44:53 --> $config['composer_autoload'] is set to TRUE but C:\app\_desarrollo\serviturno\application\vendor/autoload.php was not found.
+DEBUG - 2024-10-05 22:44:53 --> UTF-8 Support Enabled
+DEBUG - 2024-10-05 22:44:53 --> Global POST, GET and COOKIE data sanitized
+DEBUG - 2024-10-05 22:44:53 --> Total execution time: 0.1251
+ERROR - 2024-10-05 22:44:53 --> $config['composer_autoload'] is set to TRUE but C:\app\_desarrollo\serviturno\application\vendor/autoload.php was not found.
+ERROR - 2024-10-05 22:44:53 --> $config['composer_autoload'] is set to TRUE but C:\app\_desarrollo\serviturno\application\vendor/autoload.php was not found.
+DEBUG - 2024-10-05 22:44:53 --> UTF-8 Support Enabled
+DEBUG - 2024-10-05 22:44:53 --> UTF-8 Support Enabled
+DEBUG - 2024-10-05 22:44:53 --> Global POST, GET and COOKIE data sanitized
+DEBUG - 2024-10-05 22:44:53 --> Global POST, GET and COOKIE data sanitized
+DEBUG - 2024-10-05 22:44:53 --> Total execution time: 0.1253
+DEBUG - 2024-10-05 22:44:54 --> Total execution time: 0.2235
+ERROR - 2024-10-05 22:45:03 --> $config['composer_autoload'] is set to TRUE but C:\app\_desarrollo\serviturno\application\vendor/autoload.php was not found.
+DEBUG - 2024-10-05 22:45:03 --> UTF-8 Support Enabled
+DEBUG - 2024-10-05 22:45:03 --> Global POST, GET and COOKIE data sanitized
+DEBUG - 2024-10-05 22:45:04 --> Total execution time: 0.2316
+ERROR - 2024-10-05 22:47:52 --> $config['composer_autoload'] is set to TRUE but C:\app\_desarrollo\serviturno\application\vendor/autoload.php was not found.
+DEBUG - 2024-10-05 22:47:52 --> UTF-8 Support Enabled
+DEBUG - 2024-10-05 22:47:52 --> No URI present. Default controller set.
+DEBUG - 2024-10-05 22:47:52 --> Global POST, GET and COOKIE data sanitized
+DEBUG - 2024-10-05 22:47:53 --> Total execution time: 0.2312
+ERROR - 2024-10-05 22:47:53 --> $config['composer_autoload'] is set to TRUE but C:\app\_desarrollo\serviturno\application\vendor/autoload.php was not found.
+DEBUG - 2024-10-05 22:47:53 --> UTF-8 Support Enabled
+DEBUG - 2024-10-05 22:47:53 --> Global POST, GET and COOKIE data sanitized
+DEBUG - 2024-10-05 22:47:54 --> Total execution time: 0.1231
+ERROR - 2024-10-05 22:47:54 --> $config['composer_autoload'] is set to TRUE but C:\app\_desarrollo\serviturno\application\vendor/autoload.php was not found.
+DEBUG - 2024-10-05 22:47:54 --> UTF-8 Support Enabled
+DEBUG - 2024-10-05 22:47:54 --> Global POST, GET and COOKIE data sanitized
+ERROR - 2024-10-05 22:47:54 --> $config['composer_autoload'] is set to TRUE but C:\app\_desarrollo\serviturno\application\vendor/autoload.php was not found.
+DEBUG - 2024-10-05 22:47:54 --> UTF-8 Support Enabled
+DEBUG - 2024-10-05 22:47:54 --> Global POST, GET and COOKIE data sanitized
+DEBUG - 2024-10-05 22:47:54 --> Total execution time: 0.1254
+DEBUG - 2024-10-05 22:47:54 --> Total execution time: 0.2602
+ERROR - 2024-10-05 22:47:54 --> $config['composer_autoload'] is set to TRUE but C:\app\_desarrollo\serviturno\application\vendor/autoload.php was not found.
+DEBUG - 2024-10-05 22:47:54 --> UTF-8 Support Enabled
+DEBUG - 2024-10-05 22:47:54 --> No URI present. Default controller set.
+DEBUG - 2024-10-05 22:47:54 --> Global POST, GET and COOKIE data sanitized
+DEBUG - 2024-10-05 22:47:55 --> Total execution time: 0.2024
+ERROR - 2024-10-05 22:47:56 --> $config['composer_autoload'] is set to TRUE but C:\app\_desarrollo\serviturno\application\vendor/autoload.php was not found.
+DEBUG - 2024-10-05 22:47:56 --> UTF-8 Support Enabled
+DEBUG - 2024-10-05 22:47:56 --> Global POST, GET and COOKIE data sanitized
+ERROR - 2024-10-05 22:47:56 --> $config['composer_autoload'] is set to TRUE but C:\app\_desarrollo\serviturno\application\vendor/autoload.php was not found.
+ERROR - 2024-10-05 22:47:56 --> $config['composer_autoload'] is set to TRUE but C:\app\_desarrollo\serviturno\application\vendor/autoload.php was not found.
+DEBUG - 2024-10-05 22:47:56 --> UTF-8 Support Enabled
+DEBUG - 2024-10-05 22:47:56 --> UTF-8 Support Enabled
+DEBUG - 2024-10-05 22:47:56 --> Global POST, GET and COOKIE data sanitized
+DEBUG - 2024-10-05 22:47:56 --> Global POST, GET and COOKIE data sanitized
+DEBUG - 2024-10-05 22:47:56 --> Total execution time: 0.1286
+DEBUG - 2024-10-05 22:47:56 --> Total execution time: 0.1115
+DEBUG - 2024-10-05 22:47:56 --> Total execution time: 0.2362
+ERROR - 2024-10-05 22:48:33 --> $config['composer_autoload'] is set to TRUE but C:\app\_desarrollo\serviturno\application\vendor/autoload.php was not found.
+DEBUG - 2024-10-05 22:48:33 --> UTF-8 Support Enabled
+DEBUG - 2024-10-05 22:48:33 --> No URI present. Default controller set.
+DEBUG - 2024-10-05 22:48:33 --> Global POST, GET and COOKIE data sanitized
+DEBUG - 2024-10-05 22:48:34 --> Total execution time: 0.2449
+ERROR - 2024-10-05 22:48:34 --> $config['composer_autoload'] is set to TRUE but C:\app\_desarrollo\serviturno\application\vendor/autoload.php was not found.
+DEBUG - 2024-10-05 22:48:35 --> UTF-8 Support Enabled
+ERROR - 2024-10-05 22:48:35 --> $config['composer_autoload'] is set to TRUE but C:\app\_desarrollo\serviturno\application\vendor/autoload.php was not found.
+DEBUG - 2024-10-05 22:48:35 --> Global POST, GET and COOKIE data sanitized
+ERROR - 2024-10-05 22:48:35 --> $config['composer_autoload'] is set to TRUE but C:\app\_desarrollo\serviturno\application\vendor/autoload.php was not found.
+DEBUG - 2024-10-05 22:48:35 --> UTF-8 Support Enabled
+DEBUG - 2024-10-05 22:48:35 --> UTF-8 Support Enabled
+DEBUG - 2024-10-05 22:48:35 --> Global POST, GET and COOKIE data sanitized
+DEBUG - 2024-10-05 22:48:35 --> Global POST, GET and COOKIE data sanitized
+DEBUG - 2024-10-05 22:48:35 --> Total execution time: 0.1411
+DEBUG - 2024-10-05 22:48:35 --> Total execution time: 0.1275
+DEBUG - 2024-10-05 22:48:35 --> Total execution time: 0.2357
+ERROR - 2024-10-05 22:48:46 --> $config['composer_autoload'] is set to TRUE but C:\app\_desarrollo\serviturno\application\vendor/autoload.php was not found.
+DEBUG - 2024-10-05 22:48:46 --> UTF-8 Support Enabled
+DEBUG - 2024-10-05 22:48:46 --> Global POST, GET and COOKIE data sanitized
+DEBUG - 2024-10-05 22:48:47 --> Total execution time: 0.2355
+ERROR - 2024-10-05 22:49:01 --> $config['composer_autoload'] is set to TRUE but C:\app\_desarrollo\serviturno\application\vendor/autoload.php was not found.
+DEBUG - 2024-10-05 22:49:01 --> UTF-8 Support Enabled
+DEBUG - 2024-10-05 22:49:01 --> Global POST, GET and COOKIE data sanitized
+DEBUG - 2024-10-05 22:49:01 --> Total execution time: 0.0810
+ERROR - 2024-10-05 22:49:05 --> $config['composer_autoload'] is set to TRUE but C:\app\_desarrollo\serviturno\application\vendor/autoload.php was not found.
+DEBUG - 2024-10-05 22:49:05 --> UTF-8 Support Enabled
+DEBUG - 2024-10-05 22:49:05 --> Global POST, GET and COOKIE data sanitized
+ERROR - 2024-10-05 22:49:05 --> Severity: Warning --> file_put_contents(C:\app\serviturno\imagenologia\websocket\temp_message.txt): failed to open stream: No such file or directory C:\app\_desarrollo\serviturno\application\models\Tabla_Model.php 103
+DEBUG - 2024-10-05 22:49:05 --> Total execution time: 0.1200
+ERROR - 2024-10-05 22:49:05 --> $config['composer_autoload'] is set to TRUE but C:\app\_desarrollo\serviturno\application\vendor/autoload.php was not found.
+ERROR - 2024-10-05 22:49:05 --> $config['composer_autoload'] is set to TRUE but C:\app\_desarrollo\serviturno\application\vendor/autoload.php was not found.
+DEBUG - 2024-10-05 22:49:05 --> UTF-8 Support Enabled
+DEBUG - 2024-10-05 22:49:05 --> UTF-8 Support Enabled
+DEBUG - 2024-10-05 22:49:05 --> Global POST, GET and COOKIE data sanitized
+DEBUG - 2024-10-05 22:49:05 --> Global POST, GET and COOKIE data sanitized
+DEBUG - 2024-10-05 22:49:06 --> Total execution time: 0.1228
+DEBUG - 2024-10-05 22:49:06 --> Total execution time: 0.2402
+ERROR - 2024-10-05 22:49:18 --> $config['composer_autoload'] is set to TRUE but C:\app\_desarrollo\serviturno\application\vendor/autoload.php was not found.
+DEBUG - 2024-10-05 22:49:18 --> UTF-8 Support Enabled
+DEBUG - 2024-10-05 22:49:18 --> No URI present. Default controller set.
+DEBUG - 2024-10-05 22:49:18 --> Global POST, GET and COOKIE data sanitized
+DEBUG - 2024-10-05 22:49:18 --> Total execution time: 0.2428
+ERROR - 2024-10-05 22:51:59 --> $config['composer_autoload'] is set to TRUE but C:\app\_desarrollo\serviturno\application\vendor/autoload.php was not found.
+DEBUG - 2024-10-05 22:51:59 --> UTF-8 Support Enabled
+DEBUG - 2024-10-05 22:51:59 --> No URI present. Default controller set.
+DEBUG - 2024-10-05 22:51:59 --> Global POST, GET and COOKIE data sanitized
+DEBUG - 2024-10-05 22:51:59 --> Total execution time: 0.2372
+ERROR - 2024-10-05 22:52:00 --> $config['composer_autoload'] is set to TRUE but C:\app\_desarrollo\serviturno\application\vendor/autoload.php was not found.
+DEBUG - 2024-10-05 22:52:00 --> UTF-8 Support Enabled
+DEBUG - 2024-10-05 22:52:00 --> Global POST, GET and COOKIE data sanitized
+ERROR - 2024-10-05 22:52:00 --> $config['composer_autoload'] is set to TRUE but C:\app\_desarrollo\serviturno\application\vendor/autoload.php was not found.
+DEBUG - 2024-10-05 22:52:00 --> UTF-8 Support Enabled
+DEBUG - 2024-10-05 22:52:00 --> Global POST, GET and COOKIE data sanitized
+DEBUG - 2024-10-05 22:52:00 --> Total execution time: 0.1507
+ERROR - 2024-10-05 22:52:00 --> $config['composer_autoload'] is set to TRUE but C:\app\_desarrollo\serviturno\application\vendor/autoload.php was not found.
+DEBUG - 2024-10-05 22:52:00 --> UTF-8 Support Enabled
+DEBUG - 2024-10-05 22:52:00 --> Total execution time: 0.1163
+DEBUG - 2024-10-05 22:52:00 --> Global POST, GET and COOKIE data sanitized
+DEBUG - 2024-10-05 22:52:00 --> Total execution time: 0.2202
+ERROR - 2024-10-05 22:52:22 --> $config['composer_autoload'] is set to TRUE but C:\app\_desarrollo\serviturno\application\vendor/autoload.php was not found.
+DEBUG - 2024-10-05 22:52:22 --> UTF-8 Support Enabled
+DEBUG - 2024-10-05 22:52:22 --> Global POST, GET and COOKIE data sanitized
+ERROR - 2024-10-05 22:52:22 --> $config['composer_autoload'] is set to TRUE but C:\app\_desarrollo\serviturno\application\vendor/autoload.php was not found.
+DEBUG - 2024-10-05 22:52:22 --> UTF-8 Support Enabled
+DEBUG - 2024-10-05 22:52:22 --> Global POST, GET and COOKIE data sanitized
+DEBUG - 2024-10-05 22:52:23 --> Total execution time: 0.6730
+DEBUG - 2024-10-05 22:52:23 --> Total execution time: 0.6270
+ERROR - 2024-10-05 22:52:32 --> $config['composer_autoload'] is set to TRUE but C:\app\_desarrollo\serviturno\application\vendor/autoload.php was not found.
+DEBUG - 2024-10-05 22:52:32 --> UTF-8 Support Enabled
+DEBUG - 2024-10-05 22:52:32 --> Global POST, GET and COOKIE data sanitized
+DEBUG - 2024-10-05 22:52:33 --> Total execution time: 0.2417
+ERROR - 2024-10-05 22:52:37 --> $config['composer_autoload'] is set to TRUE but C:\app\_desarrollo\serviturno\application\vendor/autoload.php was not found.
+DEBUG - 2024-10-05 22:52:37 --> UTF-8 Support Enabled
+DEBUG - 2024-10-05 22:52:37 --> Global POST, GET and COOKIE data sanitized
+DEBUG - 2024-10-05 22:52:37 --> Total execution time: 0.0913
+ERROR - 2024-10-05 22:52:49 --> $config['composer_autoload'] is set to TRUE but C:\app\_desarrollo\serviturno\application\vendor/autoload.php was not found.
+DEBUG - 2024-10-05 22:52:49 --> UTF-8 Support Enabled
+DEBUG - 2024-10-05 22:52:49 --> Global POST, GET and COOKIE data sanitized
+DEBUG - 2024-10-05 22:52:49 --> Total execution time: 0.1080
+ERROR - 2024-10-05 22:54:11 --> $config['composer_autoload'] is set to TRUE but C:\app\_desarrollo\serviturno\application\vendor/autoload.php was not found.
+DEBUG - 2024-10-05 22:54:11 --> UTF-8 Support Enabled
+DEBUG - 2024-10-05 22:54:11 --> No URI present. Default controller set.
+DEBUG - 2024-10-05 22:54:11 --> Global POST, GET and COOKIE data sanitized
+DEBUG - 2024-10-05 22:54:11 --> Total execution time: 0.2436
+ERROR - 2024-10-05 22:54:12 --> $config['composer_autoload'] is set to TRUE but C:\app\_desarrollo\serviturno\application\vendor/autoload.php was not found.
+DEBUG - 2024-10-05 22:54:12 --> UTF-8 Support Enabled
+DEBUG - 2024-10-05 22:54:12 --> Global POST, GET and COOKIE data sanitized
+ERROR - 2024-10-05 22:54:12 --> $config['composer_autoload'] is set to TRUE but C:\app\_desarrollo\serviturno\application\vendor/autoload.php was not found.
+DEBUG - 2024-10-05 22:54:12 --> UTF-8 Support Enabled
+ERROR - 2024-10-05 22:54:12 --> $config['composer_autoload'] is set to TRUE but C:\app\_desarrollo\serviturno\application\vendor/autoload.php was not found.
+DEBUG - 2024-10-05 22:54:12 --> Global POST, GET and COOKIE data sanitized
+DEBUG - 2024-10-05 22:54:12 --> UTF-8 Support Enabled
+DEBUG - 2024-10-05 22:54:12 --> Global POST, GET and COOKIE data sanitized
+DEBUG - 2024-10-05 22:54:12 --> Total execution time: 0.1628
+DEBUG - 2024-10-05 22:54:12 --> Total execution time: 0.1357
+DEBUG - 2024-10-05 22:54:12 --> Total execution time: 0.2340
+ERROR - 2024-10-05 22:54:18 --> $config['composer_autoload'] is set to TRUE but C:\app\_desarrollo\serviturno\application\vendor/autoload.php was not found.
+DEBUG - 2024-10-05 22:54:18 --> UTF-8 Support Enabled
+DEBUG - 2024-10-05 22:54:18 --> Global POST, GET and COOKIE data sanitized
+DEBUG - 2024-10-05 22:54:18 --> Total execution time: 0.2533
+ERROR - 2024-10-05 22:56:13 --> $config['composer_autoload'] is set to TRUE but C:\app\_desarrollo\serviturno\application\vendor/autoload.php was not found.
+DEBUG - 2024-10-05 22:56:13 --> UTF-8 Support Enabled
+DEBUG - 2024-10-05 22:56:13 --> No URI present. Default controller set.
+DEBUG - 2024-10-05 22:56:13 --> Global POST, GET and COOKIE data sanitized
+DEBUG - 2024-10-05 22:56:14 --> Total execution time: 0.2558
+ERROR - 2024-10-05 22:56:14 --> $config['composer_autoload'] is set to TRUE but C:\app\_desarrollo\serviturno\application\vendor/autoload.php was not found.
+DEBUG - 2024-10-05 22:56:14 --> UTF-8 Support Enabled
+DEBUG - 2024-10-05 22:56:14 --> Global POST, GET and COOKIE data sanitized
+ERROR - 2024-10-05 22:56:14 --> $config['composer_autoload'] is set to TRUE but C:\app\_desarrollo\serviturno\application\vendor/autoload.php was not found.
+DEBUG - 2024-10-05 22:56:14 --> UTF-8 Support Enabled
+ERROR - 2024-10-05 22:56:14 --> $config['composer_autoload'] is set to TRUE but C:\app\_desarrollo\serviturno\application\vendor/autoload.php was not found.
+DEBUG - 2024-10-05 22:56:14 --> Global POST, GET and COOKIE data sanitized
+DEBUG - 2024-10-05 22:56:14 --> UTF-8 Support Enabled
+DEBUG - 2024-10-05 22:56:14 --> Total execution time: 0.1258
+DEBUG - 2024-10-05 22:56:14 --> Global POST, GET and COOKIE data sanitized
+DEBUG - 2024-10-05 22:56:14 --> Total execution time: 0.1296
+DEBUG - 2024-10-05 22:56:14 --> Total execution time: 0.2273
+ERROR - 2024-10-05 22:56:19 --> $config['composer_autoload'] is set to TRUE but C:\app\_desarrollo\serviturno\application\vendor/autoload.php was not found.
+DEBUG - 2024-10-05 22:56:19 --> UTF-8 Support Enabled
+DEBUG - 2024-10-05 22:56:19 --> No URI present. Default controller set.
+DEBUG - 2024-10-05 22:56:19 --> Global POST, GET and COOKIE data sanitized
+DEBUG - 2024-10-05 22:56:19 --> Total execution time: 0.2554
+ERROR - 2024-10-05 22:56:20 --> $config['composer_autoload'] is set to TRUE but C:\app\_desarrollo\serviturno\application\vendor/autoload.php was not found.
+DEBUG - 2024-10-05 22:56:20 --> UTF-8 Support Enabled
+DEBUG - 2024-10-05 22:56:20 --> Global POST, GET and COOKIE data sanitized
+DEBUG - 2024-10-05 22:56:20 --> Total execution time: 0.1355
+ERROR - 2024-10-05 22:56:20 --> $config['composer_autoload'] is set to TRUE but C:\app\_desarrollo\serviturno\application\vendor/autoload.php was not found.
+DEBUG - 2024-10-05 22:56:20 --> UTF-8 Support Enabled
+ERROR - 2024-10-05 22:56:20 --> $config['composer_autoload'] is set to TRUE but C:\app\_desarrollo\serviturno\application\vendor/autoload.php was not found.
+DEBUG - 2024-10-05 22:56:20 --> Global POST, GET and COOKIE data sanitized
+DEBUG - 2024-10-05 22:56:20 --> UTF-8 Support Enabled
+DEBUG - 2024-10-05 22:56:20 --> Global POST, GET and COOKIE data sanitized
+DEBUG - 2024-10-05 22:56:21 --> Total execution time: 0.1640
+DEBUG - 2024-10-05 22:56:21 --> Total execution time: 0.2727
+ERROR - 2024-10-05 22:56:25 --> $config['composer_autoload'] is set to TRUE but C:\app\_desarrollo\serviturno\application\vendor/autoload.php was not found.
+DEBUG - 2024-10-05 22:56:25 --> UTF-8 Support Enabled
+DEBUG - 2024-10-05 22:56:25 --> Global POST, GET and COOKIE data sanitized
+DEBUG - 2024-10-05 22:56:25 --> Total execution time: 0.2562
+ERROR - 2024-10-05 22:56:45 --> $config['composer_autoload'] is set to TRUE but C:\app\_desarrollo\serviturno\application\vendor/autoload.php was not found.
+DEBUG - 2024-10-05 22:56:45 --> UTF-8 Support Enabled
+DEBUG - 2024-10-05 22:56:45 --> Global POST, GET and COOKIE data sanitized
+DEBUG - 2024-10-05 22:56:45 --> Total execution time: 0.1065
+ERROR - 2024-10-05 22:56:45 --> $config['composer_autoload'] is set to TRUE but C:\app\_desarrollo\serviturno\application\vendor/autoload.php was not found.
+ERROR - 2024-10-05 22:56:45 --> $config['composer_autoload'] is set to TRUE but C:\app\_desarrollo\serviturno\application\vendor/autoload.php was not found.
+DEBUG - 2024-10-05 22:56:45 --> UTF-8 Support Enabled
+DEBUG - 2024-10-05 22:56:45 --> UTF-8 Support Enabled
+DEBUG - 2024-10-05 22:56:45 --> Global POST, GET and COOKIE data sanitized
+DEBUG - 2024-10-05 22:56:45 --> Global POST, GET and COOKIE data sanitized
+DEBUG - 2024-10-05 22:56:45 --> Total execution time: 0.1423
+DEBUG - 2024-10-05 22:56:45 --> Total execution time: 0.2497
+ERROR - 2024-10-05 22:57:46 --> $config['composer_autoload'] is set to TRUE but C:\app\_desarrollo\serviturno\application\vendor/autoload.php was not found.
+DEBUG - 2024-10-05 22:57:46 --> UTF-8 Support Enabled
+DEBUG - 2024-10-05 22:57:46 --> Global POST, GET and COOKIE data sanitized
+DEBUG - 2024-10-05 22:57:46 --> Total execution time: 0.1087
+ERROR - 2024-10-05 22:57:53 --> $config['composer_autoload'] is set to TRUE but C:\app\_desarrollo\serviturno\application\vendor/autoload.php was not found.
+DEBUG - 2024-10-05 22:57:53 --> UTF-8 Support Enabled
+DEBUG - 2024-10-05 22:57:53 --> Global POST, GET and COOKIE data sanitized
+DEBUG - 2024-10-05 22:57:53 --> Total execution time: 0.1097
+ERROR - 2024-10-05 23:02:58 --> $config['composer_autoload'] is set to TRUE but C:\app\_desarrollo\serviturno\application\vendor/autoload.php was not found.
+DEBUG - 2024-10-05 23:02:58 --> UTF-8 Support Enabled
+DEBUG - 2024-10-05 23:02:58 --> No URI present. Default controller set.
+DEBUG - 2024-10-05 23:02:58 --> Global POST, GET and COOKIE data sanitized
+DEBUG - 2024-10-05 23:02:58 --> Total execution time: 0.2667
+ERROR - 2024-10-05 23:02:59 --> $config['composer_autoload'] is set to TRUE but C:\app\_desarrollo\serviturno\application\vendor/autoload.php was not found.
+DEBUG - 2024-10-05 23:02:59 --> UTF-8 Support Enabled
+DEBUG - 2024-10-05 23:02:59 --> Global POST, GET and COOKIE data sanitized
+DEBUG - 2024-10-05 23:02:59 --> Total execution time: 0.1373
+ERROR - 2024-10-05 23:02:59 --> $config['composer_autoload'] is set to TRUE but C:\app\_desarrollo\serviturno\application\vendor/autoload.php was not found.
+DEBUG - 2024-10-05 23:02:59 --> UTF-8 Support Enabled
+DEBUG - 2024-10-05 23:02:59 --> Global POST, GET and COOKIE data sanitized
+ERROR - 2024-10-05 23:02:59 --> $config['composer_autoload'] is set to TRUE but C:\app\_desarrollo\serviturno\application\vendor/autoload.php was not found.
+DEBUG - 2024-10-05 23:02:59 --> UTF-8 Support Enabled
+DEBUG - 2024-10-05 23:02:59 --> Global POST, GET and COOKIE data sanitized
+DEBUG - 2024-10-05 23:02:59 --> Total execution time: 0.1358
+DEBUG - 2024-10-05 23:02:59 --> Total execution time: 0.2098
+ERROR - 2024-10-05 23:03:28 --> $config['composer_autoload'] is set to TRUE but C:\app\_desarrollo\serviturno\application\vendor/autoload.php was not found.
+DEBUG - 2024-10-05 23:03:28 --> UTF-8 Support Enabled
+DEBUG - 2024-10-05 23:03:28 --> Global POST, GET and COOKIE data sanitized
+DEBUG - 2024-10-05 23:03:28 --> Total execution time: 0.2303
+ERROR - 2024-10-05 23:07:19 --> $config['composer_autoload'] is set to TRUE but C:\app\_desarrollo\serviturno\application\vendor/autoload.php was not found.
+DEBUG - 2024-10-05 23:07:19 --> UTF-8 Support Enabled
+DEBUG - 2024-10-05 23:07:19 --> No URI present. Default controller set.
+DEBUG - 2024-10-05 23:07:19 --> Global POST, GET and COOKIE data sanitized
+DEBUG - 2024-10-05 23:07:19 --> Total execution time: 0.2352
+ERROR - 2024-10-05 23:07:19 --> $config['composer_autoload'] is set to TRUE but C:\app\_desarrollo\serviturno\application\vendor/autoload.php was not found.
+DEBUG - 2024-10-05 23:07:19 --> UTF-8 Support Enabled
+DEBUG - 2024-10-05 23:07:20 --> Global POST, GET and COOKIE data sanitized
+DEBUG - 2024-10-05 23:07:20 --> Total execution time: 0.1177
+ERROR - 2024-10-05 23:07:50 --> $config['composer_autoload'] is set to TRUE but C:\app\_desarrollo\serviturno\application\vendor/autoload.php was not found.
+DEBUG - 2024-10-05 23:07:50 --> UTF-8 Support Enabled
+DEBUG - 2024-10-05 23:07:50 --> No URI present. Default controller set.
+DEBUG - 2024-10-05 23:07:50 --> Global POST, GET and COOKIE data sanitized
+DEBUG - 2024-10-05 23:07:51 --> Total execution time: 0.6274
+ERROR - 2024-10-05 23:07:51 --> $config['composer_autoload'] is set to TRUE but C:\app\_desarrollo\serviturno\application\vendor/autoload.php was not found.
+DEBUG - 2024-10-05 23:07:51 --> UTF-8 Support Enabled
+DEBUG - 2024-10-05 23:07:51 --> Global POST, GET and COOKIE data sanitized
+DEBUG - 2024-10-05 23:07:51 --> Total execution time: 0.0949
+ERROR - 2024-10-05 23:08:08 --> $config['composer_autoload'] is set to TRUE but C:\app\_desarrollo\serviturno\application\vendor/autoload.php was not found.
+DEBUG - 2024-10-05 23:08:08 --> UTF-8 Support Enabled
+DEBUG - 2024-10-05 23:08:08 --> No URI present. Default controller set.
+DEBUG - 2024-10-05 23:08:08 --> Global POST, GET and COOKIE data sanitized
+DEBUG - 2024-10-05 23:08:08 --> Total execution time: 0.2365
+ERROR - 2024-10-05 23:08:08 --> $config['composer_autoload'] is set to TRUE but C:\app\_desarrollo\serviturno\application\vendor/autoload.php was not found.
+DEBUG - 2024-10-05 23:08:08 --> UTF-8 Support Enabled
+DEBUG - 2024-10-05 23:08:08 --> Global POST, GET and COOKIE data sanitized
+DEBUG - 2024-10-05 23:08:08 --> Total execution time: 0.1365
+ERROR - 2024-10-05 23:08:12 --> $config['composer_autoload'] is set to TRUE but C:\app\_desarrollo\serviturno\application\vendor/autoload.php was not found.
+DEBUG - 2024-10-05 23:08:12 --> UTF-8 Support Enabled
+DEBUG - 2024-10-05 23:08:12 --> No URI present. Default controller set.
+DEBUG - 2024-10-05 23:08:12 --> Global POST, GET and COOKIE data sanitized
+DEBUG - 2024-10-05 23:08:12 --> Total execution time: 0.2320
+ERROR - 2024-10-05 23:08:13 --> $config['composer_autoload'] is set to TRUE but C:\app\_desarrollo\serviturno\application\vendor/autoload.php was not found.
+DEBUG - 2024-10-05 23:08:13 --> UTF-8 Support Enabled
+DEBUG - 2024-10-05 23:08:13 --> Global POST, GET and COOKIE data sanitized
+DEBUG - 2024-10-05 23:08:13 --> Total execution time: 0.1347
+ERROR - 2024-10-05 23:08:30 --> $config['composer_autoload'] is set to TRUE but C:\app\_desarrollo\serviturno\application\vendor/autoload.php was not found.
+DEBUG - 2024-10-05 23:08:30 --> UTF-8 Support Enabled
+DEBUG - 2024-10-05 23:08:30 --> No URI present. Default controller set.
+DEBUG - 2024-10-05 23:08:30 --> Global POST, GET and COOKIE data sanitized
+DEBUG - 2024-10-05 23:08:30 --> Total execution time: 0.2367
+ERROR - 2024-10-05 23:08:30 --> $config['composer_autoload'] is set to TRUE but C:\app\_desarrollo\serviturno\application\vendor/autoload.php was not found.
+DEBUG - 2024-10-05 23:08:30 --> UTF-8 Support Enabled
+ERROR - 2024-10-05 23:08:30 --> $config['composer_autoload'] is set to TRUE but C:\app\_desarrollo\serviturno\application\vendor/autoload.php was not found.
+DEBUG - 2024-10-05 23:08:30 --> Global POST, GET and COOKIE data sanitized
+ERROR - 2024-10-05 23:08:30 --> $config['composer_autoload'] is set to TRUE but C:\app\_desarrollo\serviturno\application\vendor/autoload.php was not found.
+DEBUG - 2024-10-05 23:08:30 --> UTF-8 Support Enabled
+DEBUG - 2024-10-05 23:08:30 --> UTF-8 Support Enabled
+DEBUG - 2024-10-05 23:08:30 --> Global POST, GET and COOKIE data sanitized
+DEBUG - 2024-10-05 23:08:30 --> Global POST, GET and COOKIE data sanitized
+DEBUG - 2024-10-05 23:08:30 --> Total execution time: 0.1557
+DEBUG - 2024-10-05 23:08:31 --> Total execution time: 0.1286
+DEBUG - 2024-10-05 23:08:31 --> Total execution time: 0.2436
+ERROR - 2024-10-05 23:14:19 --> $config['composer_autoload'] is set to TRUE but C:\app\_desarrollo\serviturno\application\vendor/autoload.php was not found.
+DEBUG - 2024-10-05 23:14:19 --> UTF-8 Support Enabled
+DEBUG - 2024-10-05 23:14:19 --> No URI present. Default controller set.
+DEBUG - 2024-10-05 23:14:19 --> Global POST, GET and COOKIE data sanitized
+DEBUG - 2024-10-05 23:14:19 --> Total execution time: 0.2099
+ERROR - 2024-10-05 23:14:20 --> $config['composer_autoload'] is set to TRUE but C:\app\_desarrollo\serviturno\application\vendor/autoload.php was not found.
+DEBUG - 2024-10-05 23:14:20 --> UTF-8 Support Enabled
+DEBUG - 2024-10-05 23:14:20 --> Global POST, GET and COOKIE data sanitized
+DEBUG - 2024-10-05 23:14:20 --> Total execution time: 0.1101
+ERROR - 2024-10-05 23:14:36 --> $config['composer_autoload'] is set to TRUE but C:\app\_desarrollo\serviturno\application\vendor/autoload.php was not found.
+DEBUG - 2024-10-05 23:14:36 --> UTF-8 Support Enabled
+DEBUG - 2024-10-05 23:14:36 --> No URI present. Default controller set.
+DEBUG - 2024-10-05 23:14:36 --> Global POST, GET and COOKIE data sanitized
+DEBUG - 2024-10-05 23:14:36 --> Total execution time: 0.2261
+ERROR - 2024-10-05 23:14:37 --> $config['composer_autoload'] is set to TRUE but C:\app\_desarrollo\serviturno\application\vendor/autoload.php was not found.
+DEBUG - 2024-10-05 23:14:37 --> UTF-8 Support Enabled
+DEBUG - 2024-10-05 23:14:37 --> Global POST, GET and COOKIE data sanitized
+DEBUG - 2024-10-05 23:14:37 --> Total execution time: 0.1177
+ERROR - 2024-10-05 23:14:38 --> $config['composer_autoload'] is set to TRUE but C:\app\_desarrollo\serviturno\application\vendor/autoload.php was not found.
+DEBUG - 2024-10-05 23:14:38 --> UTF-8 Support Enabled
+DEBUG - 2024-10-05 23:14:38 --> No URI present. Default controller set.
+DEBUG - 2024-10-05 23:14:38 --> Global POST, GET and COOKIE data sanitized
+DEBUG - 2024-10-05 23:14:38 --> Total execution time: 0.2308
+ERROR - 2024-10-05 23:14:39 --> $config['composer_autoload'] is set to TRUE but C:\app\_desarrollo\serviturno\application\vendor/autoload.php was not found.
+DEBUG - 2024-10-05 23:14:39 --> UTF-8 Support Enabled
+DEBUG - 2024-10-05 23:14:39 --> Global POST, GET and COOKIE data sanitized
+DEBUG - 2024-10-05 23:14:39 --> Total execution time: 0.1331
+ERROR - 2024-10-05 23:17:45 --> $config['composer_autoload'] is set to TRUE but C:\app\_desarrollo\serviturno\application\vendor/autoload.php was not found.
+DEBUG - 2024-10-05 23:17:45 --> UTF-8 Support Enabled
+DEBUG - 2024-10-05 23:17:45 --> No URI present. Default controller set.
+DEBUG - 2024-10-05 23:17:45 --> Global POST, GET and COOKIE data sanitized
+DEBUG - 2024-10-05 23:17:45 --> Total execution time: 0.2410
+ERROR - 2024-10-05 23:17:45 --> $config['composer_autoload'] is set to TRUE but C:\app\_desarrollo\serviturno\application\vendor/autoload.php was not found.
+DEBUG - 2024-10-05 23:17:45 --> UTF-8 Support Enabled
+DEBUG - 2024-10-05 23:17:45 --> Global POST, GET and COOKIE data sanitized
+ERROR - 2024-10-05 23:17:45 --> $config['composer_autoload'] is set to TRUE but C:\app\_desarrollo\serviturno\application\vendor/autoload.php was not found.
+DEBUG - 2024-10-05 23:17:45 --> UTF-8 Support Enabled
+ERROR - 2024-10-05 23:17:45 --> $config['composer_autoload'] is set to TRUE but C:\app\_desarrollo\serviturno\application\vendor/autoload.php was not found.
+DEBUG - 2024-10-05 23:17:45 --> Global POST, GET and COOKIE data sanitized
+DEBUG - 2024-10-05 23:17:45 --> UTF-8 Support Enabled
+DEBUG - 2024-10-05 23:17:45 --> Global POST, GET and COOKIE data sanitized
+DEBUG - 2024-10-05 23:17:45 --> Total execution time: 0.1244
+DEBUG - 2024-10-05 23:17:45 --> Total execution time: 0.1300
+DEBUG - 2024-10-05 23:17:45 --> Total execution time: 0.2523
+ERROR - 2024-10-05 23:20:01 --> $config['composer_autoload'] is set to TRUE but C:\app\_desarrollo\serviturno\application\vendor/autoload.php was not found.
+DEBUG - 2024-10-05 23:20:01 --> UTF-8 Support Enabled
+DEBUG - 2024-10-05 23:20:01 --> No URI present. Default controller set.
+DEBUG - 2024-10-05 23:20:01 --> Global POST, GET and COOKIE data sanitized
+DEBUG - 2024-10-05 23:20:02 --> Total execution time: 0.2495
+ERROR - 2024-10-05 23:20:02 --> $config['composer_autoload'] is set to TRUE but C:\app\_desarrollo\serviturno\application\vendor/autoload.php was not found.
+DEBUG - 2024-10-05 23:20:02 --> UTF-8 Support Enabled
+DEBUG - 2024-10-05 23:20:02 --> Global POST, GET and COOKIE data sanitized
+ERROR - 2024-10-05 23:20:02 --> $config['composer_autoload'] is set to TRUE but C:\app\_desarrollo\serviturno\application\vendor/autoload.php was not found.
+ERROR - 2024-10-05 23:20:02 --> $config['composer_autoload'] is set to TRUE but C:\app\_desarrollo\serviturno\application\vendor/autoload.php was not found.
+DEBUG - 2024-10-05 23:20:02 --> UTF-8 Support Enabled
+DEBUG - 2024-10-05 23:20:02 --> UTF-8 Support Enabled
+DEBUG - 2024-10-05 23:20:02 --> Global POST, GET and COOKIE data sanitized
+DEBUG - 2024-10-05 23:20:02 --> Global POST, GET and COOKIE data sanitized
+DEBUG - 2024-10-05 23:20:02 --> Total execution time: 0.1240
+DEBUG - 2024-10-05 23:20:02 --> Total execution time: 0.1288
+DEBUG - 2024-10-05 23:20:03 --> Total execution time: 0.2431
+ERROR - 2024-10-05 23:24:48 --> $config['composer_autoload'] is set to TRUE but C:\app\_desarrollo\serviturno\application\vendor/autoload.php was not found.
+DEBUG - 2024-10-05 23:24:48 --> UTF-8 Support Enabled
+DEBUG - 2024-10-05 23:24:48 --> Global POST, GET and COOKIE data sanitized
+DEBUG - 2024-10-05 23:24:48 --> Total execution time: 0.0876
+ERROR - 2024-10-05 23:24:56 --> $config['composer_autoload'] is set to TRUE but C:\app\_desarrollo\serviturno\application\vendor/autoload.php was not found.
+DEBUG - 2024-10-05 23:24:56 --> UTF-8 Support Enabled
+DEBUG - 2024-10-05 23:24:56 --> Global POST, GET and COOKIE data sanitized
+DEBUG - 2024-10-05 23:24:56 --> Total execution time: 0.0963
+ERROR - 2024-10-05 23:25:03 --> $config['composer_autoload'] is set to TRUE but C:\app\_desarrollo\serviturno\application\vendor/autoload.php was not found.
+DEBUG - 2024-10-05 23:25:04 --> UTF-8 Support Enabled
+DEBUG - 2024-10-05 23:25:04 --> Global POST, GET and COOKIE data sanitized
+DEBUG - 2024-10-05 23:25:04 --> Total execution time: 0.6073
+ERROR - 2024-10-05 23:29:43 --> $config['composer_autoload'] is set to TRUE but C:\app\_desarrollo\serviturno\application\vendor/autoload.php was not found.
+DEBUG - 2024-10-05 23:29:43 --> UTF-8 Support Enabled
+DEBUG - 2024-10-05 23:29:43 --> No URI present. Default controller set.
+DEBUG - 2024-10-05 23:29:43 --> Global POST, GET and COOKIE data sanitized
+DEBUG - 2024-10-05 23:29:43 --> Total execution time: 0.2357
+ERROR - 2024-10-05 23:29:44 --> $config['composer_autoload'] is set to TRUE but C:\app\_desarrollo\serviturno\application\vendor/autoload.php was not found.
+DEBUG - 2024-10-05 23:29:44 --> UTF-8 Support Enabled
+DEBUG - 2024-10-05 23:29:44 --> Global POST, GET and COOKIE data sanitized
+ERROR - 2024-10-05 23:29:44 --> $config['composer_autoload'] is set to TRUE but C:\app\_desarrollo\serviturno\application\vendor/autoload.php was not found.
+ERROR - 2024-10-05 23:29:44 --> $config['composer_autoload'] is set to TRUE but C:\app\_desarrollo\serviturno\application\vendor/autoload.php was not found.
+DEBUG - 2024-10-05 23:29:44 --> UTF-8 Support Enabled
+DEBUG - 2024-10-05 23:29:44 --> UTF-8 Support Enabled
+DEBUG - 2024-10-05 23:29:44 --> Global POST, GET and COOKIE data sanitized
+DEBUG - 2024-10-05 23:29:44 --> Global POST, GET and COOKIE data sanitized
+DEBUG - 2024-10-05 23:29:44 --> Total execution time: 0.1206
+DEBUG - 2024-10-05 23:29:44 --> Total execution time: 0.1308
+DEBUG - 2024-10-05 23:29:44 --> Total execution time: 0.2243
+ERROR - 2024-10-05 23:31:45 --> $config['composer_autoload'] is set to TRUE but C:\app\_desarrollo\serviturno\application\vendor/autoload.php was not found.
+DEBUG - 2024-10-05 23:31:45 --> UTF-8 Support Enabled
+DEBUG - 2024-10-05 23:31:45 --> Global POST, GET and COOKIE data sanitized
+DEBUG - 2024-10-05 23:31:45 --> Total execution time: 0.2364
+ERROR - 2024-10-05 23:33:27 --> $config['composer_autoload'] is set to TRUE but C:\app\_desarrollo\serviturno\application\vendor/autoload.php was not found.
+DEBUG - 2024-10-05 23:33:27 --> UTF-8 Support Enabled
+DEBUG - 2024-10-05 23:33:27 --> No URI present. Default controller set.
+DEBUG - 2024-10-05 23:33:27 --> Global POST, GET and COOKIE data sanitized
+DEBUG - 2024-10-05 23:33:28 --> Total execution time: 0.2241
+ERROR - 2024-10-05 23:33:28 --> $config['composer_autoload'] is set to TRUE but C:\app\_desarrollo\serviturno\application\vendor/autoload.php was not found.
+DEBUG - 2024-10-05 23:33:28 --> UTF-8 Support Enabled
+ERROR - 2024-10-05 23:33:28 --> $config['composer_autoload'] is set to TRUE but C:\app\_desarrollo\serviturno\application\vendor/autoload.php was not found.
+DEBUG - 2024-10-05 23:33:28 --> Global POST, GET and COOKIE data sanitized
+ERROR - 2024-10-05 23:33:28 --> $config['composer_autoload'] is set to TRUE but C:\app\_desarrollo\serviturno\application\vendor/autoload.php was not found.
+DEBUG - 2024-10-05 23:33:28 --> UTF-8 Support Enabled
+DEBUG - 2024-10-05 23:33:28 --> UTF-8 Support Enabled
+DEBUG - 2024-10-05 23:33:28 --> Total execution time: 0.1292
+DEBUG - 2024-10-05 23:33:28 --> Global POST, GET and COOKIE data sanitized
+DEBUG - 2024-10-05 23:33:28 --> Global POST, GET and COOKIE data sanitized
+DEBUG - 2024-10-05 23:33:28 --> Total execution time: 0.2025
+DEBUG - 2024-10-05 23:33:28 --> Total execution time: 0.3085
+ERROR - 2024-10-05 23:34:43 --> $config['composer_autoload'] is set to TRUE but C:\app\_desarrollo\serviturno\application\vendor/autoload.php was not found.
+DEBUG - 2024-10-05 23:34:43 --> UTF-8 Support Enabled
+DEBUG - 2024-10-05 23:34:43 --> Global POST, GET and COOKIE data sanitized
+DEBUG - 2024-10-05 23:34:43 --> Total execution time: 0.2259
+ERROR - 2024-10-05 23:43:11 --> $config['composer_autoload'] is set to TRUE but C:\app\_desarrollo\serviturno\application\vendor/autoload.php was not found.
+DEBUG - 2024-10-05 23:43:11 --> UTF-8 Support Enabled
+DEBUG - 2024-10-05 23:43:11 --> No URI present. Default controller set.
+DEBUG - 2024-10-05 23:43:12 --> Global POST, GET and COOKIE data sanitized
+DEBUG - 2024-10-05 23:43:12 --> Total execution time: 0.2730
+ERROR - 2024-10-05 23:43:13 --> $config['composer_autoload'] is set to TRUE but C:\app\_desarrollo\serviturno\application\vendor/autoload.php was not found.
+DEBUG - 2024-10-05 23:43:13 --> UTF-8 Support Enabled
+ERROR - 2024-10-05 23:43:13 --> $config['composer_autoload'] is set to TRUE but C:\app\_desarrollo\serviturno\application\vendor/autoload.php was not found.
+DEBUG - 2024-10-05 23:43:13 --> Global POST, GET and COOKIE data sanitized
+DEBUG - 2024-10-05 23:43:13 --> UTF-8 Support Enabled
+ERROR - 2024-10-05 23:43:13 --> $config['composer_autoload'] is set to TRUE but C:\app\_desarrollo\serviturno\application\vendor/autoload.php was not found.
+DEBUG - 2024-10-05 23:43:13 --> Global POST, GET and COOKIE data sanitized
+ERROR - 2024-10-05 23:43:13 --> $config['composer_autoload'] is set to TRUE but C:\app\_desarrollo\serviturno\application\vendor/autoload.php was not found.
+DEBUG - 2024-10-05 23:43:13 --> UTF-8 Support Enabled
+DEBUG - 2024-10-05 23:43:13 --> UTF-8 Support Enabled
+DEBUG - 2024-10-05 23:43:13 --> Global POST, GET and COOKIE data sanitized
+DEBUG - 2024-10-05 23:43:13 --> Global POST, GET and COOKIE data sanitized
+DEBUG - 2024-10-05 23:43:13 --> Total execution time: 0.1412
+DEBUG - 2024-10-05 23:43:13 --> Total execution time: 0.1359
+DEBUG - 2024-10-05 23:43:13 --> Total execution time: 0.2610
+DEBUG - 2024-10-05 23:43:13 --> Total execution time: 0.2666
+ERROR - 2024-10-05 23:43:19 --> $config['composer_autoload'] is set to TRUE but C:\app\_desarrollo\serviturno\application\vendor/autoload.php was not found.
+DEBUG - 2024-10-05 23:43:19 --> UTF-8 Support Enabled
+DEBUG - 2024-10-05 23:43:20 --> Global POST, GET and COOKIE data sanitized
+DEBUG - 2024-10-05 23:43:20 --> Total execution time: 0.2371
+ERROR - 2024-10-05 23:43:25 --> $config['composer_autoload'] is set to TRUE but C:\app\_desarrollo\serviturno\application\vendor/autoload.php was not found.
+DEBUG - 2024-10-05 23:43:25 --> UTF-8 Support Enabled
+DEBUG - 2024-10-05 23:43:25 --> Global POST, GET and COOKIE data sanitized
+DEBUG - 2024-10-05 23:43:25 --> Total execution time: 0.2417
+ERROR - 2024-10-05 23:43:29 --> $config['composer_autoload'] is set to TRUE but C:\app\_desarrollo\serviturno\application\vendor/autoload.php was not found.
+DEBUG - 2024-10-05 23:43:29 --> UTF-8 Support Enabled
+DEBUG - 2024-10-05 23:43:29 --> Global POST, GET and COOKIE data sanitized
+DEBUG - 2024-10-05 23:43:29 --> Total execution time: 0.2896
+ERROR - 2024-10-05 23:43:31 --> $config['composer_autoload'] is set to TRUE but C:\app\_desarrollo\serviturno\application\vendor/autoload.php was not found.
+DEBUG - 2024-10-05 23:43:31 --> UTF-8 Support Enabled
+DEBUG - 2024-10-05 23:43:31 --> Global POST, GET and COOKIE data sanitized
+DEBUG - 2024-10-05 23:43:32 --> Total execution time: 0.2040
+ERROR - 2024-10-05 23:43:40 --> $config['composer_autoload'] is set to TRUE but C:\app\_desarrollo\serviturno\application\vendor/autoload.php was not found.
+DEBUG - 2024-10-05 23:43:40 --> UTF-8 Support Enabled
+ERROR - 2024-10-05 23:43:40 --> $config['composer_autoload'] is set to TRUE but C:\app\_desarrollo\serviturno\application\vendor/autoload.php was not found.
+DEBUG - 2024-10-05 23:43:40 --> UTF-8 Support Enabled
+DEBUG - 2024-10-05 23:43:40 --> Global POST, GET and COOKIE data sanitized
+ERROR - 2024-10-05 23:43:40 --> $config['composer_autoload'] is set to TRUE but C:\app\_desarrollo\serviturno\application\vendor/autoload.php was not found.
+ERROR - 2024-10-05 23:43:40 --> $config['composer_autoload'] is set to TRUE but C:\app\_desarrollo\serviturno\application\vendor/autoload.php was not found.
+DEBUG - 2024-10-05 23:43:40 --> Global POST, GET and COOKIE data sanitized
+DEBUG - 2024-10-05 23:43:40 --> UTF-8 Support Enabled
+DEBUG - 2024-10-05 23:43:40 --> UTF-8 Support Enabled
+DEBUG - 2024-10-05 23:43:40 --> Global POST, GET and COOKIE data sanitized
+DEBUG - 2024-10-05 23:43:40 --> Global POST, GET and COOKIE data sanitized
+DEBUG - 2024-10-05 23:43:40 --> Total execution time: 0.1343
+DEBUG - 2024-10-05 23:43:40 --> Total execution time: 0.1528
+DEBUG - 2024-10-05 23:43:40 --> Total execution time: 0.2644
+DEBUG - 2024-10-05 23:43:40 --> Total execution time: 0.2583
+ERROR - 2024-10-05 23:43:54 --> $config['composer_autoload'] is set to TRUE but C:\app\_desarrollo\serviturno\application\vendor/autoload.php was not found.
+DEBUG - 2024-10-05 23:43:54 --> UTF-8 Support Enabled
+DEBUG - 2024-10-05 23:43:54 --> Global POST, GET and COOKIE data sanitized
+DEBUG - 2024-10-05 23:43:54 --> Total execution time: 0.2460
+ERROR - 2024-10-05 23:44:03 --> $config['composer_autoload'] is set to TRUE but C:\app\_desarrollo\serviturno\application\vendor/autoload.php was not found.
+DEBUG - 2024-10-05 23:44:03 --> UTF-8 Support Enabled
+DEBUG - 2024-10-05 23:44:03 --> Global POST, GET and COOKIE data sanitized
+DEBUG - 2024-10-05 23:44:03 --> Total execution time: 0.2350
+ERROR - 2024-10-05 23:48:07 --> $config['composer_autoload'] is set to TRUE but C:\app\_desarrollo\serviturno\application\vendor/autoload.php was not found.
+DEBUG - 2024-10-05 23:48:07 --> UTF-8 Support Enabled
+DEBUG - 2024-10-05 23:48:07 --> No URI present. Default controller set.
+DEBUG - 2024-10-05 23:48:07 --> Global POST, GET and COOKIE data sanitized
+DEBUG - 2024-10-05 23:48:07 --> Total execution time: 0.2700
+ERROR - 2024-10-05 23:49:34 --> $config['composer_autoload'] is set to TRUE but C:\app\_desarrollo\serviturno\application\vendor/autoload.php was not found.
+DEBUG - 2024-10-05 23:49:34 --> UTF-8 Support Enabled
+DEBUG - 2024-10-05 23:49:34 --> No URI present. Default controller set.
+DEBUG - 2024-10-05 23:49:34 --> Global POST, GET and COOKIE data sanitized
+DEBUG - 2024-10-05 23:49:34 --> Total execution time: 0.2678
+ERROR - 2024-10-05 23:49:34 --> $config['composer_autoload'] is set to TRUE but C:\app\_desarrollo\serviturno\application\vendor/autoload.php was not found.
+DEBUG - 2024-10-05 23:49:34 --> UTF-8 Support Enabled
+DEBUG - 2024-10-05 23:49:35 --> Global POST, GET and COOKIE data sanitized
+DEBUG - 2024-10-05 23:49:35 --> Total execution time: 0.1150
+ERROR - 2024-10-05 23:50:16 --> $config['composer_autoload'] is set to TRUE but C:\app\_desarrollo\serviturno\application\vendor/autoload.php was not found.
+DEBUG - 2024-10-05 23:50:16 --> UTF-8 Support Enabled
+DEBUG - 2024-10-05 23:50:16 --> No URI present. Default controller set.
+DEBUG - 2024-10-05 23:50:16 --> Global POST, GET and COOKIE data sanitized
+DEBUG - 2024-10-05 23:50:17 --> Total execution time: 0.2319
+ERROR - 2024-10-05 23:50:17 --> $config['composer_autoload'] is set to TRUE but C:\app\_desarrollo\serviturno\application\vendor/autoload.php was not found.
+DEBUG - 2024-10-05 23:50:17 --> UTF-8 Support Enabled
+DEBUG - 2024-10-05 23:50:17 --> Global POST, GET and COOKIE data sanitized
+DEBUG - 2024-10-05 23:50:17 --> Total execution time: 0.1339
+ERROR - 2024-10-05 23:50:51 --> $config['composer_autoload'] is set to TRUE but C:\app\_desarrollo\serviturno\application\vendor/autoload.php was not found.
+DEBUG - 2024-10-05 23:50:51 --> UTF-8 Support Enabled
+DEBUG - 2024-10-05 23:50:51 --> No URI present. Default controller set.
+DEBUG - 2024-10-05 23:50:51 --> Global POST, GET and COOKIE data sanitized
+DEBUG - 2024-10-05 23:50:51 --> Total execution time: 0.2567
+ERROR - 2024-10-05 23:50:52 --> $config['composer_autoload'] is set to TRUE but C:\app\_desarrollo\serviturno\application\vendor/autoload.php was not found.
+DEBUG - 2024-10-05 23:50:52 --> UTF-8 Support Enabled
+DEBUG - 2024-10-05 23:50:52 --> Global POST, GET and COOKIE data sanitized
+DEBUG - 2024-10-05 23:50:52 --> Total execution time: 0.1303
+ERROR - 2024-10-05 23:51:28 --> $config['composer_autoload'] is set to TRUE but C:\app\_desarrollo\serviturno\application\vendor/autoload.php was not found.
+DEBUG - 2024-10-05 23:51:28 --> UTF-8 Support Enabled
+DEBUG - 2024-10-05 23:51:28 --> No URI present. Default controller set.
+DEBUG - 2024-10-05 23:51:28 --> Global POST, GET and COOKIE data sanitized
+DEBUG - 2024-10-05 23:51:28 --> Total execution time: 0.2024
+ERROR - 2024-10-05 23:51:28 --> $config['composer_autoload'] is set to TRUE but C:\app\_desarrollo\serviturno\application\vendor/autoload.php was not found.
+DEBUG - 2024-10-05 23:51:28 --> UTF-8 Support Enabled
+DEBUG - 2024-10-05 23:51:28 --> Global POST, GET and COOKIE data sanitized
+DEBUG - 2024-10-05 23:51:29 --> Total execution time: 0.1108
+ERROR - 2024-10-05 23:55:13 --> $config['composer_autoload'] is set to TRUE but C:\app\_desarrollo\serviturno\application\vendor/autoload.php was not found.
+DEBUG - 2024-10-05 23:55:13 --> UTF-8 Support Enabled
+DEBUG - 2024-10-05 23:55:13 --> No URI present. Default controller set.
+DEBUG - 2024-10-05 23:55:13 --> Global POST, GET and COOKIE data sanitized
+DEBUG - 2024-10-05 23:55:13 --> Total execution time: 0.2530
+ERROR - 2024-10-05 23:56:20 --> $config['composer_autoload'] is set to TRUE but C:\app\_desarrollo\serviturno\application\vendor/autoload.php was not found.
+DEBUG - 2024-10-05 23:56:20 --> UTF-8 Support Enabled
+DEBUG - 2024-10-05 23:56:20 --> No URI present. Default controller set.
+DEBUG - 2024-10-05 23:56:20 --> Global POST, GET and COOKIE data sanitized
+DEBUG - 2024-10-05 23:56:20 --> Total execution time: 0.2279
+ERROR - 2024-10-05 23:56:21 --> $config['composer_autoload'] is set to TRUE but C:\app\_desarrollo\serviturno\application\vendor/autoload.php was not found.
+DEBUG - 2024-10-05 23:56:21 --> UTF-8 Support Enabled
+DEBUG - 2024-10-05 23:56:21 --> Global POST, GET and COOKIE data sanitized
+ERROR - 2024-10-05 23:56:21 --> $config['composer_autoload'] is set to TRUE but C:\app\_desarrollo\serviturno\application\vendor/autoload.php was not found.
+ERROR - 2024-10-05 23:56:21 --> $config['composer_autoload'] is set to TRUE but C:\app\_desarrollo\serviturno\application\vendor/autoload.php was not found.
+DEBUG - 2024-10-05 23:56:21 --> UTF-8 Support Enabled
+DEBUG - 2024-10-05 23:56:21 --> UTF-8 Support Enabled
+DEBUG - 2024-10-05 23:56:21 --> Global POST, GET and COOKIE data sanitized
+DEBUG - 2024-10-05 23:56:21 --> Global POST, GET and COOKIE data sanitized
+DEBUG - 2024-10-05 23:56:21 --> Total execution time: 0.1218
+DEBUG - 2024-10-05 23:56:21 --> Total execution time: 0.1740
+DEBUG - 2024-10-05 23:56:21 --> Total execution time: 0.2334
+ERROR - 2024-10-05 23:59:19 --> $config['composer_autoload'] is set to TRUE but C:\app\_desarrollo\serviturno\application\vendor/autoload.php was not found.
+DEBUG - 2024-10-05 23:59:19 --> UTF-8 Support Enabled
+DEBUG - 2024-10-05 23:59:19 --> No URI present. Default controller set.
+DEBUG - 2024-10-05 23:59:19 --> Global POST, GET and COOKIE data sanitized
+DEBUG - 2024-10-05 23:59:19 --> Total execution time: 0.2210
+ERROR - 2024-10-05 23:59:19 --> $config['composer_autoload'] is set to TRUE but C:\app\_desarrollo\serviturno\application\vendor/autoload.php was not found.
+DEBUG - 2024-10-05 23:59:19 --> UTF-8 Support Enabled
+DEBUG - 2024-10-05 23:59:19 --> Global POST, GET and COOKIE data sanitized
+DEBUG - 2024-10-05 23:59:19 --> Total execution time: 0.1170
+ERROR - 2024-10-05 23:59:34 --> $config['composer_autoload'] is set to TRUE but C:\app\_desarrollo\serviturno\application\vendor/autoload.php was not found.
+DEBUG - 2024-10-05 23:59:34 --> UTF-8 Support Enabled
+DEBUG - 2024-10-05 23:59:34 --> No URI present. Default controller set.
+DEBUG - 2024-10-05 23:59:34 --> Global POST, GET and COOKIE data sanitized
+DEBUG - 2024-10-05 23:59:35 --> Total execution time: 0.2782
+ERROR - 2024-10-05 23:59:36 --> $config['composer_autoload'] is set to TRUE but C:\app\_desarrollo\serviturno\application\vendor/autoload.php was not found.
+DEBUG - 2024-10-05 23:59:36 --> UTF-8 Support Enabled
+DEBUG - 2024-10-05 23:59:36 --> Global POST, GET and COOKIE data sanitized
+DEBUG - 2024-10-05 23:59:36 --> Total execution time: 0.1280

@@ -1,6 +1,7 @@
 .navbar {
   display: flex;
   justify-content: space-between;
+  align-items: center;
   position: fixed;
   top: 0;
   width: 100%;
@@ -292,13 +293,8 @@
   color: #f47628;
   font-family: Arial, Helvetica, sans-serif;
   font-size: 14px;
-  /* Tamaño similar a un h1 */
   font-weight: bold;
-  /* Fuente en negrita */
-  float: none;
-  margin: 10px;
-  margin-left: 0px;
-  margin-top: 10px;
+  margin-left: 0;
 }
 
 
@@ -547,85 +543,31 @@ body {
 }
 
 
-.aux-container {
-  display: flex;
-  justify-content: flex-end;
-  /* Alinea los elementos a la derecha */
-  /* flex-grow: 1; /* Permite que el contenedor crezca para tomar todo el espacio disponible */
-  margin-top: -15px;
+.header-buttons-container {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    margin-right: 20px;
 }
 
-#datepicker {
-  position: relative;
-  /* Asegúrate de que tenga una posición relativa o absoluta */
-  top: 20px;
-  /* Ajusta este valor según tus necesidades */
+.header-button {
+    background-color: #1a5b8c;
+    color: white;
+    border: none;
+    border-radius: 50%;
+    width: 40px;
+    height: 40px;
+    font-size: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-left: 10px;
+    cursor: pointer;
+    transition: background-color 0.3s;
 }
 
-
-
-#refresh-btn {
-  background-color: #1a5b8c;
-  display: flex;
-  align-items: center;
-  /* Centra los elementos verticalmente */
-  justify-content: center;
-  /* Centra los elementos horizontalmente */
-  color: white;
-  border: none;
-  font-size: 20px;
-  padding: 10px 20px;
-  border-radius: 5px;
-  box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.2);
-  transition: background-color 0.3s;
-  width: 30px;
-  height: 40px;
-  margin-top: 10px;
-  margin-left: 24px;
-  margin-right: 20px;
-}
-
-#datepicker-btn {
-  background-color: #1a5b8c;
-  display: flex;
-  align-items: center;
-  /* Centra los elementos verticalmente */
-  justify-content: center;
-  /* Centra los elementos horizontalmente */
-  color: white;
-  border: none;
-  font-size: 20px;
-  padding: 10px 20px;
-  border-radius: 5px;
-  box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.2);
-  transition: background-color 0.3s;
-  width: 30px;
-  height: 40px;
-  margin-top: 10px;
-  margin-left: 0px;
-}
-
-#stats-btn {
-  background-color: #1a5b8c;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  color: white;
-  border: none;
-  font-size: 20px;
-  padding: 10px 20px;
-  border-radius: 5px;
-  box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.2);
-  transition: background-color 0.3s;
-  width: 30px;
-  height: 40px;
-  margin-top: 10px;
-  margin-left: 24px;
-  margin-right: 20px;
-}
-
-#stats-btn:hover {
-  background-color: #12375b;
+.header-button:hover {
+    background-color: #12375b;
 }
 
 
@@ -661,7 +603,8 @@ body {
 .row-with-technician {
   background-color: rgb(199 199 199 / 0.2) !important;
   /* Fondo gris claro con transparencia */
-  color: #505050;
+  color: #000000;
+ /* color: #505050; */
   /* Color de texto gris */
   cursor: not-allowed;
   /* Cursor que indica que la fila está deshabilitada */
@@ -822,9 +765,37 @@ body.dark-mode #myTable td:nth-child(2) {
 }
 
 body.dark-mode .tag {
-  background-color: #34393b;
+  background-color: #1a5b8c;
   color: #e8e6e3;
 }
+
+body.dark-mode .tag:hover {
+  background-color: #12375b;
+}
+
+body.dark-mode .row-with-technician .tag {
+  background-color: #0e2b42;
+  color: #e8e6e3;
+}
+
+
+body.dark-mode .row-with-technician .tag:hover {
+  background-color: #0b1c2c;
+}
+
+
+
+body.dark-mode .btn-more-info.has-details {
+  background-color: #eb5b08;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  padding: 2px 10px;
+  margin: 5px;
+  font-size: 10px;
+  transition: background-color 0.3s;
+}
+
 
 body.dark-mode .btn-more-info,
 body.dark-mode .btn-call {
@@ -882,7 +853,7 @@ body.dark-mode table.display tr:hover td {
 
 /* Ajustes para las filas sin técnico (abiertas) */
 body.dark-mode table.display tr:not(.row-with-technician) td {
-  background-color: #1e2227 !important; /* Más claro para filas abiertas */
+  background-color: #1e2227f7 !important ; /* Más claro para filas abiertas */
   color: #e8e6e3; /* Color de texto claro para mejor contraste */
 }
 
@@ -1008,4 +979,104 @@ body.dark-mode #admissionModal .btn-secondary {
 body.dark-mode #admissionModal .btn-secondary:hover {
   background-color: #3e4446;
   border-color: #3e4446;
+}
+
+#date-picker-wrapper {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    margin-bottom: 20px;
+    padding-left: 20px;
+}
+
+#datepicker {
+    width: 200px;
+    text-align: center;
+    font-size: 16px;
+    padding: 10px;
+    border: none;
+    border-radius: 5px;
+    background-color: #f0f0f0;
+    color: #1a5b8c;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    margin: 0 10px;
+}
+
+#datepicker:hover {
+    background-color: #e0e0e0;
+}
+
+#datepicker:focus {
+    outline: none;
+    box-shadow: 0 0 0 2px rgba(26, 91, 140, 0.2);
+}
+
+/* Estilos para el datepicker en modo oscuro */
+body.dark-mode #datepicker {
+    background-color: #2c3e50;
+    color: #3498db;
+    border-color: #34495e;
+}
+
+body.dark-mode #datepicker:hover {
+    background-color: #34495e;
+}
+
+body.dark-mode #datepicker:focus {
+    box-shadow: 0 0 0 2px rgba(52, 152, 219, 0.2);
+}
+
+/* Estilos para el calendario emergente de Flatpickr */
+.flatpickr-calendar {
+    border-radius: 5px;
+    box-shadow: 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23);
+    font-size: 14px;
+}
+
+.flatpickr-day {
+    color: #333;
+}
+
+/* Estilos para el calendario emergente en modo oscuro */
+body.dark-mode .flatpickr-calendar {
+    background: #2c3e50;
+    border-color: #34495e;
+    box-shadow: 0 3px 6px rgba(0,0,0,0.3);
+}
+
+body.dark-mode .flatpickr-day {
+    color: #e8e6e3;
+}
+
+body.dark-mode .flatpickr-weekday,
+body.dark-mode .flatpickr-monthDropdown-months,
+body.dark-mode .flatpickr-current-month .flatpickr-monthDropdown-months,
+body.dark-mode .flatpickr-current-month input.cur-year {
+    color: #e8e6e3;
+}
+
+body.dark-mode .flatpickr-day.selected, 
+body.dark-mode .flatpickr-day.startRange, 
+body.dark-mode .flatpickr-day.endRange, 
+body.dark-mode .flatpickr-day.selected.inRange, 
+body.dark-mode .flatpickr-day.startRange.inRange, 
+body.dark-mode .flatpickr-day.endRange.inRange, 
+body.dark-mode .flatpickr-day.selected:focus, 
+body.dark-mode .flatpickr-day.startRange:focus, 
+body.dark-mode .flatpickr-day.endRange:focus {
+    background: #3498db;
+    border-color: #3498db;
+    color: #fff;
+}
+
+body.dark-mode .flatpickr-day.today {
+    border-color: #3498db;
+    color: #3498db;
+}
+
+body.dark-mode .flatpickr-day:hover {
+    background: #34495e;
+    color: #fff;
 }

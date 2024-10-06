@@ -234,165 +234,57 @@ $(document).ready(function () {
 
   var selectedDateGlobal = new Date();
 
-  var datepickerElement = $("#datepicker").datepicker(
-    $.extend(
-      {
-        dateFormat: "DD, dd/mm/yy",
-        onSelect: function () {
-          var selectedDate = datepickerElement.datepicker("getDate"); // Get the selected date
-          selectedDateGlobal = selectedDate; // Actualiza la variable global
-          var formattedDate = $.datepicker.formatDate("yy-mm-dd", selectedDate);
-          console.log("Fecha seleccionada en datepicker: ", selectedDate);
-          console.log("Fecha formateada en datepicker: ", formattedDate);
-          datepickerElement.val(
-            $.datepicker.formatDate("DD, dd/mm/yy", selectedDate)
-          ),
-            $.ajax({
-              url: "Tabla/obtener_datos_por_fecha",
-              type: "GET",
-              data: { date: formattedDate },
-              success: function (response) {
-                var data = JSON.parse(response);
-                a.clear();
+  var fpInstance = flatpickr("#datepicker", {
+    dateFormat: "D, d M Y",
+    locale: "es",
+    defaultDate: selectedDateGlobal,
+    onChange: function(selectedDates, dateStr, instance) {
+      selectedDateGlobal = selectedDates[0];
+      updateTableAndDateLabel(selectedDateGlobal);
+    },
+    onReady: function(selectedDates, dateStr, instance) {
+      updateTableAndDateLabel(selectedDateGlobal);
+    }
+  });
 
-                if (data.length > 0) {
-                  for (var i = 0; i < data.length; i++) {
-                    var tiposHtml = "";
-                    var btnMoreInfoClass = data[i].detalle ? "has-details" : "";
-                    var mostrarLlamar = data[i].mostrar_llamar === "1";
-                    var tipos = data[i].tipo ? data[i].tipo.split(",") : [];
-                    var url =
-                      tuBaseURL + "operador/toggle_random/" + data[i].id;
+  $("#prev-date").click(function() {
+    var newDate = new Date(selectedDateGlobal);
+    newDate.setDate(newDate.getDate() - 1);
+    fpInstance.setDate(newDate);
+  });
 
-                    for (var j = 0; j < tipos.length; j++) {
-                      var tipo = tipos[j].trim(); // Eliminar espacios en blanco
-                      if (tipo) {
-                        tiposHtml += '<span class="tag">' + tipo + "</span>";
-                      }
-                    }
+  $("#next-date").click(function() {
+    var newDate = new Date(selectedDateGlobal);
+    newDate.setDate(newDate.getDate() + 1);
+    fpInstance.setDate(newDate);
+  });
 
-                    var admision = data[i].admision ? data[i].admision : "";
-                    var paciente = data[i].paciente
-                      ? capitalizeName(data[i].paciente)
-                      : "";
+  function updateTableAndDateLabel(date) {
+    var formattedDate = flatpickr.formatDate(date, "Y-m-d");
+    
+    // Actualizar la tabla con la nueva fecha
+    fetchDataForDate(formattedDate);
+  }
 
-                    var tecnicoSelect = '<select class="tecnico-select"';
-                    if (data[i].atendida != "1" || data[i].tecnico) {
-                      tecnicoSelect += " disabled";
-                    }
-                    tecnicoSelect +=
-                      '><option value="">' +
-                      (data[i].tecnico ? data[i].tecnico : "Técnico") +
-                      "</option>" +
-                      '<option value="N/A">N/A</option>' +
-                      '<option value="YL">YL</option>' +
-                      '<option value="MC">MC</option>' +
-                      '<option value="RS">RS</option>' +
-                      '<option value="YP">YP</option>' +
-                      '<option value="AL">AL</option>' +
-                      '<option value="BA">BA</option>' +
-                      '<option value="AR">AR</option>' +
-                      '<option value="LN">LN</option>' +
-                      '<option value="SR">SR</option>' +
-                      '<option value="MH">MH</option>' +
-                      "</select>";
+  function fetchDataForDate(formattedDate) {
+    $.ajax({
+      url: "Tabla/obtener_datos_por_fecha",
+      type: "GET",
+      data: { date: formattedDate },
+      success: function (response) {
+        var data = JSON.parse(response);
+        a.clear();
 
-                    var tiempoParaAtencionCell = "";
-                    if (data[i].hora_de_llamado) {
-                      // Si el ticket ha sido llamado, muestra el tiempo formateado con la clase 'tiempo-llamado'
-                      tiempoParaAtencionCell =
-                        '<span class="tiempo-llamado">' +
-                        formatTime(data[i].tiempo_para_atencion) +
-                        "</span>";
-                    } else {
-                      // Si el ticket no ha sido llamado, agrega la clase 'tiempo-espera' al elemento <span>
-                      tiempoParaAtencionCell =
-                        '<span class="tiempo-espera" data-hora-impresion="' +
-                        data[i].hora_de_impresion +
-                        '">00:00</span>';
-                    }
+        if (data.length > 0) {
+          // Aquí va el código para actualizar la tabla con los nuevos datos
+          // ...
+        }
 
-                    if (
-                      data[i].tiempo_para_atencion &&
-                      "00:00:00" !== data[i].tiempo_para_atencion
-                    ) {
-                      tiempoParaAtencionCell = formatTime(
-                        data[i].tiempo_para_atencion
-                      );
-                    } else if (!data[i].hora_de_llamado) {
-                      // Si el ticket no ha sido llamado, agrega una clase especial a la celda
-                      tiempoParaAtencionCell =
-                        '<span class="tiempo-espera" data-hora-impresion="' +
-                        data[i].hora_de_impresion +
-                        '">00:00</span>';
-                    }
-
-                    var row = a.row
-                      .add([
-                        data[i].especialidad,
-                        '<span style="font-weight: bold; color: #12375b; font-size: 25px;">' +
-                          data[i].ticket +
-                          "</span>",
-                        paciente,
-                        tiposHtml,
-                        data[i].hora_de_impresion
-                          ? moment(
-                              data[i].hora_de_impresion,
-                              "YYYY-MM-DD HH:mm:ss"
-                            ).format("hh:mm:ss A")
-                          : "",
-                        data[i].hora_de_llamado
-                          ? moment(
-                              data[i].hora_de_llamado,
-                              "YYYY-MM-DD HH:mm:ss"
-                            ).format("hh:mm:ss A")
-                          : "",
-                        tiempoParaAtencionCell,
-
-                        admision,
-                        data[i].ps,
-                        tecnicoSelect,
-                        '<button class="btn btn-more-info ' +
-                          btnMoreInfoClass +
-                          '"><i class="fas fa-plus"></i></button>',
-                        mostrarLlamar
-                          ? '<button class="btn btn-call" data-ticket="' +
-                            data[i].ticket +
-                            '" data-url="' +
-                            url +
-                            '">Llamar</button>'
-                          : "",
-                      ])
-                      .draw(false)
-                      .node();
-
-                    $(row).attr("data-id", data[i].id);
-
-                    // Agregar la clase "ticket-anulado" si el ticket está anulado
-                    if (data[i].atendida === "2") {
-                      $(row).addClass("ticket-anulado");
-                    }
-                  }
-                }
-
-                a.draw();
-              },
-            });
-
-          // Actualiza el contenido del label con la fecha seleccionada
-          var formattedDate = $.datepicker.formatDate(
-            "DD, dd/mm/yy",
-            selectedDate
-          );
-          $("#selected-date-label").text(formattedDate);
-        },
-      },
-      $.datepicker.regional.es
-    )
-  );
-
-  var currentDate = new Date();
-  datepickerElement.datepicker("setDate", selectedDateGlobal);
+        a.draw();
+        updateTotalStudies();
+      }
+    });
+  }
 
   $("#refresh-btn").on("click", function () {
     var formattedDate = $.datepicker.formatDate("yy-mm-dd", selectedDateGlobal);
@@ -481,7 +373,7 @@ $(document).ready(function () {
               var row = a.row
                 .add([
                   data[i].especialidad,
-                  '<span style="font-weight: bold; color: #12375b; font-size: 25px;">' +
+                  '<span style="font-weight: bold; color: #f47628; font-size: 30px;">' +
                     data[i].ticket +
                     "</span>",
                   paciente,
@@ -553,6 +445,44 @@ $(document).ready(function () {
   });
 
   // Botones de flechas
+
+  $("#prev-date").click(function () {
+    selectedDateGlobal.setDate(selectedDateGlobal.getDate() - 1);
+    updateTableAndDateLabel(selectedDateGlobal);
+    checkIfTodayIsSelected(selectedDateGlobal);
+  });
+
+  $("#next-date").click(function () {
+    selectedDateGlobal.setDate(selectedDateGlobal.getDate() + 1);
+    updateTableAndDateLabel(selectedDateGlobal);
+    checkIfTodayIsSelected(selectedDateGlobal);
+  });
+
+  $("#myTable").on("init.dt", function () {
+    $("#date-label-wrapper").insertBefore(".dataTables_filter");
+    $("#total-studies-label").insertBefore(".dataTables_filter");
+    $("#selected-date-label").insertBefore(".dataTables_filter");
+  });
+
+  $(".filter-btn").on("click", function () {
+    var e = $(this).data("filter");
+    a.column(0).search(e).draw(),
+      $(".filter-btn").removeClass("selected"),
+      $(this).addClass("selected");
+    updateTotalStudies();
+  });
+
+  var currentDate = new Date(); // Establecer la fecha actual en el datepicker y actualizar el label
+  datepickerElement.datepicker("setDate", currentDate);
+  selectedDateGlobal = currentDate; // Actualiza la variable global con la fecha actual
+  var formattedDate = $.datepicker.formatDate("DD, dd/mm/yy", currentDate);
+  $("#selected-date-label").text(formattedDate);
+
+  $("#datepicker-btn").on("click", function () {
+    datepickerElement.datepicker("widget").is(":visible")
+      ? datepickerElement.datepicker("hide")
+      : datepickerElement.datepicker("show");
+  });
 
   function updateTableAndDateLabel(date) {
     var r = $.datepicker.formatDate("yy-mm-dd", date);
@@ -637,7 +567,7 @@ $(document).ready(function () {
             var row = a.row
               .add([
                 data[i].especialidad,
-                '<span style="font-weight: bold; color: #12375b; font-size: 25px;">' +
+                '<span style="font-weight: bold; color: #f47628; font-size: 30px;">' +
                   data[i].ticket +
                   "</span>",
                 paciente,
@@ -872,7 +802,6 @@ $(document).ready(function () {
     backdrop: "static",
     keyboard: false,
   });
-
   var ticketToCancel = null; // Variable para almacenar el ID del ticket a anular
 
   $(document).on("click", "#anularTicketBtn", function () {
@@ -1304,7 +1233,7 @@ $(document).ready(function () {
             var row = a.row
               .add([
                 data[i].especialidad,
-                '<span style="font-weight: bold; color: #12375b; font-size: 25px;">' +
+                '<span style="font-weight: bold; color: #f47628; font-size: 30px;">' +
                   data[i].ticket +
                   "</span>",
                 paciente,
@@ -1353,3 +1282,4 @@ $(document).ready(function () {
     });
   }
 });
+
