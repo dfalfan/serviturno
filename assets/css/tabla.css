@@ -294,7 +294,7 @@
   font-family: Arial, Helvetica, sans-serif;
   font-size: 14px;
   font-weight: bold;
-  margin-left: 0;
+  margin-left: 50px;
 }
 
 
@@ -985,8 +985,7 @@ body.dark-mode #admissionModal .btn-secondary:hover {
     display: flex;
     justify-content: flex-start;
     align-items: center;
-    margin-bottom: 20px;
-    padding-left: 20px;
+    margin-top: 25px;
 }
 
 #datepicker {
@@ -1079,4 +1078,74 @@ body.dark-mode .flatpickr-day.today {
 body.dark-mode .flatpickr-day:hover {
     background: #34495e;
     color: #fff;
+}
+
+/* Nuevos estilos para mejorar la responsividad de la navbar */
+@media screen and (max-width: 1200px) {
+  .navbar {
+    flex-wrap: wrap;
+    justify-content: center;
+    height: auto;
+    padding: 10px;
+  }
+
+  .navbar-logo {
+    margin-bottom: 10px;
+    order: -1;
+    width: 100%;
+    text-align: center;
+  }
+
+  .button-container {
+    order: 1;
+    width: 100%;
+    justify-content: center;
+    margin-top: 10px;
+  }
+
+  .filter-btn {
+    font-size: 12px;
+    padding: 8px 12px;
+    margin: 5px;
+  }
+
+  .header-buttons-container {
+    order: 2;
+    width: 100%;
+    justify-content: center;
+    margin-top: 10px;
+  }
+
+  .header-button {
+    margin: 5px;
+  }
+
+  .date-arrow {
+    margin: 5px 0;
+  }
+
+  .total-studies-label-style {
+    margin-top: 10px;
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .filter-btn {
+    font-size: 10px;
+    padding: 6px 10px;
+  }
+
+  .header-button {
+    width: 35px;
+    height: 35px;
+    font-size: 16px;
+  }
+}
+
+/* Ajuste adicional para pantallas muy pequeñas */
+@media screen and (max-width: 480px) {
+  .filter-btn {
+    width: calc(50% - 10px);
+    margin: 5px;
+  }
 }
