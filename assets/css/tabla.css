@@ -894,10 +894,27 @@ body.dark-mode .btn-call:hover {
   background-color: #3e4446;
 }
 
+/* Estilo normal para el select en modo oscuro */
 body.dark-mode .tecnico-select {
   background-color: #1c1e1f;
   color: #e8e6e3;
   border-color: #2d3235;
+}
+
+/* Estilo para el select deshabilitado en modo oscuro */
+body.dark-mode .tecnico-select:disabled,
+body.dark-mode .tecnico-select[disabled] {
+  background-color: #1c1e1f !important;
+  color: #8a8a8a !important;
+  border-color: #2d3235 !important;
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+/* Estilo para las opciones del select deshabilitado en modo oscuro */
+body.dark-mode .tecnico-select:disabled option,
+body.dark-mode .tecnico-select[disabled] option {
+  color: #323232;
 }
 
 body.dark-mode .row-with-technician td {
@@ -1106,6 +1123,8 @@ body.dark-mode .modal-backdrop {
     outline: none;
     box-shadow: 0 0 0 2px rgba(26, 91, 140, 0.2);
 }
+
+
 
 /* Estilos para el datepicker en modo oscuro */
 body.dark-mode #datepicker {
