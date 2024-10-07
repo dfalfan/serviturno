@@ -290,6 +290,19 @@ $(document).ready(function () {
     });
   }
 
+  function generateActionButtons(tecnico) {
+    if (tecnico) {
+      return (
+        '<div class="action-buttons">' +
+        '<button class="btn-action btn-view-study" title="Ver estudio"><i class="fas fa-eye"></i></button>' +
+        '<button class="btn-action btn-transcribe" title="Transcribir"><i class="fas fa-microphone"></i></button>' +
+        '<button class="btn-action btn-process" title="Procesar"><i class="fas fa-play"></i></button>' +
+        "</div>"
+      );
+    }
+    return "";
+  }
+
   $("#refresh-btn").on("click", function () {
     var formattedDate = $.datepicker.formatDate("yy-mm-dd", selectedDateGlobal);
     fetchAndDisplayNotifications();
@@ -407,11 +420,7 @@ $(document).ready(function () {
                       url +
                       '">Llamar</button>'
                     : "",
-                  '<div class="action-buttons">' +
-                    '<button class="btn-action btn-view-study" title="Ver estudio"><i class="fas fa-eye"></i></button>' +
-                    '<button class="btn-action btn-transcribe" title="Transcribir"><i class="fas fa-microphone"></i></button>' +
-                    '<button class="btn-action btn-process" title="Procesar"><i class="fas fa-play"></i></button>' +
-                    "</div>",
+                  generateActionButtons(data[i].tecnico),
                 ])
                 .draw(false)
                 .node();
@@ -591,11 +600,7 @@ $(document).ready(function () {
                     url +
                     '">Llamar</button>'
                   : "",
-                '<div class="action-buttons">' +
-                  '<button class="btn-action btn-view-study" title="Ver estudio"><i class="fas fa-eye"></i></button>' +
-                  '<button class="btn-action btn-transcribe" title="Transcribir"><i class="fas fa-microphone"></i></button>' +
-                  '<button class="btn-action btn-process" title="Procesar"><i class="fas fa-play"></i></button>' +
-                  "</div>",
+                generateActionButtons(data[i].tecnico),
               ])
               .draw(false)
               .node();
@@ -1226,11 +1231,7 @@ $(document).ready(function () {
                     url +
                     '">Llamar</button>'
                   : "",
-                '<div class="action-buttons">' +
-                  '<button class="btn-action btn-view-study" title="Ver estudio"><i class="fas fa-eye"></i></button>' +
-                  '<button class="btn-action btn-transcribe" title="Transcribir"><i class="fas fa-microphone"></i></button>' +
-                  '<button class="btn-action btn-process" title="Procesar"><i class="fas fa-play"></i></button>' +
-                  "</div>",
+                generateActionButtons(data[i].tecnico),
               ])
               .draw(false)
               .node();
