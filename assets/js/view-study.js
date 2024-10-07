@@ -152,12 +152,18 @@ $(document).ready(function () {
       });
 
       // Manejar clic en el botón "Enlazar"
-      $(".link-study-btn").on("click", function() {
-        var index = $(this).data("index");
-        var estudioId = $(this).data("estudio-id");
-        var selectedOption = $(`.orthanc-studies[data-index="${index}"] option:selected`);
+      $(document).on("click", ".link-study-btn", function() {
+        var $button = $(this);
+        var index = $button.data("index");
+        var estudioId = $button.data("estudio-id");
+        var $select = $(`.orthanc-studies[data-index="${index}"]`);
+        var selectedOption = $select.find('option:selected');
         var studyInstanceUID = selectedOption.data("study-instance-uid");
         var studyDescription = selectedOption.text();
+
+        // Cambiar el botón inmediatamente
+        $button.html('<i class="fas fa-spinner fa-spin"></i> Enlazando...');
+        $button.prop('disabled', true);
 
         $.ajax({
           url: baseUrl + "tabla/enlazar_estudio",
@@ -170,16 +176,32 @@ $(document).ready(function () {
           success: function(response) {
             var result = JSON.parse(response);
             if (result.success) {
-              alert("Estudio enlazado correctamente");
               // Actualizar el atributo data-linked-uid con el nuevo StudyInstanceUID
-              $(`.orthanc-studies[data-index="${index}"]`).attr('data-linked-uid', studyInstanceUID);
-              updateButtonStates(index);
+              $select.attr('data-linked-uid', studyInstanceUID);
+              
+              // Actualizar visualmente el botón
+              $button.html('<i class="fas fa-link"></i> Enlazado');
+              $button.removeClass('btn-success btn-warning btn-link-highlight').addClass('btn-linked');
+              $button.prop('disabled', true);
+              
+              // Mostrar una notificación sutil
+              showNotificationLink("Estudio enlazado correctamente", "success");
             } else {
-              alert("Error al enlazar el estudio: " + result.message);
+              // Revertir el botón si hay un error
+              $button.html('<i class="fas fa-link"></i> Enlazar');
+              $button.prop('disabled', false);
+              showNotificationLink("Error al enlazar el estudio: " + result.message, "error");
             }
           },
           error: function() {
-            alert("Error de conexión al enlazar el estudio");
+            // Revertir el botón si hay un error
+            $button.html('<i class="fas fa-link"></i> Enlazar');
+            $button.prop('disabled', false);
+            showNotificationLink("Error de conexión al enlazar el estudio", "error");
+          },
+          complete: function() {
+            // Actualizar el estado de los botones
+            updateButtonStates(index);
           }
         });
       });
@@ -214,7 +236,7 @@ $(document).ready(function () {
 
     viewButton.prop('disabled', !isStudySelected);
     
-    if (isStudySelected) {
+    if (isStudySelected && !linkButton.hasClass('btn-linked')) {
       if (linkedStudyUID) {
         if (linkedStudyUID === selectedStudyUID) {
           linkButton.html('<i class="fas fa-link"></i> Enlazado');
@@ -230,7 +252,7 @@ $(document).ready(function () {
         linkButton.removeClass('btn-linked btn-correct-link').addClass('btn-success btn-link-highlight');
         linkButton.prop('disabled', false);
       }
-    } else {
+    } else if (!isStudySelected) {
       linkButton.html('<i class="fas fa-link"></i> Enlazar');
       linkButton.removeClass('btn-success btn-linked btn-correct-link btn-link-highlight').addClass('btn-secondary');
       linkButton.prop('disabled', true);
@@ -248,4 +270,14 @@ $(document).ready(function () {
     );
     viewStudyModal.hide();
   });
+
+  // Función para mostrar notificaciones sutiles
+  function showNotificationLink(message, type) {
+    var notificationClass = type === "success" ? "alert-success" : "alert-danger";
+    var $notification = $(`<div class="alert ${notificationClass} notificationlink" role="alert">${message}</div>`);
+    $("body").append($notification);
+    $notification.fadeIn().delay(3000).fadeOut(function() {
+      $(this).remove();
+    });
+  }
 });
