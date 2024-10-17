@@ -1,7 +1,5 @@
 <!DOCTYPE html>
 <html>
-
-
 <head>
     <title>ServiTurno | Imagenología</title>
     <meta name="author" content="Daniel Falfán dfalfanm@gmail.com">
@@ -40,10 +38,10 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
     <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
     <script src="https://npmcdn.com/flatpickr/dist/l10n/es.js"></script>
-
+    <script src="<?php echo base_url('assets/js/options.js'); ?>"></script>
     <script src="<?php echo base_url('assets/js/view-study.js'); ?>"></script>
-    <script src="assets/js/transcribe.js"></script>
-    <script src="assets/js/process.js"></script>
+    <script src="<?php echo base_url('assets/js/transcribe.js'); ?>"></script>
+    <script src="<?php echo base_url('assets/js/process.js'); ?>"></script>
 </head>
 
 <script>
@@ -255,45 +253,49 @@
         </div>
     </div>
 
-  <!-- Modal para Ver Estudio -->
-<div class="modal fade" id="viewStudyModal" tabindex="-1" role="dialog" aria-labelledby="viewStudyModalLabel" aria-hidden="true">
-    <div class="modal-dialog modal-lg" role="document">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title" id="viewStudyModalLabel">Ver Estudio</h5>
-            </div>
-            <div class="modal-body">
-                <div class="patient-info">
-                    <p><strong>Nombre:</strong> <span id="patient-name"></span></p>
-                    <p><strong>Admisión:</strong> <span id="patient-admission"></span></p>
-                    <p><strong>Categoría:</strong> <span id="patient-category"></span></p>
+    <!-- Modal para Ver Estudio -->
+    <div class="modal fade" id="viewStudyModal" tabindex="-1" role="dialog" aria-labelledby="viewStudyModalLabel"
+        aria-hidden="true">
+        <div class="modal-dialog modal-lg" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="viewStudyModalLabel">Ver Estudio</h5>
                 </div>
-                <hr>
-                <div class="study-details">
-                    <div class="row header">
-                        <div class="col-md-4">Estudio</div>
-                        <div class="col-md-6">Opciones</div>
-                        <div class="col-md-2">Ver</div>
+                <div class="modal-body">
+                    <div class="patient-info">
+                        <p><strong>Nombre:</strong> <span id="patient-name"></span></p>
+                        <p><strong>Admisión:</strong> <span id="patient-admission"></span></p>
+                        <p><strong>Categoría:</strong> <span id="patient-category"></span></p>
                     </div>
-                    <div id="study-list">
-                        <!-- Los estudios se agregarán aquí dinámicamente -->
+                    <hr>
+                    <div class="study-details">
+                        <div class="row header">
+                            <div class="col-md-4">Estudio</div>
+                            <div class="col-md-6">Opciones</div>
+                            <div class="col-md-2">Ver</div>
+                        </div>
+                        <div id="study-list">
+                            <!-- Los estudios se agregarán aquí dinámicamente -->
+                        </div>
                     </div>
                 </div>
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+                </div>
             </div>
         </div>
     </div>
-</div>
 
     <!-- Modal para Transcribir -->
     <div class="modal fade" id="transcribeModal" tabindex="-1" role="dialog" aria-labelledby="transcribeModalLabel"
         aria-hidden="true">
-        <div class="modal-dialog" role="document">
+        <div class="modal-dialog modal-lg" role="document">
             <div class="modal-content">
                 <div class="modal-header">
                     <h5 class="modal-title" id="transcribeModalLabel">Transcribir</h5>
+                    <button type="button" class="close" data-bs-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
                 </div>
                 <div class="modal-body">
                     <div class="patient-info">
@@ -302,16 +304,46 @@
                         <p><strong>Categoría:</strong> <span id="transcribe-patient-category"></span></p>
                     </div>
                     <hr>
-                    <!-- Aquí puedes añadir más contenido para la transcripción si es necesario -->
+                    <h6>Estudios disponibles:</h6>
+                    <div id="transcribe-study-list">
+                        <!-- Los estudios se agregarán aquí dinámicamente -->
+                    </div>
+                    <div class="form-group mt-3">
+                        <label for="transcribe-doctor-select">Seleccione médico:</label>
+                        <select class="form-control" id="transcribe-doctor-select">
+                            <option value="">Seleccione un médico</option>
+                            <!-- Las opciones de médicos se agregarán dinámicamente -->
+                        </select>
+                    </div>
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-primary" id="transcribe-accept-btn">Aceptar</button>
+                    <button type="button" class="btn btn-primary" id="transcribe-btn">Transcribir</button>
                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
                 </div>
             </div>
         </div>
     </div>
-
+    
+  <!-- Modal para mostrar la transcripción -->
+    <div class="modal fade" id="transcriptionModal" tabindex="-1" role="dialog" aria-labelledby="transcriptionModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-lg" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="transcriptionModalLabel">Transcripción</h5>
+                    <button type="button" class="close" data-bs-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <iframe id="transcriptionFrame" src="" style="width: 100%; height: 500px; border: none;" allow="microphone"></iframe>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    
     <!-- Modal para Procesar -->
     <div class="modal fade" id="processModal" tabindex="-1" role="dialog" aria-labelledby="processModalLabel"
         aria-hidden="true">
@@ -336,9 +368,30 @@
             </div>
         </div>
     </div>
-<script>
-    var baseUrl = '<?php echo base_url(); ?>';
-</script>
+
+    <!-- Modal para mostrar la transcripción -->
+    <div class="modal fade" id="transcriptionModal" tabindex="-1" role="dialog" aria-labelledby="transcriptionModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-lg" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="transcriptionModalLabel">Transcripción</h5>
+                    <button type="button" class="close" data-bs-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body" id="transcriptionContent">
+                    <!-- El contenido de la transcripción se cargará aquí -->
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        var baseUrl = '<?php echo base_url(); ?>';
+    </script>
 </body>
 <script>
     var tuBaseURL = "<?php echo base_url(); ?>";
