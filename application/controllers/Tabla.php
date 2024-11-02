@@ -91,4 +91,20 @@ class Tabla extends CI_Controller
             echo json_encode(['success' => false, 'message' => 'Error al enlazar el estudio']);
         }
     }
+
+    public function verificar_medico_informante() {
+        $admision = $this->input->get('admission_id');
+        
+        $this->db->select('cola_tipo.medico_informante');
+        $this->db->from('cola_tipo');
+        $this->db->join('cola', 'cola.id = cola_tipo.cola_id');
+        $this->db->where('cola.admision', $admision);
+        $query = $this->db->get();
+        
+        $result = $query->row();
+        
+        echo json_encode([
+            'medico_informante' => $result ? $result->medico_informante : null
+        ]);
+    }
 }

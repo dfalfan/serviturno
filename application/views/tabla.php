@@ -305,7 +305,7 @@
                     </div>
                     <hr>
                     <div class="form-group">
-                        <h6>Seleccione médico:</h6>
+                        <h6 id="doctor-list-title">Seleccione médico:</h6>
                         <div id="transcribe-doctor-list" class="doctor-tags">
                             <!-- Los doctores se agregarán aquí dinámicamente como tags -->
                         </div>
