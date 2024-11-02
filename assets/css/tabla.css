@@ -182,11 +182,13 @@
 }
 
 .btn-transcribe i {
-  color: #28a745;
+  color: #007bff;
+  /* color: #28a745; */
 }
 
 .btn-process i {
-  color: #ffc107;
+  color: #007bff;
+  /* color: #ffc107; */
 }
 
 /* Estilos para modo oscuro */
@@ -199,11 +201,13 @@ body.dark-mode .btn-view-study i {
 }
 
 body.dark-mode .btn-transcribe i {
-  color: #5cd675;
+  color: #007bff;
+  /* color: #5cd675; */ 
 }
 
 body.dark-mode .btn-process i {
-  color: #ffd54f;
+  color: #007bff;
+  /* color: #ffd54f; */
 }
 
 .btn-vstudies,
