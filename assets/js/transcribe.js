@@ -46,47 +46,48 @@ $(document).ready(function () {
 
   function processTranscribeStudies(patientDetails) {
     var subestudios = patientDetails.subestudios
-      ? patientDetails.subestudios.split(";;")
-      : [];
+        ? patientDetails.subestudios.split(";;")
+        : [];
 
     if (subestudios.length === 0) {
-      $("#transcribe-study-list").html(
-        '<div class="alert alert-info">No hay estudios disponibles para este paciente.</div>'
-      );
-      return;
+        $("#transcribe-study-list").html(
+            '<div class="alert alert-info">No hay estudios disponibles para este paciente.</div>'
+        );
+        return;
     }
 
     var studyListHtml = '<div class="list-group">';
 
     subestudios.forEach(function (subestudio, index) {
-      var [studyName, estudioId, , , detalle] = subestudio.split("|");
-      console.log("Procesando subestudio:", studyName, "con ID:", estudioId);
+        var parts = subestudio.split("|");
+        var nombreEstudio = parts[0];
+        var estudioId = parts[1];
+        var studyInstanceUid = parts[2];
+        var studyDescription = parts[3];
+        var detalle = parts[4];
+        var estudioInformado = parts[5] === '1';
 
-      studyName = studyName.trim() || "Estudio sin nombre";
-      estudioId = estudioId.trim() || "0";
-      detalle = detalle.trim() || "Sin detalle";
-
-      var displayName =
-        studyName + (detalle !== "Sin detalle" ? " - " + detalle : "");
-
-      studyListHtml += `
-        <div class="list-group-item">
-          <div class="form-check">
-            <input class="form-check-input" type="checkbox" value="${estudioId}" id="study-${estudioId}">
-            <label class="form-check-label" for="study-${estudioId}">
-              ${displayName}
-            </label>
-          </div>
-        </div>
-      `;
+        studyListHtml += `
+            <div class="list-group-item">
+                <div class="d-flex align-items-center">
+                    ${!estudioInformado ? `
+                        <div class="form-check me-2">
+                            <input class="form-check-input" type="checkbox" 
+                                   value="${estudioId}" 
+                                   id="study-${estudioId}">
+                        </div>
+                    ` : ''}
+                    <label class="form-check-label" ${!estudioInformado ? `for="study-${estudioId}"` : ''}>
+                        ${nombreEstudio}
+                        ${detalle ? `<small class="text-muted">(${detalle})</small>` : ''}
+                        ${estudioInformado ? '<span class="badge bg-success ms-2">Informado</span>' : ''}
+                    </label>
+                </div>
+            </div>`;
     });
 
-    studyListHtml += "</div>";
-
+    studyListHtml += '</div>';
     $("#transcribe-study-list").html(studyListHtml);
-
-    // Cargar la lista de médicos
-    loadDoctorsList();
   }
 
   function loadDoctorsList(categoryId) {
