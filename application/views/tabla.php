@@ -326,19 +326,30 @@
     
   <!-- Modal para mostrar la transcripción -->
     <div class="modal fade" id="transcriptionModal" tabindex="-1" role="dialog" aria-labelledby="transcriptionModalLabel" aria-hidden="true">
-        <div class="modal-dialog modal-lg" role="document">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="transcriptionModalLabel">Transcripción</h5>
-                    <button type="button" class="close" data-bs-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
-                </div>
-                <div class="modal-body">
-                    <iframe id="transcriptionFrame" src="" style="width: 100%; height: 500px; border: none;" allow="microphone"></iframe>
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+        <div class="modal-dialog modal-xl" role="document" style="max-width: 95%; height: 95vh;">
+            <div class="modal-content" style="height: 100%; position: relative;">
+                <button type="button" class="close-btn" data-bs-dismiss="modal" aria-label="Close" style="
+                    position: absolute;
+                    right: -15px;
+                    top: -15px;
+                    width: 60px;
+                    height: 60px;
+                    border-radius: 50%;
+                    background: #dc3545;
+                    border: 2px solid #fff;
+                    color: white;
+                    font-size: 60px;
+                    line-height: 0.8;
+                    padding-bottom: 8px;
+                    z-index: 1051;
+                    cursor: pointer;
+                    box-shadow: 0 2px 4px rgba(0,0,0,0.2);
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                ">&times;</button>
+                <div class="modal-body p-0" style="height: 100%;">
+                    <iframe id="transcriptionFrame" src="" style="width: 100%; height: 100%; border: none;" allow="microphone"></iframe>
                 </div>
             </div>
         </div>
@@ -369,25 +380,25 @@
         </div>
     </div>
 
-    <!-- Modal para mostrar la transcripción -->
-    <div class="modal fade" id="transcriptionModal" tabindex="-1" role="dialog" aria-labelledby="transcriptionModalLabel" aria-hidden="true">
-        <div class="modal-dialog modal-lg" role="document">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="transcriptionModalLabel">Transcripción</h5>
-                    <button type="button" class="close" data-bs-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
-                </div>
-                <div class="modal-body" id="transcriptionContent">
-                    <!-- El contenido de la transcripción se cargará aquí -->
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
-                </div>
+  <!-- Modal para mostrar la transcripción -->
+<div class="modal fade" id="transcriptionModal" tabindex="-1" role="dialog" aria-labelledby="transcriptionModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="transcriptionModalLabel">Transcripción</h5>
+                <button type="button" class="close" data-bs-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <iframe id="transcriptionFrame" src="" style="width: 100%; height: 1600px; border: none;" allow="microphone"></iframe>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
             </div>
         </div>
     </div>
+</div>
 
     <script>
         var baseUrl = '<?php echo base_url(); ?>';
