@@ -181,6 +181,10 @@
   color: #007bff;
 }
 
+.btn-view-study.has-study i {
+  color: #28a745;
+}
+
 .btn-transcribe i {
   color: #007bff;
   /* color: #28a745; */
@@ -198,6 +202,10 @@ body.dark-mode .btn-action:hover {
 
 body.dark-mode .btn-view-study i {
   color: #4da3ff;
+}
+
+body.dark-mode .btn-view-study.has-study i {
+  color: #5cd675;
 }
 
 body.dark-mode .btn-transcribe i {

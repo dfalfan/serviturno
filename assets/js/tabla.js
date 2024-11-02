@@ -290,17 +290,18 @@ $(document).ready(function () {
     });
   }
 
-  function generateActionButtons(tecnico) {
+  function generateActionButtons(tecnico, study_instance_uids) {
     if (tecnico) {
-      return (
-        '<div class="action-buttons">' +
-        '<button class="btn-action btn-view-study" title="Ver estudio"><i class="fas fa-eye"></i></button>' +
-        '<button class="btn-action btn-transcribe" title="Transcribir"><i class="fas fa-microphone"></i></button>' +
-        '<button class="btn-action btn-process" title="Procesar"><i class="fas fa-play"></i></button>' +
-        "</div>"
-      );
+        // Verificar si hay algún study_instance_uid no nulo
+        const hasStudy = study_instance_uids && study_instance_uids.split(',').some(uid => uid !== '' && uid !== null);
+        
+        return '<div class="action-buttons">' +
+            '<button class="btn-action btn-view-study ' + (hasStudy ? 'has-study' : '') + '" title="Ver estudio"><i class="fas fa-eye"></i></button>' +
+            '<button class="btn-action btn-transcribe" title="Transcribir"><i class="fas fa-microphone"></i></button>' +
+            '<button class="btn-action btn-process" title="Procesar"><i class="fas fa-play"></i></button>' +
+            '</div>';
     }
-    return "";
+    return '';
   }
 
   $("#refresh-btn").on("click", function () {
@@ -420,7 +421,7 @@ $(document).ready(function () {
                       url +
                       '">Llamar</button>'
                     : "",
-                  generateActionButtons(data[i].tecnico),
+                  generateActionButtons(data[i].tecnico, data[i].study_instance_uids),
                 ])
                 .draw(false)
                 .node();
@@ -600,7 +601,7 @@ $(document).ready(function () {
                     url +
                     '">Llamar</button>'
                   : "",
-                generateActionButtons(data[i].tecnico),
+                generateActionButtons(data[i].tecnico, data[i].study_instance_uids),
               ])
               .draw(false)
               .node();
@@ -1231,7 +1232,7 @@ $(document).ready(function () {
                     url +
                     '">Llamar</button>'
                   : "",
-                generateActionButtons(data[i].tecnico),
+                generateActionButtons(data[i].tecnico, data[i].study_instance_uids),
               ])
               .draw(false)
               .node();
