@@ -122,6 +122,11 @@ $(document).ready(function () {
         $(this).addClass('selected');
         $('#selected-doctor-id').val($(this).data('doctor-id'));
     });
+
+    // Seleccionar automáticamente el primer doctor
+    const firstDoctor = $('.doctor-tag').first();
+    firstDoctor.addClass('selected');
+    $('#selected-doctor-id').val(firstDoctor.data('doctor-id'));
   }
 
   $("#transcribe-btn").on("click", function () {
