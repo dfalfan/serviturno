@@ -53,10 +53,13 @@ $(document).ready(function () {
         $("#transcribe-study-list").html(
             '<div class="alert alert-info">No hay estudios disponibles para este paciente.</div>'
         );
+        // Ocultar el botón si no hay estudios
+        $("#transcribe-btn").hide();
         return;
     }
 
     var studyListHtml = '<div class="list-group">';
+    var hasStudiesToTranscribe = false;
 
     subestudios.forEach(function (subestudio, index) {
         var parts = subestudio.split("|");
@@ -66,6 +69,11 @@ $(document).ready(function () {
         var studyDescription = parts[3];
         var detalle = parts[4];
         var estudioInformado = parts[5] === '1';
+
+        // Si hay al menos un estudio no informado, marcamos que hay estudios para transcribir
+        if (!estudioInformado) {
+            hasStudiesToTranscribe = true;
+        }
 
         studyListHtml += `
             <div class="list-group-item">
@@ -88,6 +96,13 @@ $(document).ready(function () {
 
     studyListHtml += '</div>';
     $("#transcribe-study-list").html(studyListHtml);
+
+    // Mostrar u ocultar el botón de transcribir según si hay estudios disponibles para transcribir
+    if (hasStudiesToTranscribe) {
+        $("#transcribe-btn").show();
+    } else {
+        $("#transcribe-btn").hide();
+    }
   }
 
   function loadDoctorsList(categoryId) {
