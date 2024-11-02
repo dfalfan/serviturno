@@ -304,15 +304,17 @@
                         <input type="hidden" id="category-id">
                     </div>
                     <hr>
+                    <div class="form-group">
+                        <h6>Seleccione médico:</h6>
+                        <div id="transcribe-doctor-list" class="doctor-tags">
+                            <!-- Los doctores se agregarán aquí dinámicamente como tags -->
+                        </div>
+                        <input type="hidden" id="selected-doctor-id">
+                    </div>
+                    <hr>
                     <h6>Estudios disponibles:</h6>
                     <div id="transcribe-study-list">
                         <!-- Los estudios se agregarán aquí dinámicamente -->
-                    </div>
-                    <div class="form-group mt-3">
-                        <label for="transcribe-doctor-select">Seleccione médico:</label>
-                        <select class="form-control" id="transcribe-doctor-select">
-                            <option value="">Seleccione un médico</option>
-                        </select>
                     </div>
                 </div>
                 <div class="modal-footer">

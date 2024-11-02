@@ -90,8 +90,8 @@ $(document).ready(function () {
   }
 
   function loadDoctorsList(categoryId) {
-    var doctorSelect = $("#transcribe-doctor-select");
-    doctorSelect.empty().append('<option value="">Seleccione un médico</option>');
+    var doctorList = $("#transcribe-doctor-list");
+    doctorList.empty();
 
     // Convertir categoryId a número para comparación
     categoryId = parseInt(categoryId);
@@ -103,18 +103,29 @@ $(document).ready(function () {
 
     // Si no hay doctores para esta categoría, mostrar mensaje
     if (filteredDoctors.length === 0) {
-        doctorSelect.append('<option disabled>No hay médicos disponibles para esta categoría</option>');
+        doctorList.html('<div class="text-muted">No hay médicos disponibles para esta categoría</div>');
         return;
     }
 
-    // Agregar los doctores filtrados al select
+    // Agregar los doctores filtrados como tags
     filteredDoctors.forEach(function(doctor) {
-        doctorSelect.append(`<option value="${doctor.id}">${doctor.name}</option>`);
+        doctorList.append(`
+            <div class="doctor-tag" data-doctor-id="${doctor.id}">
+                ${doctor.name}
+            </div>
+        `);
+    });
+
+    // Manejar la selección de doctores
+    $('.doctor-tag').click(function() {
+        $('.doctor-tag').removeClass('selected');
+        $(this).addClass('selected');
+        $('#selected-doctor-id').val($(this).data('doctor-id'));
     });
   }
 
   $("#transcribe-btn").on("click", function () {
-    var doctorId = $("#transcribe-doctor-select").val();
+    var doctorId = $("#selected-doctor-id").val();
     var selectedStudies = [];
     $("input[type=checkbox]:checked").each(function () {
       selectedStudies.push($(this).val());
@@ -175,9 +186,7 @@ $(document).ready(function () {
       mediaRecorder.addEventListener("stop", () => {
         const audioBlob = new Blob(audioChunks);
         const audioUrl = URL.createObjectURL(audioBlob);
-        
-        // Aquí puedes enviar el audioBlob al servidor para procesamiento
-        // o usar una API de reconocimiento de voz en el cliente
+    
         
         $("#transcription-result").text("Transcripción en proceso...");
       });
