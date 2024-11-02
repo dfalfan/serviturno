@@ -6,44 +6,41 @@ $(document).ready(function () {
     var patientId = row.data("id");
     var patientName = row.find("td:eq(2)").text();
     var patientAdmission = row.find("td:eq(7)").text();
-    var patientCategory = row.find("td:eq(0)").text();
+    var categoryName = row.find("td:eq(0)").text();
 
-    // Llenar el modal con la información básica del paciente
+    // Mapeo de nombres de categoría a IDs
+    const categoryMap = {
+      'Rayos X': 42,
+      'Mamografía': 52,
+      'Ecografía': 51,
+      'Tomografía': 48,
+      'Resonancia': 49
+    };
+
+    const categoryId = categoryMap[categoryName];
+
+    // Actualizar la información del paciente en el modal
     $("#transcribe-patient-name").text(patientName);
     $("#transcribe-patient-admission").text(patientAdmission);
-    $("#transcribe-patient-category").text(patientCategory);
+    $("#transcribe-patient-category").text(categoryName);
+    $("#category-id").val(categoryId);
 
-    // Limpiar la lista de estudios existente
-    $("#transcribe-study-list").empty();
-
-    // Hacer la llamada a tu propio backend para obtener los detalles del paciente
+    // Obtener los detalles del paciente
     $.ajax({
-      url: baseUrl + "Tabla/obtener_detalle_paciente",
+      url: "Tabla/obtener_detalle_paciente",
       type: "GET",
       data: { id: patientId },
       success: function (data) {
         var patientDetails = JSON.parse(data);
-        console.log("Detalles del paciente:", patientDetails);
-
-        // Procesar y mostrar los estudios
         processTranscribeStudies(patientDetails);
-      },
-      error: function (xhr, status, error) {
-        console.error("Error al obtener detalles del paciente:", error);
-        $("#transcribe-study-list").html(
-          '<div class="alert alert-danger">Error al cargar los detalles del paciente. Por favor, intente de nuevo más tarde.</div>'
-        );
-      },
+        loadDoctorsList(categoryId);
+      }
     });
 
-    // Mostrar el modal
-    var transcribeModal = new bootstrap.Modal(
-      document.getElementById("transcribeModal"),
-      {
-        backdrop: "static",
-        keyboard: false,
-      }
-    );
+    var transcribeModal = new bootstrap.Modal(document.getElementById("transcribeModal"), {
+      backdrop: "static",
+      keyboard: false,
+    });
     transcribeModal.show();
   });
 
@@ -92,14 +89,27 @@ $(document).ready(function () {
     loadDoctorsList();
   }
 
-  function loadDoctorsList() {
+  function loadDoctorsList(categoryId) {
     var doctorSelect = $("#transcribe-doctor-select");
-    doctorSelect
-      .empty()
-      .append('<option value="">Seleccione un médico</option>');
+    doctorSelect.empty().append('<option value="">Seleccione un médico</option>');
 
-    doctors.forEach(function (doctor) {
-      doctorSelect.append(`<option value="${doctor.id}">${doctor.name}</option>`);
+    // Convertir categoryId a número para comparación
+    categoryId = parseInt(categoryId);
+
+    // Filtrar doctores por categoría
+    const filteredDoctors = doctors.filter(doctor => 
+        doctor.categories.includes(categoryId)
+    );
+
+    // Si no hay doctores para esta categoría, mostrar mensaje
+    if (filteredDoctors.length === 0) {
+        doctorSelect.append('<option disabled>No hay médicos disponibles para esta categoría</option>');
+        return;
+    }
+
+    // Agregar los doctores filtrados al select
+    filteredDoctors.forEach(function(doctor) {
+        doctorSelect.append(`<option value="${doctor.id}">${doctor.name}</option>`);
     });
   }
 

@@ -287,8 +287,7 @@
     </div>
 
     <!-- Modal para Transcribir -->
-    <div class="modal fade" id="transcribeModal" tabindex="-1" role="dialog" aria-labelledby="transcribeModalLabel"
-        aria-hidden="true">
+    <div class="modal fade" id="transcribeModal" tabindex="-1" role="dialog" aria-labelledby="transcribeModalLabel" aria-hidden="true">
         <div class="modal-dialog modal-lg" role="document">
             <div class="modal-content">
                 <div class="modal-header">
@@ -302,6 +301,7 @@
                         <p><strong>Nombre:</strong> <span id="transcribe-patient-name"></span></p>
                         <p><strong>Admisión:</strong> <span id="transcribe-patient-admission"></span></p>
                         <p><strong>Categoría:</strong> <span id="transcribe-patient-category"></span></p>
+                        <input type="hidden" id="category-id">
                     </div>
                     <hr>
                     <h6>Estudios disponibles:</h6>
@@ -312,7 +312,6 @@
                         <label for="transcribe-doctor-select">Seleccione médico:</label>
                         <select class="form-control" id="transcribe-doctor-select">
                             <option value="">Seleccione un médico</option>
-                            <!-- Las opciones de médicos se agregarán dinámicamente -->
                         </select>
                     </div>
                 </div>
@@ -380,25 +379,7 @@
         </div>
     </div>
 
-  <!-- Modal para mostrar la transcripción -->
-<div class="modal fade" id="transcriptionModal" tabindex="-1" role="dialog" aria-labelledby="transcriptionModalLabel" aria-hidden="true">
-    <div class="modal-dialog modal-lg" role="document">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title" id="transcriptionModalLabel">Transcripción</h5>
-                <button type="button" class="close" data-bs-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                </button>
-            </div>
-            <div class="modal-body">
-                <iframe id="transcriptionFrame" src="" style="width: 100%; height: 1600px; border: none;" allow="microphone"></iframe>
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
-            </div>
-        </div>
-    </div>
-</div>
+
 
     <script>
         var baseUrl = '<?php echo base_url(); ?>';
