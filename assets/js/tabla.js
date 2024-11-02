@@ -290,15 +290,24 @@ $(document).ready(function () {
     });
   }
 
-  function generateActionButtons(tecnico, study_instance_uids) {
+  function generateActionButtons(tecnico, study_instance_uids, estudios_informados, estudios_guardados, estudios_procesados) {
     if (tecnico) {
         // Verificar si hay algún study_instance_uid no nulo
         const hasStudy = study_instance_uids && study_instance_uids.split(',').some(uid => uid !== '' && uid !== null);
         
+        // Verificar si hay algún estudio informado
+        const isInformed = estudios_informados && estudios_informados.split(',').some(informed => informed === '1');
+        
+        // Verificar si hay algún estudio guardado
+        const isSaved = estudios_guardados && estudios_guardados.split(',').some(saved => saved === '1');
+        
+        // Verificar si hay algún estudio procesado
+        const isProcessed = estudios_procesados && estudios_procesados.split(',').some(processed => processed === '1');
+        
         return '<div class="action-buttons">' +
             '<button class="btn-action btn-view-study ' + (hasStudy ? 'has-study' : '') + '" title="Ver estudio"><i class="fas fa-eye"></i></button>' +
-            '<button class="btn-action btn-transcribe" title="Transcribir"><i class="fas fa-microphone"></i></button>' +
-            '<button class="btn-action btn-process" title="Procesar"><i class="fas fa-play"></i></button>' +
+            '<button class="btn-action btn-transcribe ' + (isInformed ? 'is-informed' : (isSaved ? 'is-saved' : '')) + '" title="Transcribir"><i class="fas fa-microphone"></i></button>' +
+            '<button class="btn-action btn-process ' + (isProcessed ? 'is-processed' : '') + '" title="Procesar"><i class="fas fa-play"></i></button>' +
             '</div>';
     }
     return '';
@@ -421,7 +430,13 @@ $(document).ready(function () {
                       url +
                       '">Llamar</button>'
                     : "",
-                  generateActionButtons(data[i].tecnico, data[i].study_instance_uids),
+                  generateActionButtons(
+                    data[i].tecnico, 
+                    data[i].study_instance_uids, 
+                    data[i].estudios_informados, 
+                    data[i].estudios_guardados,
+                    data[i].estudios_procesados
+                  ),
                 ])
                 .draw(false)
                 .node();
@@ -601,7 +616,13 @@ $(document).ready(function () {
                     url +
                     '">Llamar</button>'
                   : "",
-                generateActionButtons(data[i].tecnico, data[i].study_instance_uids),
+                generateActionButtons(
+                  data[i].tecnico, 
+                  data[i].study_instance_uids, 
+                  data[i].estudios_informados, 
+                  data[i].estudios_guardados,
+                  data[i].estudios_procesados
+                ),
               ])
               .draw(false)
               .node();
@@ -1232,7 +1253,13 @@ $(document).ready(function () {
                     url +
                     '">Llamar</button>'
                   : "",
-                generateActionButtons(data[i].tecnico, data[i].study_instance_uids),
+                generateActionButtons(
+                  data[i].tecnico, 
+                  data[i].study_instance_uids, 
+                  data[i].estudios_informados, 
+                  data[i].estudios_guardados,
+                  data[i].estudios_procesados
+                ),
               ])
               .draw(false)
               .node();

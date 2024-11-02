@@ -187,12 +187,22 @@
 
 .btn-transcribe i {
   color: #007bff;
-  /* color: #28a745; */
+}
+
+.btn-transcribe.is-informed i {
+  color: #28a745;
+}
+
+.btn-transcribe.is-saved i {
+  color: #ffc107;
 }
 
 .btn-process i {
   color: #007bff;
-  /* color: #ffc107; */
+}
+
+.btn-process.is-processed i {
+  color: #28a745;
 }
 
 /* Estilos para modo oscuro */
@@ -209,13 +219,23 @@ body.dark-mode .btn-view-study.has-study i {
 }
 
 body.dark-mode .btn-transcribe i {
-  color: #007bff;
-  /* color: #5cd675; */ 
+  color: #4da3ff;
+}
+
+body.dark-mode .btn-transcribe.is-informed i {
+  color: #5cd675;
+}
+
+body.dark-mode .btn-transcribe.is-saved i {
+  color: #ffd54f;
 }
 
 body.dark-mode .btn-process i {
-  color: #007bff;
-  /* color: #ffd54f; */
+  color: #4da3ff;
+}
+
+body.dark-mode .btn-process.is-processed i {
+  color: #5cd675;
 }
 
 .btn-vstudies,

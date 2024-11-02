@@ -178,10 +178,18 @@
                                         <button class="btn-action btn-view-study <?php echo !empty($dato->study_instance_uids) ? 'has-study' : ''; ?>" title="Ver estudio">
                                             <i class="fas fa-eye"></i>
                                         </button>
-                                        <button class="btn-action btn-transcribe" title="Transcribir">
+                                        <?php
+                                        $transcribeClass = '';
+                                        if (!empty($dato->estudios_informados) && in_array('1', explode(',', $dato->estudios_informados))) {
+                                            $transcribeClass = 'is-informed';
+                                        } elseif (!empty($dato->estudios_guardados) && in_array('1', explode(',', $dato->estudios_guardados))) {
+                                            $transcribeClass = 'is-saved';
+                                        }
+                                        ?>
+                                        <button class="btn-action btn-transcribe <?php echo $transcribeClass; ?>" title="Transcribir">
                                             <i class="fas fa-microphone"></i>
                                         </button>
-                                        <button class="btn-action btn-process" title="Procesar">
+                                        <button class="btn-action btn-process <?php echo !empty($dato->estudios_procesados) && in_array('1', explode(',', $dato->estudios_procesados)) ? 'is-processed' : ''; ?>" title="Procesar">
                                             <i class="fas fa-play"></i>
                                         </button>
                                     <?php endif; ?>
