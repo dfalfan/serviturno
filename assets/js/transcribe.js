@@ -117,7 +117,8 @@ $(document).ready(function () {
     $(".view-pdf-btn").on("click", function(e) {
         e.preventDefault();
         var pdfPath = $(this).data('pdf-path');
-        window.open(pdfPath, '_blank');
+        var url = `Tabla/ver_pdf?ruta=${encodeURIComponent(pdfPath)}`;
+        window.open(url, '_blank');
     });
   }
 

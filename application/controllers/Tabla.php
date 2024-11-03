@@ -107,4 +107,27 @@ class Tabla extends CI_Controller
             'medico_informante' => $result ? $result->medico_informante : null
         ]);
     }
+
+    public function ver_pdf()
+    {
+        $ruta = $this->input->get('ruta');
+        
+        // Validar que la ruta comience con la ruta base permitida
+        $ruta_base = '\\\\192.168.5.12\\dicom\\_pdf\\';
+        if (strpos($ruta, $ruta_base) !== 0) {
+            show_error('Acceso no autorizado', 403);
+            return;
+        }
+        
+        // Convertir la ruta de red a formato local si es necesario
+        $ruta_local = str_replace('\\', '/', $ruta);
+        
+        if (file_exists($ruta_local)) {
+            header('Content-Type: application/pdf');
+            header('Content-Disposition: inline; filename="' . basename($ruta_local) . '"');
+            readfile($ruta_local);
+        } else {
+            show_404('El archivo PDF no fue encontrado');
+        }
+    }
 }
