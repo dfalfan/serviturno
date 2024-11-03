@@ -42,6 +42,7 @@
     <script src="<?php echo base_url('assets/js/view-study.js'); ?>"></script>
     <script src="<?php echo base_url('assets/js/transcribe.js'); ?>"></script>
     <script src="<?php echo base_url('assets/js/process.js'); ?>"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
 </head>
 
 <script>
@@ -189,6 +190,9 @@
                                         <button class="btn-action btn-transcribe <?php echo $transcribeClass; ?>" title="Transcribir">
                                             <i class="fas fa-microphone"></i>
                                         </button>
+                                        <button class="btn-action btn-qr" title="Código QR para transcripción móvil">
+                                            <i class="fas fa-qrcode"></i>
+                                        </button>
                                         <button class="btn-action btn-process <?php echo !empty($dato->estudios_procesados) && in_array('1', explode(',', $dato->estudios_procesados)) ? 'is-processed' : ''; ?>" title="Procesar">
                                             <i class="fas fa-play"></i>
                                         </button>
@@ -305,6 +309,9 @@
             <div class="modal-content">
                 <div class="modal-header">
                     <h5 class="modal-title" id="transcribeModalLabel">Transcribir</h5>
+                    <button type="button" class="close" data-bs-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
                 </div>
                 <div class="modal-body">
                     <div class="patient-info">
@@ -329,6 +336,9 @@
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-primary" id="transcribe-btn">Transcribir</button>
+                    <button type="button" class="btn btn-info" id="qr-btn">
+                        <i class="fas fa-qrcode"></i> QR
+                    </button>
                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
                 </div>
             </div>
@@ -446,5 +456,23 @@
         actualizarModales();
     });
 </script>
+
+<!-- Modal para escanear QR -->
+<div class="modal fade" id="qrModal" tabindex="-1" role="dialog" aria-labelledby="qrModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-sm" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="qrModalLabel">Escanear para transcribir</h5>
+                <button type="button" class="close" data-bs-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body text-center">
+                <div id="qrcode"></div>
+                <p class="mt-3">Escanee el código QR para abrir el transcriptor en su dispositivo móvil</p>
+            </div>
+        </div>
+    </div>
+</div>
 
 </html>

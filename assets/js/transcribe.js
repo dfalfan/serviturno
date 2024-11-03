@@ -259,4 +259,79 @@ $(document).ready(function () {
       });
     });
   }
+
+  // Evento para el botón QR
+  $(document).on("click", ".btn-qr", function (e) {
+    e.preventDefault();
+
+    // Obtener los estudios seleccionados y el doctor del modal de transcripción
+    var doctorId = $("#selected-doctor-id").val();
+    var selectedStudies = [];
+    $("input[type=checkbox]:checked").each(function () {
+      selectedStudies.push($(this).val());
+    });
+
+    if (selectedStudies.length === 0) {
+      alert("Por favor, seleccione al menos un estudio.");
+      return;
+    }
+
+    if (!doctorId) {
+      alert("Por favor, seleccione un médico.");
+      return;
+    }
+
+    // Construir la misma URL que usamos para transcribir
+    var transcriptionUrl = `https://192.168.5.21/transcription?doctorId=${doctorId}&studyId=${selectedStudies.join('&studyId=')}`;
+
+    // Limpiar el contenedor del QR
+    $("#qrcode").empty();
+
+    // Generar nuevo QR
+    new QRCode(document.getElementById("qrcode"), {
+      text: transcriptionUrl,
+      width: 256,
+      height: 256
+    });
+
+    // Mostrar el modal
+    $("#qrModal").modal("show");
+  });
+
+  // Modificar el evento del botón QR
+  $("#qr-btn").on("click", function (e) {
+    e.preventDefault();
+
+    var doctorId = $("#selected-doctor-id").val();
+    var selectedStudies = [];
+    $("input[type=checkbox]:checked").each(function () {
+      selectedStudies.push($(this).val());
+    });
+
+    if (selectedStudies.length === 0) {
+      alert("Por favor, seleccione al menos un estudio.");
+      return;
+    }
+
+    if (!doctorId) {
+      alert("Por favor, seleccione un médico.");
+      return;
+    }
+
+    // Construir la misma URL que usamos para transcribir
+    var transcriptionUrl = `https://192.168.5.21/transcription?doctorId=${doctorId}&studyId=${selectedStudies.join('&studyId=')}`;
+
+    // Limpiar el contenedor del QR
+    $("#qrcode").empty();
+
+    // Generar nuevo QR
+    new QRCode(document.getElementById("qrcode"), {
+      text: transcriptionUrl,
+      width: 256,
+      height: 256
+    });
+
+    // Mostrar el modal QR
+    $("#qrModal").modal("show");
+  });
 });

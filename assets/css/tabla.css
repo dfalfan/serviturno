@@ -1469,3 +1469,103 @@ body.dark-mode .view-pdf-btn:hover {
     background-color: #0c5d6b;
     border-color: #0b545f;
 }
+
+.btn-qr i {
+    color: #007bff;
+}
+
+#qrcode {
+    display: inline-block;
+    padding: 20px;
+    background: white;
+    border-radius: 10px;
+}
+
+/* Modo oscuro */
+body.dark-mode .btn-qr i {
+    color: #4da3ff;
+}
+
+body.dark-mode #qrModal .modal-content {
+    background-color: #343a40;
+    color: #fff;
+}
+
+body.dark-mode #qrcode {
+    background-color: white;
+}
+
+#qr-btn {
+    margin-right: 10px;
+    background-color: #17a2b8;
+    border-color: #17a2b8;
+    color: white;
+}
+
+#qr-btn:hover {
+    background-color: #138496;
+    border-color: #117a8b;
+}
+
+#qr-btn i {
+    margin-right: 5px;
+}
+
+/* Modo oscuro */
+body.dark-mode #qr-btn {
+    background-color: #0f7585;
+    border-color: #0f7585;
+}
+
+body.dark-mode #qr-btn:hover {
+    background-color: #0c5d6b;
+    border-color: #0b545f;
+}
+
+/* Estilos para el modal QR */
+#qrModal .modal-dialog {
+    max-width: 320px; /* Ajustamos el ancho máximo del modal */
+}
+
+#qrModal .modal-body {
+    padding: 1.5rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+#qrcode {
+    display: inline-block;
+    padding: 10px;
+    background: white;
+    border-radius: 10px;
+    max-width: 100%; /* Asegura que el QR no se salga del contenedor */
+}
+
+#qrcode img {
+    display: block;
+    max-width: 100%;
+    height: auto;
+}
+
+#qrModal .modal-body p {
+    margin-top: 1rem;
+    font-size: 0.9rem;
+    text-align: center;
+    color: #6c757d;
+}
+
+/* Ajustes para modo oscuro */
+body.dark-mode #qrModal .modal-body p {
+    color: #adb5bd;
+}
+
+body.dark-mode #qrModal .modal-content {
+    background-color: #343a40;
+    color: #fff;
+}
+
+body.dark-mode #qrcode {
+    background-color: white;
+    box-shadow: 0 0 10px rgba(0,0,0,0.2);
+}
