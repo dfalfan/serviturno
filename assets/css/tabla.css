@@ -231,11 +231,8 @@ body.dark-mode .btn-transcribe.is-saved i {
 }
 
 body.dark-mode .btn-process i {
-  color: #4da3ff;
-}
-
-body.dark-mode .btn-process.is-processed i {
-  color: #5cd675;
+  color: #007bff;
+  /* color: #ffd54f; */
 }
 
 .btn-vstudies,
@@ -1442,4 +1439,33 @@ body.dark-mode .mode-toggle:hover {
   background-color: #0d6efd;
   color: white;
   border-color: #0d6efd;
+}
+
+.view-pdf-btn {
+    padding: 0.25rem 0.5rem;
+    font-size: 0.875rem;
+    background-color: #17a2b8;
+    border-color: #17a2b8;
+    color: white;
+}
+
+.view-pdf-btn:hover {
+    background-color: #138496;
+    border-color: #117a8b;
+    color: white;
+}
+
+.view-pdf-btn i {
+    margin-right: 5px;
+}
+
+/* Modo oscuro */
+body.dark-mode .view-pdf-btn {
+    background-color: #0f7585;
+    border-color: #0f7585;
+}
+
+body.dark-mode .view-pdf-btn:hover {
+    background-color: #0c5d6b;
+    border-color: #0b545f;
 }

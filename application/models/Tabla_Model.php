@@ -161,7 +161,8 @@ class Tabla_model extends CI_Model
                 COALESCE(cola_tipo.study_instance_uid, ''), '|',
                 COALESCE(cola_tipo.study_description, ''), '|',
                 COALESCE(cola_tipo.detalle, ''), '|',
-                COALESCE(cola_tipo.estudio_informado, '0')
+                COALESCE(cola_tipo.estudio_informado, '0'), '|',
+                COALESCE(cola_tipo.ruta_estudio, '')
             ) SEPARATOR ';;'
         ) as subestudios
     FROM 

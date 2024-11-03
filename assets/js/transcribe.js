@@ -53,7 +53,6 @@ $(document).ready(function () {
         $("#transcribe-study-list").html(
             '<div class="alert alert-info">No hay estudios disponibles para este paciente.</div>'
         );
-        // Ocultar el botón si no hay estudios
         $("#transcribe-btn").hide();
         return;
     }
@@ -69,6 +68,7 @@ $(document).ready(function () {
         var studyDescription = parts[3];
         var detalle = parts[4];
         var estudioInformado = parts[5] === '1';
+        var rutaPdf = parts[6];
 
         // Si hay al menos un estudio no informado, marcamos que hay estudios para transcribir
         if (!estudioInformado) {
@@ -77,19 +77,28 @@ $(document).ready(function () {
 
         studyListHtml += `
             <div class="list-group-item">
-                <div class="d-flex align-items-center">
-                    ${!estudioInformado ? `
-                        <div class="form-check me-2">
-                            <input class="form-check-input" type="checkbox" 
-                                   value="${estudioId}" 
-                                   id="study-${estudioId}">
-                        </div>
+                <div class="d-flex align-items-center justify-content-between">
+                    <div>
+                        ${!estudioInformado ? `
+                            <div class="form-check me-2">
+                                <input class="form-check-input" type="checkbox" 
+                                       value="${estudioId}" 
+                                       id="study-${estudioId}">
+                            </div>
+                        ` : ''}
+                        <label class="form-check-label" ${!estudioInformado ? `for="study-${estudioId}"` : ''}>
+                            ${nombreEstudio}
+                            ${detalle ? `<small class="text-muted">(${detalle})</small>` : ''}
+                            ${estudioInformado ? '<span class="badge bg-success ms-2">Informado</span>' : ''}
+                        </label>
+                    </div>
+                    ${estudioInformado && rutaPdf ? `
+                        <button class="btn btn-sm btn-info view-pdf-btn" 
+                                data-pdf-path="${rutaPdf}"
+                                title="Ver PDF">
+                            <i class="fas fa-file-pdf"></i> Ver PDF
+                        </button>
                     ` : ''}
-                    <label class="form-check-label" ${!estudioInformado ? `for="study-${estudioId}"` : ''}>
-                        ${nombreEstudio}
-                        ${detalle ? `<small class="text-muted">(${detalle})</small>` : ''}
-                        ${estudioInformado ? '<span class="badge bg-success ms-2">Informado</span>' : ''}
-                    </label>
                 </div>
             </div>`;
     });
@@ -97,12 +106,19 @@ $(document).ready(function () {
     studyListHtml += '</div>';
     $("#transcribe-study-list").html(studyListHtml);
 
-    // Mostrar u ocultar el botón de transcribir según si hay estudios disponibles para transcribir
+    // Mostrar u ocultar el botón de transcribir según si hay estudios disponibles
     if (hasStudiesToTranscribe) {
         $("#transcribe-btn").show();
     } else {
         $("#transcribe-btn").hide();
     }
+
+    // Agregar el evento click para los botones de PDF
+    $(".view-pdf-btn").on("click", function(e) {
+        e.preventDefault();
+        var pdfPath = $(this).data('pdf-path');
+        window.open(pdfPath, '_blank');
+    });
   }
 
   function loadDoctorsList(categoryId) {
