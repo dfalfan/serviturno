@@ -1,177 +1,216 @@
 <!DOCTYPE html>
-<html>
+<html lang="es">
 
 <head>
-    <title>Estadísticas | Imagenología</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Serviturno | Dashboard Imagenología</title>
     <link rel="icon" href="<?= base_url() ?>assets/images/favicon.ico" type="image/gif">
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/choices.js/10.2.0/choices.min.css"
-        integrity="sha512-oW+fEHZatXKwZQ5Lx5td2J93WJnSFLbnALFOFqy/pTuQyffi9gsUylGGZkD3DTSv8zkoOdU7MT7I6LTDcV8GBQ=="
-        crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/choices.js@10.2.0/public/assets/styles/choices.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/@mdi/font@7.2.96/css/materialdesignicons.min.css" rel="stylesheet">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.0/jquery.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.1/moment.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/choices.js/10.2.0/choices.min.js"
-        integrity="sha512-OrRY3yVhfDckdPBIjU2/VXGGDjq3GPcnILWTT39iYiuV6O3cEcAxkgCBVR49viQ99vBFeu+a6/AoFAkNHgFteg=="
-        crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-    <!-- Estilos personalizados para limitar el tamaño de los gráficos -->
+    <script src="https://cdn.jsdelivr.net/npm/choices.js@10.2.0/public/assets/scripts/choices.min.js"></script>
     <style>
-        #averageAttentionTimeChart {}
-
-        .navbar {
-            display: flex;
-            justify-content: space-between;
-            position: fixed;
-            top: 0;
-            width: 100%;
-            z-index: 100;
-            height: 74px;
-            background: white;
-            left: 0;
-            box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16);
+        :root {
+            --primary: #2563eb;
+            --secondary: #64748b;
+            --success: #10b981;
+            --warning: #f59e0b;
+            --danger: #ef4444;
+            --background: #f8fafc;
+            --surface: #ffffff;
+            --text: #1e293b;
         }
 
         body {
-            background-color: #f5f5f5;
-            font-size: 1.6rem;
-            font-family: 'Roboto', sans-serif;
-
+            background-color: var(--background);
+            color: var(--text);
+            font-family: 'Inter', sans-serif;
+            padding: 2rem;
+            min-height: 100vh;
         }
 
-        body.dark-mode {
-            background-color: #121212;
-            color: #ffffff;
-        }
-
-
-        .container {
-            max-width: 1600px;
-        }
-
-        .row {
-            margin-top: 100px;
-        }
-
-        .card {
-            border-radius: 12px;
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-        }
-
-
-        .card-body {
+        .stats-card {
+            background: var(--surface);
+            border-radius: 1rem;
+            box-shadow: 0 4px 6px -1px rgba(0,0,0,0.1);
             padding: 1.5rem;
+            transition: all 0.3s ease;
+            height: 100%;
         }
 
-        .big-select {
-            font-size: 2rem;
-            /* Aumenta el tamaño de la fuente */
-            height: 20px;
-            /* Aumenta la altura */
-            width: 50%;
-            /* Asegura que el select box ocupa todo el ancho disponible */
+        .stats-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 15px -3px rgba(0,0,0,0.1);
         }
 
-        .category-select {
-            font-size: 2rem;
-            /* Aumenta el tamaño de la fuente */
-            height: 20px;
-            /* Aumenta la altura */
-            width: 60%;
-            /* Asegura que el select box ocupa todo el ancho disponible */
+        .control-panel {
+            background: var(--surface);
+            border-radius: 1rem;
+            padding: 1.5rem;
+            box-shadow: 0 4px 6px -1px rgba(0,0,0,0.1);
+            height: 100%;
         }
 
-        .select2-container .select2-selection--single {
-            height: 70px;
-            /* Asegura que el contenedor del select box tiene la misma altura */
+        .chart-container {
+            background: var(--surface);
+            border-radius: 1rem;
+            padding: 1.5rem;
+            box-shadow: 0 4px 6px -1px rgba(0,0,0,0.1);
+            height: 500px;
+            position: relative;
         }
 
-        .select2-container--default .select2-selection--single .select2-selection__rendered {
-            line-height: 70px;
-            /* Alinea verticalmente el texto en el centro */
+        .stat-value {
+            font-size: 2.5rem;
+            font-weight: bold;
+            color: var(--primary);
+            margin: 0.5rem 0;
         }
 
-        .select2-container--default .select2-selection--single .select2-selection__arrow {
-            height: 70px;
-            /* Asegura que la flecha desplegable tiene la misma altura */
+        .stat-label {
+            color: var(--secondary);
+            font-size: 0.875rem;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
         }
 
-        .button-primary {
-            background-color: #6200ea;
-            color: #ffffff;
+        .icon-box {
+            width: 48px;
+            height: 48px;
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 1rem;
+            transition: all 0.3s ease;
         }
 
-        .button-primary {
-            transition: background-color 0.3s ease;
+        .icon-box.primary {
+            background: rgba(37, 99, 235, 0.1);
+            color: var(--primary);
         }
 
-        .button-primary:hover {
-            background-color: #3700b3;
+        .icon-box.warning {
+            background: rgba(245, 158, 11, 0.1);
+            color: var(--warning);
+        }
+
+        .icon-box.success {
+            background: rgba(16, 185, 129, 0.1);
+            color: var(--success);
+        }
+
+        .form-select, .form-control {
+            border-radius: 0.5rem;
+            border: 1px solid #e2e8f0;
+            padding: 0.75rem 1rem;
+            font-size: 1rem;
+            width: 100%;
+            margin-bottom: 1rem;
+            transition: all 0.3s ease;
+        }
+
+        .form-select:focus, .form-control:focus {
+            border-color: var(--primary);
+            box-shadow: 0 0 0 2px rgba(37, 99, 235, 0.1);
+        }
+
+        .form-label {
+            font-weight: 500;
+            color: var(--text);
+            margin-bottom: 0.5rem;
         }
     </style>
 </head>
 
 <body>
-    <nav class="navbar">
-        <div>
-            <embed style="width: 200px; height: 38px; margin-top: 2px;margin-left: -6px;" class="navbar-logo"
-                src="<?php echo base_url() . 'assets/images/logo_new.png' ?>">
-        </div>
-    </nav>
-
-    <h1 class="text-center mb-4">Estadísticas</h1>
-
     <div class="container">
-        <div class="row">
-            <div class="col-md-5">
-                <!-- Select boxes -->
-
-                <div class="mb-3">
-                    <label for="graph" class="form-label">Tipo:</label>
-                    <select id="graph" class="form-select category-select">
-                        <option selected disabled>Seleccione</option>
-                        <option value="averageAttentionTime">Tiempo promedio de atención</option>
-                        <option value="patientCount">Cantidad de tickets</option>
-                        <option value="uniquePatientCount">Cantidad de pacientes unicos</option>
-                        <option value="patientDistribution">Pacientes Por Especialidad</option>
-                        <option value="waitingTimeByCategory">Tiempo de Espera por Categoría</option>
-
-                    </select>
+        <div class="row g-4 mb-4">
+            <div class="col-md-4">
+                <div class="stats-card">
+                    <div class="icon-box primary">
+                        <i class="mdi mdi-clock-outline mdi-24px"></i>
+                    </div>
+                    <div class="stat-value">25 min</div>
+                    <div class="stat-label">Tiempo promedio de espera</div>
                 </div>
-
-                <div class="mb-3">
-                    <label for="category" class="form-label">Categoría:</label>
-                    <select id="category" class="form-select big-select">
-                        <option selected disabled>Seleccione</option>
-                        <option value="all">Todas</option>
-                    </select>
+            </div>
+            <div class="col-md-4">
+                <div class="stats-card">
+                    <div class="icon-box warning">
+                        <i class="mdi mdi-account-multiple mdi-24px"></i>
+                    </div>
+                    <div class="stat-value">127</div>
+                    <div class="stat-label">Pacientes atendidos hoy</div>
                 </div>
+            </div>
+            <div class="col-md-4">
+                <div class="stats-card">
+                    <div class="icon-box success">
+                        <i class="mdi mdi-chart-line mdi-24px"></i>
+                    </div>
+                    <div class="stat-value">94%</div>
+                    <div class="stat-label">Eficiencia de atención</div>
+                </div>
+            </div>
+        </div>
 
-                <div class="mb-3">
-                    <label for="timeRange" class="form-label">Rango de tiempo:</label>
-                    <select id="timeRange" class="form-select big-select">
-                        <option selected disabled>Seleccione</option>
-                        <option value="yearly">Último Año</option>
-                        <option value="monthly">Último Mes</option>
-                        <option value="weekly">Última Semana</option>
-                        <option value="year">Principios de Año</option>
-                        <option value="month">Principios de Mes</option>
-                        <option value="custom">Personalizado</option>
-                    </select>
+        <div class="row g-4">
+            <div class="col-md-4">
+                <div class="control-panel">
+                    <h5 class="mb-4">Filtros de Visualización</h5>
+                    
+                    <div class="mb-3">
+                        <label class="form-label">Tipo de Estadística</label>
+                        <select id="graph" class="form-select">
+                            <option selected disabled>Seleccione tipo</option>
+                            <option value="averageAttentionTime">Tiempo promedio de atención</option>
+                            <option value="patientCount">Cantidad de tickets</option>
+                            <option value="uniquePatientCount">Pacientes únicos</option>
+                            <option value="patientDistribution">Distribución por especialidad</option>
+                            <option value="waitingTimeByCategory">Tiempo de espera por categoría</option>
+                        </select>
+                    </div>
+
+                    <div class="mb-3">
+                        <label class="form-label">Categoría</label>
+                        <select id="category" class="form-select">
+                            <option selected disabled>Seleccione categoría</option>
+                            <option value="all">Todas</option>
+                        </select>
+                    </div>
+
+                    <div class="mb-3">
+                        <label class="form-label">Período</label>
+                        <select id="timeRange" class="form-select">
+                            <option selected disabled>Seleccione período</option>
+                            <option value="yearly">Último año</option>
+                            <option value="monthly">Último mes</option>
+                            <option value="weekly">Última semana</option>
+                            <option value="year">Año actual</option>
+                            <option value="month">Mes actual</option>
+                            <option value="custom">Personalizado</option>
+                        </select>
+                    </div>
                 </div>
             </div>
 
-            <div class="col-md-7">
-                <!-- Gráfico -->
-                <div class="card">
-                    <div class="card-body">
-                        <canvas id="dynamicChart"></canvas>
-                    </div>
+            <div class="col-md-8">
+                <div class="chart-container">
+                    <canvas id="dynamicChart"></canvas>
                 </div>
             </div>
         </div>
     </div>
 
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.0/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.1/moment.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/choices.js@10.2.0/public/assets/scripts/choices.min.js"></script>
     <script src="assets/js/stats.js"></script>
 
 </body>

@@ -3,9 +3,112 @@ defined('BASEPATH') or exit('No direct script access allowed');
 
 class Stats_model extends CI_Model
 {
+    private $table_cola = 'cola';
+    private $table_categorias = 'categorias';
+
     public function __construct()
     {
         parent::__construct();
+    }
+
+    public function getDatos($params) {
+        $this->db->trans_start();
+        
+        try {
+            $query = $this->buildQuery($params);
+            $result = $this->db->query($query, $params)->result();
+            
+            $this->db->trans_complete();
+            
+            if ($this->db->trans_status() === FALSE) {
+                throw new Exception('Error en la transacción de base de datos');
+            }
+            
+            return $this->processResults($result, $params['timeRange']);
+            
+        } catch (Exception $e) {
+            $this->db->trans_rollback();
+            log_message('error', 'Error en Stats_model: ' . $e->getMessage());
+            throw $e;
+        }
+    }
+
+    private function buildQuery($params) {
+        // Usar Query Builder para consultas más seguras y mantenibles
+        $this->db->select([
+            $this->getDateFormat($params['timeRange']) . ' as fecha',
+            'COUNT(*) as cantidad'
+        ])
+        ->from($this->table_cola)
+        ->where('DATE(fecha) BETWEEN', $params['fechaInicio'])
+        ->where('DATE(fecha) <=', $params['fechaFin']);
+
+        if ($params['categoria'] !== 'all') {
+            $this->db->where('id_categoria', $params['categoria']);
+        }
+
+        $this->db->group_by('fecha');
+        
+        return $this->db->get_compiled_select();
+    }
+
+    private function getDateFormat($timeRange) {
+        switch ($timeRange) {
+            case 'yearly':
+                return 'DATE_FORMAT(fecha, "%Y-%m")';
+            case 'monthly':
+                return 'DATE(fecha)';
+            case 'weekly':
+                return 'DATE(fecha)';
+            default:
+                throw new Exception('Formato de fecha no válido');
+        }
+    }
+
+    private function processResults($result, $timeRange) {
+        switch ($timeRange) {
+            case 'yearly':
+                return $this->processYearlyResults($result);
+            case 'monthly':
+                return $this->processMonthlyResults($result);
+            case 'weekly':
+                return $this->processWeeklyResults($result);
+            default:
+                throw new Exception('Formato de tiempo no válido');
+        }
+    }
+
+    private function processYearlyResults($result) {
+        $data = [];
+        foreach ($result as $row) {
+            $data[] = [
+                'fecha' => $row->fecha,
+                'cantidad' => $row->cantidad
+            ];
+        }
+        return $data;
+    }
+
+    private function processMonthlyResults($result) {
+        $data = [];
+        foreach ($result as $row) {
+            $data[] = [
+                'fecha' => $row->fecha,
+                'cantidad' => $row->cantidad
+            ];
+        }
+        return $data;
+    }
+
+    private function processWeeklyResults($result) {
+        $data = [];
+        foreach ($result as $row) {
+            $data[] = [
+                'fecha' => $row->fecha,
+                'cantidad' => $row->cantidad
+            ];
+        }
+        return $data;
     }
 
     public function obtenerCategorias()

@@ -3,10 +3,13 @@ defined('BASEPATH') or exit('No direct script access allowed');
 
 class Stats extends CI_Controller
 {
+    private $cache_duration = 300; // 5 minutos de caché
+
     public function __construct()
     {
         parent::__construct();
         $this->load->model('stats_model');
+        $this->load->driver('cache', array('adapter' => 'apc', 'backup' => 'file'));
     }
 
     public function index()
@@ -21,9 +24,53 @@ class Stats extends CI_Controller
         echo json_encode($categorias);
     }
 
+    public function obtenerDatos()
+    {
+        try {
+            $params = $this->validateAndGetParams();
+            $cache_key = $this->generateCacheKey($params);
+            
+            if (!$data = $this->cache->get($cache_key)) {
+                $data = $this->stats_model->getDatos($params);
+                $this->cache->save($cache_key, $data, $this->cache_duration);
+            }
 
+            $this->output
+                ->set_content_type('application/json')
+                ->set_output(json_encode([
+                    'success' => true,
+                    'data' => $data
+                ]));
 
-    // Esta función podría devolver el tiempo de atención promedio para un rango de fechas dado
+        } catch (Exception $e) {
+            $this->output
+                ->set_status_header(500)
+                ->set_content_type('application/json')
+                ->set_output(json_encode([
+                    'success' => false,
+                    'message' => $e->getMessage()
+                ]));
+        }
+    }
+
+    private function validateAndGetParams()
+    {
+        // Validación y sanitización de parámetros
+        $params = [
+            'fechaInicio' => $this->input->get('fechaInicio'),
+            'fechaFin' => $this->input->get('fechaFin'),
+            'categoria' => $this->input->get('categoria'),
+            'timeRange' => $this->input->get('timeRange')
+        ];
+
+        // Validar fechas
+        if (!$this->validateDates($params['fechaInicio'], $params['fechaFin'])) {
+            throw new Exception('Fechas inválidas');
+        }
+
+        return $params;
+    }
+
     public function obtenerPromedioTiempoAtencion()
     {
         $fechaInicio = $this->input->get('fechaInicio');
@@ -60,8 +107,6 @@ class Stats extends CI_Controller
         echo json_encode($cantidadPacientes);
     }
 
-
-
     public function obtenerCantidadPacientesUnicos()
     {
         $fechaInicio = $this->input->get('fechaInicio');
@@ -77,8 +122,6 @@ class Stats extends CI_Controller
         }
         echo json_encode($cantidadPacientesUnicos);
     }
-
-
 
     public function obtenerTotalPacientesPorCategoria()
     {
@@ -100,6 +143,4 @@ class Stats extends CI_Controller
         $tiempoEsperaPorCategoria = $this->stats_model->obtenerTiempoEsperaPorCategoria($fechaInicio, $fechaFin, $timeRange);
         echo json_encode($tiempoEsperaPorCategoria);
     }
-
-
 }
