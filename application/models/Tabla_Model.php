@@ -297,4 +297,17 @@ class Tabla_model extends CI_Model
         return $data;
     }
 
+    public function obtener_medico_informante($admission_id) {
+        $this->db->select('medico_informante');
+        $this->db->from('cola_tipo');
+        $this->db->join('cola', 'cola.id = cola_tipo.cola_id');
+        $this->db->where('cola.admision', $admission_id);
+        $this->db->limit(1);
+        
+        $query = $this->db->get();
+        $result = $query->row();
+        
+        return $result ? $result->medico_informante : null;
+    }
+
 }

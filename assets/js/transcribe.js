@@ -125,68 +125,53 @@ $(document).ready(function () {
   function loadDoctorsList(categoryId) {
     var doctorList = $("#transcribe-doctor-list");
     doctorList.empty();
-
-    // Convertir categoryId a número para comparación
-    categoryId = parseInt(categoryId);
-
+    
+    // Mostrar indicador de carga
+    doctorList.html('<div class="loading-spinner">Cargando médico...</div>');
+    
     // Obtener el número de admisión
     var admisionId = $("#transcribe-patient-admission").text().trim();
-
-    // Verificar si ya existe un médico asignado
+    
     $.ajax({
         url: "Tabla/verificar_medico_informante",
         type: "GET",
         data: { admission_id: admisionId },
         success: function(response) {
-            const data = JSON.parse(response);
-            
-            // Cambiar el título según si hay médico asignado o no
-            $("#doctor-list-title").text(data.medico_informante ? "Médico informante:" : "Seleccione médico:");
-            
-            // Si hay un médico informante asignado, solo mostrar ese
-            if (data.medico_informante) {
-                doctorList.html(`
-                    <div class="doctor-tag selected" style="cursor: not-allowed; opacity: 0.8;">
-                        ${data.medico_informante}
-                    </div>
-                `);
-                $('#selected-doctor-id').val(data.medico_informante);
-                return;
+            if (response && response.medico_informante) {
+                // Si hay médico informante, buscar su ID en el array de doctors
+                const doctorInfo = doctors.find(d => d.name === response.medico_informante);
+                var doctorTag = $('<div class="doctor-tag selected"></div>')
+                    .text(response.medico_informante)
+                    .attr('data-doctor-id', doctorInfo ? doctorInfo.id : '');
+                
+                doctorList.empty().append(doctorTag);
+                $("#selected-doctor-id").val(doctorInfo ? doctorInfo.id : '');
+            } else {
+                // Si no hay médico informante, mostrar médicos de la categoría desde options.js
+                doctorList.empty();
+                const medicosCategoria = doctors.filter(doctor => 
+                    doctor.categories.includes(parseInt(categoryId))
+                );
+                
+                if (medicosCategoria.length > 0) {
+                    medicosCategoria.forEach(function(medico) {
+                        var doctorTag = $('<div class="doctor-tag"></div>')
+                            .text(medico.name)
+                            .attr('data-doctor-id', medico.id)
+                            .click(function() {
+                                $('.doctor-tag').removeClass('selected');
+                                $(this).addClass('selected');
+                                $("#selected-doctor-id").val(medico.id);
+                            });
+                        doctorList.append(doctorTag);
+                    });
+                } else {
+                    doctorList.html('<div class="error-message">No hay médicos disponibles para esta categoría</div>');
+                }
             }
-
-            // Si no hay médico asignado, mostrar la lista de doctores
-            const filteredDoctors = doctors.filter(doctor => 
-                doctor.categories.includes(categoryId)
-            );
-
-            // Si no hay doctores, simplemente retornar sin mostrar mensaje
-            if (filteredDoctors.length === 0) {
-                return;
-            }
-
-            // Agregar los doctores filtrados como tags
-            filteredDoctors.forEach(function(doctor) {
-                doctorList.append(`
-                    <div class="doctor-tag" data-doctor-id="${doctor.id}">
-                        ${doctor.name}
-                    </div>
-                `);
-            });
-
-            // Manejar la selección de doctores
-            $('.doctor-tag').click(function() {
-                $('.doctor-tag').removeClass('selected');
-                $(this).addClass('selected');
-                $('#selected-doctor-id').val($(this).data('doctor-id'));
-            });
-
-            // Seleccionar automáticamente el primer doctor
-            const firstDoctor = $('.doctor-tag').first();
-            firstDoctor.addClass('selected');
-            $('#selected-doctor-id').val(firstDoctor.data('doctor-id'));
         },
-        error: function(xhr, status, error) {
-            console.error("Error:", error);
+        error: function() {
+            doctorList.html('<div class="error-message">Error al cargar médico informante</div>');
         }
     });
   }

@@ -93,18 +93,14 @@ class Tabla extends CI_Controller
     }
 
     public function verificar_medico_informante() {
-        $admision = $this->input->get('admission_id');
+        $admission_id = $this->input->get('admission_id');
         
-        $this->db->select('cola_tipo.medico_informante');
-        $this->db->from('cola_tipo');
-        $this->db->join('cola', 'cola.id = cola_tipo.cola_id');
-        $this->db->where('cola.admision', $admision);
-        $query = $this->db->get();
+        $this->load->model('tabla_model');
+        $medico = $this->tabla_model->obtener_medico_informante($admission_id);
         
-        $result = $query->row();
-        
+        header('Content-Type: application/json');
         echo json_encode([
-            'medico_informante' => $result ? $result->medico_informante : null
+            'medico_informante' => $medico
         ]);
     }
 

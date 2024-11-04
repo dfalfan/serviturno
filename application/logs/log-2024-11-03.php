@@ -926,3 +926,11 @@ ERROR - 2024-11-03 20:31:14 --> $config['composer_autoload'] is set to TRUE but 
 DEBUG - 2024-11-03 20:31:14 --> UTF-8 Support Enabled
 DEBUG - 2024-11-03 20:31:14 --> Global POST, GET and COOKIE data sanitized
 DEBUG - 2024-11-03 20:31:15 --> Total execution time: 0.9723
+ERROR - 2024-11-03 20:32:26 --> $config['composer_autoload'] is set to TRUE but C:\app\_desarrollo\serviturno\application\vendor/autoload.php was not found.
+DEBUG - 2024-11-03 20:32:26 --> UTF-8 Support Enabled
+DEBUG - 2024-11-03 20:32:26 --> Global POST, GET and COOKIE data sanitized
+DEBUG - 2024-11-03 20:32:26 --> Total execution time: 0.2361
+ERROR - 2024-11-03 20:32:26 --> $config['composer_autoload'] is set to TRUE but C:\app\_desarrollo\serviturno\application\vendor/autoload.php was not found.
+DEBUG - 2024-11-03 20:32:26 --> UTF-8 Support Enabled
+DEBUG - 2024-11-03 20:32:26 --> Global POST, GET and COOKIE data sanitized
+DEBUG - 2024-11-03 20:32:27 --> Total execution time: 0.2484

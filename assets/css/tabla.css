@@ -1569,3 +1569,40 @@ body.dark-mode #qrcode {
     background-color: white;
     box-shadow: 0 0 10px rgba(0,0,0,0.2);
 }
+
+.doctor-tag {
+    display: inline-block;
+    padding: 8px 16px;
+    margin: 5px;
+    border-radius: 20px;
+    background-color: #e9ecef;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.doctor-tag.selected {
+    background-color: #007bff;
+    color: white;
+}
+
+.loading-spinner {
+    padding: 10px;
+    text-align: center;
+    color: #666;
+}
+
+.error-message {
+    color: #dc3545;
+    padding: 10px;
+    text-align: center;
+}
+
+/* Estilos para modo oscuro */
+body.dark-mode .doctor-tag {
+    background-color: #343a40;
+    color: #fff;
+}
+
+body.dark-mode .doctor-tag.selected {
+    background-color: #0056b3;
+}
