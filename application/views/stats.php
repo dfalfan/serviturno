@@ -173,6 +173,7 @@
                             <option value="uniquePatientCount">Pacientes únicos</option>
                             <option value="patientDistribution">Distribución por especialidad</option>
                             <option value="waitingTimeByCategory">Tiempo de espera por categoría</option>
+                            <option value="technicianPerformance">Rendimiento de técnicos</option>
                         </select>
                     </div>
 

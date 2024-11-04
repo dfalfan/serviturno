@@ -143,4 +143,14 @@ class Stats extends CI_Controller
         $tiempoEsperaPorCategoria = $this->stats_model->obtenerTiempoEsperaPorCategoria($fechaInicio, $fechaFin, $timeRange);
         echo json_encode($tiempoEsperaPorCategoria);
     }
+
+    public function obtenerRendimientoTecnicos()
+    {
+        $fechaInicio = $this->input->get('fechaInicio');
+        $fechaFin = $this->input->get('fechaFin');
+        $timeRange = $this->input->get('timeRange');
+
+        $rendimientoTecnicos = $this->stats_model->obtenerRendimientoTecnicos($fechaInicio, $fechaFin, $timeRange);
+        echo json_encode($rendimientoTecnicos);
+    }
 }

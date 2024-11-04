@@ -320,5 +320,28 @@ class Stats_model extends CI_Model
         return $result;
     }
 
+    public function obtenerRendimientoTecnicos($fechaInicio, $fechaFin, $timeRange)
+    {
+        $query = "
+        SELECT 
+            COALESCE(c.tecnico, 'Sin asignar') as tecnico,
+            cat.categoria,
+            COUNT(*) as estudios_realizados,
+            DATE_FORMAT(c.fecha, '%Y-%m') as periodo
+        FROM cola c
+        JOIN categorias cat ON c.id_categoria = cat.id
+        WHERE DATE(c.fecha) BETWEEN ? AND ?
+        AND c.tecnico IS NOT NULL
+        AND c.atendida = 1
+        GROUP BY c.tecnico, cat.categoria, DATE_FORMAT(c.fecha, '%Y-%m')
+        ORDER BY 
+            c.tecnico ASC,
+            cat.categoria ASC,
+            periodo DESC
+        ";
+
+        $result = $this->db->query($query, array($fechaInicio, $fechaFin))->result();
+        return $result;
+    }
 
 }

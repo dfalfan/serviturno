@@ -154,7 +154,8 @@ class DashboardManager {
             patientCount: 'obtenerCantidadPacientes',
             uniquePatientCount: 'obtenerCantidadPacientesUnicos',
             patientDistribution: 'obtenerTotalPacientesPorCategoria',
-            waitingTimeByCategory: 'obtenerTiempoEsperaPorCategoria'
+            waitingTimeByCategory: 'obtenerTiempoEsperaPorCategoria',
+            technicianPerformance: 'obtenerRendimientoTecnicos'
         };
 
         const params = new URLSearchParams({
@@ -197,7 +198,8 @@ class DashboardManager {
             patientCount: this.getPatientCountConfig.bind(this),
             uniquePatientCount: this.getUniquePatientCountConfig.bind(this),
             patientDistribution: this.getDistributionConfig.bind(this),
-            waitingTimeByCategory: this.getWaitingTimeConfig.bind(this)
+            waitingTimeByCategory: this.getWaitingTimeConfig.bind(this),
+            technicianPerformance: this.getTechnicianPerformanceConfig.bind(this)
         };
 
         return configs[this.selectedGraphType](data);
@@ -348,6 +350,75 @@ class DashboardManager {
                 }
             }
         };
+    }
+
+    getTechnicianPerformanceConfig(data) {
+        // Procesamos los datos para agruparlos por técnico y categoría
+        const technicians = [...new Set(data.map(item => item.tecnico))];
+        const categories = [...new Set(data.map(item => item.categoria))];
+        
+        // Creamos datasets por categoría
+        const datasets = categories.map((categoria, index) => ({
+            label: categoria,
+            data: technicians.map(tecnico => {
+                const items = data.filter(item => 
+                    item.tecnico === tecnico && 
+                    item.categoria === categoria
+                );
+                return items.reduce((sum, item) => sum + parseInt(item.estudios_realizados), 0);
+            }),
+            backgroundColor: this.getColorForIndex(index),
+            borderColor: this.getColorForIndex(index),
+            borderWidth: 1
+        }));
+
+        return {
+            type: 'bar',
+            data: {
+                labels: technicians,
+                datasets: datasets
+            },
+            options: {
+                ...this.getBaseChartConfig().options,
+                scales: {
+                    x: {
+                        stacked: true
+                    },
+                    y: {
+                        stacked: true,
+                        beginAtZero: true,
+                        ticks: {
+                            stepSize: 1
+                        }
+                    }
+                },
+                plugins: {
+                    legend: {
+                        display: true,
+                        position: 'top'
+                    },
+                    title: {
+                        display: true,
+                        text: 'Estudios Realizados por Técnico y Categoría'
+                    }
+                }
+            }
+        };
+    }
+
+    // Método auxiliar para generar colores
+    getColorForIndex(index) {
+        const colors = [
+            this.chartColors.primary,
+            this.chartColors.secondary,
+            '#10b981',  // verde
+            '#f59e0b',  // amarillo
+            '#ef4444',  // rojo
+            '#6366f1',  // indigo
+            '#ec4899',  // rosa
+            '#8b5cf6'   // violeta
+        ];
+        return colors[index % colors.length];
     }
 
     timeStringToMinutes(timeString) {
