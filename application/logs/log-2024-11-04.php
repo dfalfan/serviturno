@@ -3256,3 +3256,285 @@ DEBUG - 2024-11-04 19:05:07 --> Global POST, GET and COOKIE data sanitized
 DEBUG - 2024-11-04 19:05:07 --> The APC PHP extension must be loaded to use APC Cache.
 DEBUG - 2024-11-04 19:05:07 --> Cache adapter "apc" is unavailable. Falling back to "file" backup adapter.
 DEBUG - 2024-11-04 19:05:07 --> Total execution time: 0.1100
+ERROR - 2024-11-04 19:05:57 --> $config['composer_autoload'] is set to TRUE but C:\app\_desarrollo\serviturno\application\vendor/autoload.php was not found.
+DEBUG - 2024-11-04 19:05:57 --> UTF-8 Support Enabled
+DEBUG - 2024-11-04 19:05:58 --> Global POST, GET and COOKIE data sanitized
+DEBUG - 2024-11-04 19:05:58 --> The APC PHP extension must be loaded to use APC Cache.
+DEBUG - 2024-11-04 19:05:58 --> Cache adapter "apc" is unavailable. Falling back to "file" backup adapter.
+DEBUG - 2024-11-04 19:05:58 --> Total execution time: 0.2157
+ERROR - 2024-11-04 19:08:01 --> $config['composer_autoload'] is set to TRUE but C:\app\_desarrollo\serviturno\application\vendor/autoload.php was not found.
+DEBUG - 2024-11-04 19:08:02 --> UTF-8 Support Enabled
+DEBUG - 2024-11-04 19:08:02 --> Global POST, GET and COOKIE data sanitized
+DEBUG - 2024-11-04 19:08:02 --> The APC PHP extension must be loaded to use APC Cache.
+DEBUG - 2024-11-04 19:08:02 --> Cache adapter "apc" is unavailable. Falling back to "file" backup adapter.
+DEBUG - 2024-11-04 19:08:02 --> Total execution time: 0.1932
+ERROR - 2024-11-04 19:08:03 --> $config['composer_autoload'] is set to TRUE but C:\app\_desarrollo\serviturno\application\vendor/autoload.php was not found.
+DEBUG - 2024-11-04 19:08:03 --> UTF-8 Support Enabled
+DEBUG - 2024-11-04 19:08:03 --> Global POST, GET and COOKIE data sanitized
+DEBUG - 2024-11-04 19:08:03 --> The APC PHP extension must be loaded to use APC Cache.
+DEBUG - 2024-11-04 19:08:03 --> Cache adapter "apc" is unavailable. Falling back to "file" backup adapter.
+DEBUG - 2024-11-04 19:08:03 --> Total execution time: 0.1739
+ERROR - 2024-11-04 19:08:29 --> $config['composer_autoload'] is set to TRUE but C:\app\_desarrollo\serviturno\application\vendor/autoload.php was not found.
+DEBUG - 2024-11-04 19:08:29 --> UTF-8 Support Enabled
+DEBUG - 2024-11-04 19:08:29 --> Global POST, GET and COOKIE data sanitized
+DEBUG - 2024-11-04 19:08:29 --> The APC PHP extension must be loaded to use APC Cache.
+DEBUG - 2024-11-04 19:08:29 --> Cache adapter "apc" is unavailable. Falling back to "file" backup adapter.
+DEBUG - 2024-11-04 19:08:29 --> Total execution time: 0.1084
+ERROR - 2024-11-04 19:08:29 --> $config['composer_autoload'] is set to TRUE but C:\app\_desarrollo\serviturno\application\vendor/autoload.php was not found.
+DEBUG - 2024-11-04 19:08:29 --> UTF-8 Support Enabled
+DEBUG - 2024-11-04 19:08:29 --> Global POST, GET and COOKIE data sanitized
+DEBUG - 2024-11-04 19:08:29 --> The APC PHP extension must be loaded to use APC Cache.
+DEBUG - 2024-11-04 19:08:29 --> Cache adapter "apc" is unavailable. Falling back to "file" backup adapter.
+DEBUG - 2024-11-04 19:08:29 --> Total execution time: 0.1068
+ERROR - 2024-11-04 19:08:35 --> $config['composer_autoload'] is set to TRUE but C:\app\_desarrollo\serviturno\application\vendor/autoload.php was not found.
+DEBUG - 2024-11-04 19:08:36 --> UTF-8 Support Enabled
+DEBUG - 2024-11-04 19:08:36 --> Global POST, GET and COOKIE data sanitized
+DEBUG - 2024-11-04 19:08:36 --> The APC PHP extension must be loaded to use APC Cache.
+DEBUG - 2024-11-04 19:08:36 --> Cache adapter "apc" is unavailable. Falling back to "file" backup adapter.
+DEBUG - 2024-11-04 19:08:36 --> Total execution time: 0.1441
+ERROR - 2024-11-04 19:08:43 --> $config['composer_autoload'] is set to TRUE but C:\app\_desarrollo\serviturno\application\vendor/autoload.php was not found.
+DEBUG - 2024-11-04 19:08:43 --> UTF-8 Support Enabled
+DEBUG - 2024-11-04 19:08:43 --> Global POST, GET and COOKIE data sanitized
+DEBUG - 2024-11-04 19:08:43 --> The APC PHP extension must be loaded to use APC Cache.
+DEBUG - 2024-11-04 19:08:43 --> Cache adapter "apc" is unavailable. Falling back to "file" backup adapter.
+DEBUG - 2024-11-04 19:08:43 --> Total execution time: 0.1243
+ERROR - 2024-11-04 19:10:52 --> $config['composer_autoload'] is set to TRUE but C:\app\_desarrollo\serviturno\application\vendor/autoload.php was not found.
+DEBUG - 2024-11-04 19:10:52 --> UTF-8 Support Enabled
+DEBUG - 2024-11-04 19:10:52 --> Global POST, GET and COOKIE data sanitized
+DEBUG - 2024-11-04 19:10:52 --> The APC PHP extension must be loaded to use APC Cache.
+DEBUG - 2024-11-04 19:10:52 --> Cache adapter "apc" is unavailable. Falling back to "file" backup adapter.
+DEBUG - 2024-11-04 19:10:52 --> Total execution time: 0.1208
+ERROR - 2024-11-04 19:10:53 --> $config['composer_autoload'] is set to TRUE but C:\app\_desarrollo\serviturno\application\vendor/autoload.php was not found.
+DEBUG - 2024-11-04 19:10:53 --> UTF-8 Support Enabled
+DEBUG - 2024-11-04 19:10:53 --> Global POST, GET and COOKIE data sanitized
+DEBUG - 2024-11-04 19:10:53 --> The APC PHP extension must be loaded to use APC Cache.
+DEBUG - 2024-11-04 19:10:53 --> Cache adapter "apc" is unavailable. Falling back to "file" backup adapter.
+DEBUG - 2024-11-04 19:10:53 --> Total execution time: 0.1126
+ERROR - 2024-11-04 19:11:04 --> $config['composer_autoload'] is set to TRUE but C:\app\_desarrollo\serviturno\application\vendor/autoload.php was not found.
+DEBUG - 2024-11-04 19:11:04 --> UTF-8 Support Enabled
+DEBUG - 2024-11-04 19:11:04 --> Global POST, GET and COOKIE data sanitized
+DEBUG - 2024-11-04 19:11:04 --> The APC PHP extension must be loaded to use APC Cache.
+DEBUG - 2024-11-04 19:11:04 --> Cache adapter "apc" is unavailable. Falling back to "file" backup adapter.
+DEBUG - 2024-11-04 19:11:04 --> Total execution time: 0.1203
+ERROR - 2024-11-04 19:11:05 --> $config['composer_autoload'] is set to TRUE but C:\app\_desarrollo\serviturno\application\vendor/autoload.php was not found.
+DEBUG - 2024-11-04 19:11:05 --> UTF-8 Support Enabled
+DEBUG - 2024-11-04 19:11:05 --> Global POST, GET and COOKIE data sanitized
+DEBUG - 2024-11-04 19:11:05 --> The APC PHP extension must be loaded to use APC Cache.
+DEBUG - 2024-11-04 19:11:05 --> Cache adapter "apc" is unavailable. Falling back to "file" backup adapter.
+DEBUG - 2024-11-04 19:11:05 --> Total execution time: 0.1070
+ERROR - 2024-11-04 19:12:42 --> $config['composer_autoload'] is set to TRUE but C:\app\_desarrollo\serviturno\application\vendor/autoload.php was not found.
+DEBUG - 2024-11-04 19:12:42 --> UTF-8 Support Enabled
+DEBUG - 2024-11-04 19:12:42 --> Global POST, GET and COOKIE data sanitized
+DEBUG - 2024-11-04 19:12:42 --> The APC PHP extension must be loaded to use APC Cache.
+DEBUG - 2024-11-04 19:12:42 --> Cache adapter "apc" is unavailable. Falling back to "file" backup adapter.
+DEBUG - 2024-11-04 19:12:42 --> Total execution time: 0.1107
+ERROR - 2024-11-04 19:12:42 --> $config['composer_autoload'] is set to TRUE but C:\app\_desarrollo\serviturno\application\vendor/autoload.php was not found.
+DEBUG - 2024-11-04 19:12:42 --> UTF-8 Support Enabled
+DEBUG - 2024-11-04 19:12:42 --> Global POST, GET and COOKIE data sanitized
+DEBUG - 2024-11-04 19:12:42 --> The APC PHP extension must be loaded to use APC Cache.
+DEBUG - 2024-11-04 19:12:42 --> Cache adapter "apc" is unavailable. Falling back to "file" backup adapter.
+DEBUG - 2024-11-04 19:12:42 --> Total execution time: 0.1338
+ERROR - 2024-11-04 19:12:42 --> $config['composer_autoload'] is set to TRUE but C:\app\_desarrollo\serviturno\application\vendor/autoload.php was not found.
+DEBUG - 2024-11-04 19:12:42 --> UTF-8 Support Enabled
+DEBUG - 2024-11-04 19:12:42 --> Global POST, GET and COOKIE data sanitized
+DEBUG - 2024-11-04 19:12:42 --> The APC PHP extension must be loaded to use APC Cache.
+DEBUG - 2024-11-04 19:12:42 --> Cache adapter "apc" is unavailable. Falling back to "file" backup adapter.
+DEBUG - 2024-11-04 19:12:43 --> Total execution time: 0.1048
+ERROR - 2024-11-04 19:12:55 --> $config['composer_autoload'] is set to TRUE but C:\app\_desarrollo\serviturno\application\vendor/autoload.php was not found.
+DEBUG - 2024-11-04 19:12:55 --> UTF-8 Support Enabled
+DEBUG - 2024-11-04 19:12:55 --> Global POST, GET and COOKIE data sanitized
+DEBUG - 2024-11-04 19:12:55 --> The APC PHP extension must be loaded to use APC Cache.
+DEBUG - 2024-11-04 19:12:55 --> Cache adapter "apc" is unavailable. Falling back to "file" backup adapter.
+DEBUG - 2024-11-04 19:12:55 --> Total execution time: 0.1147
+ERROR - 2024-11-04 19:12:55 --> $config['composer_autoload'] is set to TRUE but C:\app\_desarrollo\serviturno\application\vendor/autoload.php was not found.
+DEBUG - 2024-11-04 19:12:55 --> UTF-8 Support Enabled
+DEBUG - 2024-11-04 19:12:55 --> Global POST, GET and COOKIE data sanitized
+DEBUG - 2024-11-04 19:12:55 --> The APC PHP extension must be loaded to use APC Cache.
+DEBUG - 2024-11-04 19:12:55 --> Cache adapter "apc" is unavailable. Falling back to "file" backup adapter.
+DEBUG - 2024-11-04 19:12:55 --> Total execution time: 0.1074
+ERROR - 2024-11-04 19:12:55 --> $config['composer_autoload'] is set to TRUE but C:\app\_desarrollo\serviturno\application\vendor/autoload.php was not found.
+DEBUG - 2024-11-04 19:12:55 --> UTF-8 Support Enabled
+DEBUG - 2024-11-04 19:12:55 --> Global POST, GET and COOKIE data sanitized
+DEBUG - 2024-11-04 19:12:55 --> The APC PHP extension must be loaded to use APC Cache.
+DEBUG - 2024-11-04 19:12:56 --> Cache adapter "apc" is unavailable. Falling back to "file" backup adapter.
+DEBUG - 2024-11-04 19:12:56 --> Total execution time: 0.1305
+ERROR - 2024-11-04 19:12:57 --> $config['composer_autoload'] is set to TRUE but C:\app\_desarrollo\serviturno\application\vendor/autoload.php was not found.
+DEBUG - 2024-11-04 19:12:57 --> UTF-8 Support Enabled
+DEBUG - 2024-11-04 19:12:57 --> Global POST, GET and COOKIE data sanitized
+DEBUG - 2024-11-04 19:12:57 --> The APC PHP extension must be loaded to use APC Cache.
+DEBUG - 2024-11-04 19:12:57 --> Cache adapter "apc" is unavailable. Falling back to "file" backup adapter.
+DEBUG - 2024-11-04 19:12:57 --> Total execution time: 0.1935
+ERROR - 2024-11-04 19:13:00 --> $config['composer_autoload'] is set to TRUE but C:\app\_desarrollo\serviturno\application\vendor/autoload.php was not found.
+DEBUG - 2024-11-04 19:13:00 --> UTF-8 Support Enabled
+DEBUG - 2024-11-04 19:13:00 --> Global POST, GET and COOKIE data sanitized
+DEBUG - 2024-11-04 19:13:00 --> The APC PHP extension must be loaded to use APC Cache.
+DEBUG - 2024-11-04 19:13:00 --> Cache adapter "apc" is unavailable. Falling back to "file" backup adapter.
+DEBUG - 2024-11-04 19:13:00 --> Total execution time: 0.1602
+ERROR - 2024-11-04 19:13:01 --> $config['composer_autoload'] is set to TRUE but C:\app\_desarrollo\serviturno\application\vendor/autoload.php was not found.
+DEBUG - 2024-11-04 19:13:01 --> UTF-8 Support Enabled
+DEBUG - 2024-11-04 19:13:01 --> Global POST, GET and COOKIE data sanitized
+DEBUG - 2024-11-04 19:13:01 --> The APC PHP extension must be loaded to use APC Cache.
+DEBUG - 2024-11-04 19:13:01 --> Cache adapter "apc" is unavailable. Falling back to "file" backup adapter.
+DEBUG - 2024-11-04 19:13:01 --> Total execution time: 0.1174
+ERROR - 2024-11-04 19:15:03 --> $config['composer_autoload'] is set to TRUE but C:\app\_desarrollo\serviturno\application\vendor/autoload.php was not found.
+DEBUG - 2024-11-04 19:15:03 --> UTF-8 Support Enabled
+DEBUG - 2024-11-04 19:15:03 --> Global POST, GET and COOKIE data sanitized
+DEBUG - 2024-11-04 19:15:03 --> The APC PHP extension must be loaded to use APC Cache.
+DEBUG - 2024-11-04 19:15:03 --> Cache adapter "apc" is unavailable. Falling back to "file" backup adapter.
+DEBUG - 2024-11-04 19:15:03 --> Total execution time: 0.1120
+ERROR - 2024-11-04 19:15:04 --> $config['composer_autoload'] is set to TRUE but C:\app\_desarrollo\serviturno\application\vendor/autoload.php was not found.
+DEBUG - 2024-11-04 19:15:04 --> UTF-8 Support Enabled
+DEBUG - 2024-11-04 19:15:04 --> Global POST, GET and COOKIE data sanitized
+DEBUG - 2024-11-04 19:15:04 --> The APC PHP extension must be loaded to use APC Cache.
+DEBUG - 2024-11-04 19:15:04 --> Cache adapter "apc" is unavailable. Falling back to "file" backup adapter.
+DEBUG - 2024-11-04 19:15:04 --> Total execution time: 0.1479
+ERROR - 2024-11-04 19:15:04 --> $config['composer_autoload'] is set to TRUE but C:\app\_desarrollo\serviturno\application\vendor/autoload.php was not found.
+DEBUG - 2024-11-04 19:15:04 --> UTF-8 Support Enabled
+DEBUG - 2024-11-04 19:15:04 --> Global POST, GET and COOKIE data sanitized
+DEBUG - 2024-11-04 19:15:04 --> The APC PHP extension must be loaded to use APC Cache.
+DEBUG - 2024-11-04 19:15:04 --> Cache adapter "apc" is unavailable. Falling back to "file" backup adapter.
+DEBUG - 2024-11-04 19:15:04 --> Total execution time: 0.2052
+ERROR - 2024-11-04 19:15:07 --> $config['composer_autoload'] is set to TRUE but C:\app\_desarrollo\serviturno\application\vendor/autoload.php was not found.
+DEBUG - 2024-11-04 19:15:07 --> UTF-8 Support Enabled
+DEBUG - 2024-11-04 19:15:07 --> Global POST, GET and COOKIE data sanitized
+DEBUG - 2024-11-04 19:15:07 --> The APC PHP extension must be loaded to use APC Cache.
+DEBUG - 2024-11-04 19:15:07 --> Cache adapter "apc" is unavailable. Falling back to "file" backup adapter.
+DEBUG - 2024-11-04 19:15:07 --> Total execution time: 0.1372
+ERROR - 2024-11-04 19:15:11 --> $config['composer_autoload'] is set to TRUE but C:\app\_desarrollo\serviturno\application\vendor/autoload.php was not found.
+DEBUG - 2024-11-04 19:15:11 --> UTF-8 Support Enabled
+DEBUG - 2024-11-04 19:15:11 --> Global POST, GET and COOKIE data sanitized
+DEBUG - 2024-11-04 19:15:11 --> The APC PHP extension must be loaded to use APC Cache.
+DEBUG - 2024-11-04 19:15:11 --> Cache adapter "apc" is unavailable. Falling back to "file" backup adapter.
+DEBUG - 2024-11-04 19:15:11 --> Total execution time: 0.1201
+ERROR - 2024-11-04 19:15:15 --> $config['composer_autoload'] is set to TRUE but C:\app\_desarrollo\serviturno\application\vendor/autoload.php was not found.
+DEBUG - 2024-11-04 19:15:15 --> UTF-8 Support Enabled
+DEBUG - 2024-11-04 19:15:15 --> Global POST, GET and COOKIE data sanitized
+DEBUG - 2024-11-04 19:15:15 --> The APC PHP extension must be loaded to use APC Cache.
+DEBUG - 2024-11-04 19:15:15 --> Cache adapter "apc" is unavailable. Falling back to "file" backup adapter.
+DEBUG - 2024-11-04 19:15:16 --> Total execution time: 0.1367
+ERROR - 2024-11-04 19:15:16 --> $config['composer_autoload'] is set to TRUE but C:\app\_desarrollo\serviturno\application\vendor/autoload.php was not found.
+DEBUG - 2024-11-04 19:15:16 --> UTF-8 Support Enabled
+DEBUG - 2024-11-04 19:15:16 --> Global POST, GET and COOKIE data sanitized
+DEBUG - 2024-11-04 19:15:16 --> The APC PHP extension must be loaded to use APC Cache.
+DEBUG - 2024-11-04 19:15:16 --> Cache adapter "apc" is unavailable. Falling back to "file" backup adapter.
+DEBUG - 2024-11-04 19:15:16 --> Total execution time: 0.1150
+ERROR - 2024-11-04 19:15:16 --> $config['composer_autoload'] is set to TRUE but C:\app\_desarrollo\serviturno\application\vendor/autoload.php was not found.
+DEBUG - 2024-11-04 19:15:16 --> UTF-8 Support Enabled
+DEBUG - 2024-11-04 19:15:16 --> Global POST, GET and COOKIE data sanitized
+DEBUG - 2024-11-04 19:15:16 --> The APC PHP extension must be loaded to use APC Cache.
+DEBUG - 2024-11-04 19:15:16 --> Cache adapter "apc" is unavailable. Falling back to "file" backup adapter.
+DEBUG - 2024-11-04 19:15:16 --> Total execution time: 0.1311
+ERROR - 2024-11-04 19:15:20 --> $config['composer_autoload'] is set to TRUE but C:\app\_desarrollo\serviturno\application\vendor/autoload.php was not found.
+DEBUG - 2024-11-04 19:15:20 --> UTF-8 Support Enabled
+DEBUG - 2024-11-04 19:15:20 --> Global POST, GET and COOKIE data sanitized
+DEBUG - 2024-11-04 19:15:20 --> The APC PHP extension must be loaded to use APC Cache.
+DEBUG - 2024-11-04 19:15:20 --> Cache adapter "apc" is unavailable. Falling back to "file" backup adapter.
+DEBUG - 2024-11-04 19:15:20 --> Total execution time: 0.1875
+ERROR - 2024-11-04 19:15:23 --> $config['composer_autoload'] is set to TRUE but C:\app\_desarrollo\serviturno\application\vendor/autoload.php was not found.
+DEBUG - 2024-11-04 19:15:23 --> UTF-8 Support Enabled
+DEBUG - 2024-11-04 19:15:23 --> Global POST, GET and COOKIE data sanitized
+DEBUG - 2024-11-04 19:15:23 --> The APC PHP extension must be loaded to use APC Cache.
+DEBUG - 2024-11-04 19:15:23 --> Cache adapter "apc" is unavailable. Falling back to "file" backup adapter.
+DEBUG - 2024-11-04 19:15:23 --> Total execution time: 0.1296
+ERROR - 2024-11-04 19:15:25 --> $config['composer_autoload'] is set to TRUE but C:\app\_desarrollo\serviturno\application\vendor/autoload.php was not found.
+DEBUG - 2024-11-04 19:15:25 --> UTF-8 Support Enabled
+DEBUG - 2024-11-04 19:15:25 --> Global POST, GET and COOKIE data sanitized
+DEBUG - 2024-11-04 19:15:25 --> The APC PHP extension must be loaded to use APC Cache.
+DEBUG - 2024-11-04 19:15:25 --> Cache adapter "apc" is unavailable. Falling back to "file" backup adapter.
+DEBUG - 2024-11-04 19:15:25 --> Total execution time: 0.1277
+ERROR - 2024-11-04 19:15:41 --> $config['composer_autoload'] is set to TRUE but C:\app\_desarrollo\serviturno\application\vendor/autoload.php was not found.
+DEBUG - 2024-11-04 19:15:41 --> UTF-8 Support Enabled
+DEBUG - 2024-11-04 19:15:41 --> Global POST, GET and COOKIE data sanitized
+DEBUG - 2024-11-04 19:15:41 --> The APC PHP extension must be loaded to use APC Cache.
+DEBUG - 2024-11-04 19:15:41 --> Cache adapter "apc" is unavailable. Falling back to "file" backup adapter.
+DEBUG - 2024-11-04 19:15:41 --> Total execution time: 0.1308
+ERROR - 2024-11-04 19:15:58 --> $config['composer_autoload'] is set to TRUE but C:\app\_desarrollo\serviturno\application\vendor/autoload.php was not found.
+DEBUG - 2024-11-04 19:15:58 --> UTF-8 Support Enabled
+DEBUG - 2024-11-04 19:15:58 --> Global POST, GET and COOKIE data sanitized
+DEBUG - 2024-11-04 19:15:58 --> The APC PHP extension must be loaded to use APC Cache.
+DEBUG - 2024-11-04 19:15:58 --> Cache adapter "apc" is unavailable. Falling back to "file" backup adapter.
+DEBUG - 2024-11-04 19:15:58 --> Total execution time: 0.1179
+ERROR - 2024-11-04 19:16:03 --> $config['composer_autoload'] is set to TRUE but C:\app\_desarrollo\serviturno\application\vendor/autoload.php was not found.
+DEBUG - 2024-11-04 19:16:03 --> UTF-8 Support Enabled
+DEBUG - 2024-11-04 19:16:03 --> Global POST, GET and COOKIE data sanitized
+DEBUG - 2024-11-04 19:16:03 --> The APC PHP extension must be loaded to use APC Cache.
+DEBUG - 2024-11-04 19:16:03 --> Cache adapter "apc" is unavailable. Falling back to "file" backup adapter.
+DEBUG - 2024-11-04 19:16:03 --> Total execution time: 0.1238
+ERROR - 2024-11-04 19:16:05 --> $config['composer_autoload'] is set to TRUE but C:\app\_desarrollo\serviturno\application\vendor/autoload.php was not found.
+DEBUG - 2024-11-04 19:16:05 --> UTF-8 Support Enabled
+DEBUG - 2024-11-04 19:16:05 --> Global POST, GET and COOKIE data sanitized
+DEBUG - 2024-11-04 19:16:05 --> The APC PHP extension must be loaded to use APC Cache.
+DEBUG - 2024-11-04 19:16:05 --> Cache adapter "apc" is unavailable. Falling back to "file" backup adapter.
+DEBUG - 2024-11-04 19:16:05 --> Total execution time: 0.1406
+ERROR - 2024-11-04 19:16:14 --> $config['composer_autoload'] is set to TRUE but C:\app\_desarrollo\serviturno\application\vendor/autoload.php was not found.
+DEBUG - 2024-11-04 19:16:14 --> UTF-8 Support Enabled
+DEBUG - 2024-11-04 19:16:14 --> Global POST, GET and COOKIE data sanitized
+DEBUG - 2024-11-04 19:16:14 --> The APC PHP extension must be loaded to use APC Cache.
+DEBUG - 2024-11-04 19:16:14 --> Cache adapter "apc" is unavailable. Falling back to "file" backup adapter.
+DEBUG - 2024-11-04 19:16:15 --> Total execution time: 0.1432
+ERROR - 2024-11-04 19:16:17 --> $config['composer_autoload'] is set to TRUE but C:\app\_desarrollo\serviturno\application\vendor/autoload.php was not found.
+DEBUG - 2024-11-04 19:16:17 --> UTF-8 Support Enabled
+DEBUG - 2024-11-04 19:16:17 --> Global POST, GET and COOKIE data sanitized
+DEBUG - 2024-11-04 19:16:17 --> The APC PHP extension must be loaded to use APC Cache.
+DEBUG - 2024-11-04 19:16:17 --> Cache adapter "apc" is unavailable. Falling back to "file" backup adapter.
+DEBUG - 2024-11-04 19:16:17 --> Total execution time: 0.1528
+ERROR - 2024-11-04 19:16:28 --> $config['composer_autoload'] is set to TRUE but C:\app\_desarrollo\serviturno\application\vendor/autoload.php was not found.
+DEBUG - 2024-11-04 19:16:28 --> UTF-8 Support Enabled
+DEBUG - 2024-11-04 19:16:28 --> Global POST, GET and COOKIE data sanitized
+DEBUG - 2024-11-04 19:16:28 --> The APC PHP extension must be loaded to use APC Cache.
+DEBUG - 2024-11-04 19:16:28 --> Cache adapter "apc" is unavailable. Falling back to "file" backup adapter.
+DEBUG - 2024-11-04 19:16:28 --> Total execution time: 0.2195
+ERROR - 2024-11-04 19:16:36 --> $config['composer_autoload'] is set to TRUE but C:\app\_desarrollo\serviturno\application\vendor/autoload.php was not found.
+DEBUG - 2024-11-04 19:16:37 --> UTF-8 Support Enabled
+DEBUG - 2024-11-04 19:16:37 --> Global POST, GET and COOKIE data sanitized
+DEBUG - 2024-11-04 19:16:37 --> The APC PHP extension must be loaded to use APC Cache.
+DEBUG - 2024-11-04 19:16:37 --> Cache adapter "apc" is unavailable. Falling back to "file" backup adapter.
+DEBUG - 2024-11-04 19:16:37 --> Total execution time: 0.1542
+ERROR - 2024-11-04 19:16:40 --> $config['composer_autoload'] is set to TRUE but C:\app\_desarrollo\serviturno\application\vendor/autoload.php was not found.
+DEBUG - 2024-11-04 19:16:40 --> UTF-8 Support Enabled
+DEBUG - 2024-11-04 19:16:40 --> Global POST, GET and COOKIE data sanitized
+DEBUG - 2024-11-04 19:16:40 --> The APC PHP extension must be loaded to use APC Cache.
+DEBUG - 2024-11-04 19:16:40 --> Cache adapter "apc" is unavailable. Falling back to "file" backup adapter.
+DEBUG - 2024-11-04 19:16:40 --> Total execution time: 0.1774
+ERROR - 2024-11-04 19:17:02 --> $config['composer_autoload'] is set to TRUE but C:\app\_desarrollo\serviturno\application\vendor/autoload.php was not found.
+DEBUG - 2024-11-04 19:17:02 --> UTF-8 Support Enabled
+DEBUG - 2024-11-04 19:17:02 --> Global POST, GET and COOKIE data sanitized
+DEBUG - 2024-11-04 19:17:02 --> The APC PHP extension must be loaded to use APC Cache.
+DEBUG - 2024-11-04 19:17:02 --> Cache adapter "apc" is unavailable. Falling back to "file" backup adapter.
+DEBUG - 2024-11-04 19:17:02 --> Total execution time: 0.1742
+ERROR - 2024-11-04 19:17:23 --> $config['composer_autoload'] is set to TRUE but C:\app\_desarrollo\serviturno\application\vendor/autoload.php was not found.
+DEBUG - 2024-11-04 19:17:23 --> UTF-8 Support Enabled
+DEBUG - 2024-11-04 19:17:23 --> Global POST, GET and COOKIE data sanitized
+DEBUG - 2024-11-04 19:17:23 --> The APC PHP extension must be loaded to use APC Cache.
+DEBUG - 2024-11-04 19:17:23 --> Cache adapter "apc" is unavailable. Falling back to "file" backup adapter.
+DEBUG - 2024-11-04 19:17:23 --> Total execution time: 0.1911
+ERROR - 2024-11-04 19:17:37 --> $config['composer_autoload'] is set to TRUE but C:\app\_desarrollo\serviturno\application\vendor/autoload.php was not found.
+DEBUG - 2024-11-04 19:17:37 --> UTF-8 Support Enabled
+DEBUG - 2024-11-04 19:17:37 --> Global POST, GET and COOKIE data sanitized
+DEBUG - 2024-11-04 19:17:37 --> The APC PHP extension must be loaded to use APC Cache.
+DEBUG - 2024-11-04 19:17:37 --> Cache adapter "apc" is unavailable. Falling back to "file" backup adapter.
+DEBUG - 2024-11-04 19:17:37 --> Total execution time: 0.1961
+ERROR - 2024-11-04 19:17:40 --> $config['composer_autoload'] is set to TRUE but C:\app\_desarrollo\serviturno\application\vendor/autoload.php was not found.
+DEBUG - 2024-11-04 19:17:40 --> UTF-8 Support Enabled
+DEBUG - 2024-11-04 19:17:40 --> Global POST, GET and COOKIE data sanitized
+DEBUG - 2024-11-04 19:17:40 --> The APC PHP extension must be loaded to use APC Cache.
+DEBUG - 2024-11-04 19:17:41 --> Cache adapter "apc" is unavailable. Falling back to "file" backup adapter.
+DEBUG - 2024-11-04 19:17:41 --> Total execution time: 0.1519
+ERROR - 2024-11-04 19:17:43 --> $config['composer_autoload'] is set to TRUE but C:\app\_desarrollo\serviturno\application\vendor/autoload.php was not found.
+DEBUG - 2024-11-04 19:17:43 --> UTF-8 Support Enabled
+DEBUG - 2024-11-04 19:17:43 --> Global POST, GET and COOKIE data sanitized
+DEBUG - 2024-11-04 19:17:43 --> The APC PHP extension must be loaded to use APC Cache.
+DEBUG - 2024-11-04 19:17:43 --> Cache adapter "apc" is unavailable. Falling back to "file" backup adapter.
+DEBUG - 2024-11-04 19:17:43 --> Total execution time: 0.1938
+ERROR - 2024-11-04 19:17:47 --> $config['composer_autoload'] is set to TRUE but C:\app\_desarrollo\serviturno\application\vendor/autoload.php was not found.
+DEBUG - 2024-11-04 19:17:47 --> UTF-8 Support Enabled
+DEBUG - 2024-11-04 19:17:47 --> Global POST, GET and COOKIE data sanitized
+DEBUG - 2024-11-04 19:17:47 --> The APC PHP extension must be loaded to use APC Cache.
+DEBUG - 2024-11-04 19:17:47 --> Cache adapter "apc" is unavailable. Falling back to "file" backup adapter.
+DEBUG - 2024-11-04 19:17:47 --> Total execution time: 0.1607
+ERROR - 2024-11-04 19:17:54 --> $config['composer_autoload'] is set to TRUE but C:\app\_desarrollo\serviturno\application\vendor/autoload.php was not found.
+DEBUG - 2024-11-04 19:17:54 --> UTF-8 Support Enabled
+DEBUG - 2024-11-04 19:17:54 --> Global POST, GET and COOKIE data sanitized
+DEBUG - 2024-11-04 19:17:54 --> The APC PHP extension must be loaded to use APC Cache.
+DEBUG - 2024-11-04 19:17:54 --> Cache adapter "apc" is unavailable. Falling back to "file" backup adapter.
+DEBUG - 2024-11-04 19:17:54 --> Total execution time: 0.1265

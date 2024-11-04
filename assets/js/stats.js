@@ -1,487 +1,365 @@
-$(document).ready(function () {
+class DashboardManager {
+    constructor() {
+        this.currentChart = null;
+        this.selects = {
+            category: null,
+            timeRange: null,
+            graph: null
+        };
+        this.selectedGraphType = "averageAttentionTime";
+        this.chartColors = {
+            primary: 'rgb(6, 13, 54)',
+            secondary: '#f47628',
+            background: 'rgba(6, 13, 54, 0.1)'
+        };
+    }
 
-  var categorySelect;
-  var timeRangeSelect;
-  var graphSelect;
-  var selectedGraphType = "averageAttentionTime";
-
-  // Carga las categorías cuando la página se carga
-  $.ajax({
-    url: "Stats/obtenerCategorias",
-    type: "GET",
-    success: function (data) {
-      var categorias = JSON.parse(data);
-      for (var i = 0; i < categorias.length; i++) {
-        $("#category").append(
-          '<option value="' +
-            categorias[i].id +
-            '">' +
-            categorias[i].categoria +
-            "</option>"
-        );
-      }
-
-    categorySelect = new Choices("#category", {
-      removeItemButton: true,
-      searchEnabled: false,
-      shouldSort: false, 
-    });
-
-    timeRangeSelect = new Choices("#timeRange", {
-      removeItemButton: true,
-      searchEnabled: false,
-      shouldSort: false, 
-    });
-
-    graphSelect = new Choices("#graph", {
-      removeItemButton: true,
-      searchEnabled: false,
-      shouldSort: false, 
-    });
-
-      categorySelect.setChoiceByValue("Seleccione");
-      timeRangeSelect.setChoiceByValue("Seleccione");
-      graphSelect.setChoiceByValue("Seleccione");
-
-      var selectedGraphType = "averageAttentionTime";
-    },
-  });
-
-
-
-$("#graph").change(function () {
-  var graphType = graphSelect.getValue(true);
-  var category = categorySelect.getValue(true);
-  var timeRange = timeRangeSelect.getValue(true);
-
-  // Actualiza la variable selectedGraphType
-  selectedGraphType = graphType;
-
-  // Habilitar o deshabilitar los select de categoría y rango de tiempo
-  if (
-    graphType === "waitingTimeByCategory" ||
-    graphType === "patientDistribution"
-  ) {
-    categorySelect.disable();
-    timeRangeSelect.enable();
-  } else {
-    categorySelect.enable();
-    timeRangeSelect.enable();
-  }
-
-  // Borra cualquier gráfico existente
-  $(".card-body").html('<canvas id="dynamicChart"></canvas>');
-  
-
-  switch (graphType) {
-    case "averageAttentionTime":
-      createAverageAttentionTimeChart(category, timeRange);
-      break;
-    case "patientCount":
-      createPatientCountChart(category, timeRange);
-      break;
-    case "uniquePatientCount":
-      createUniquePatientCountChart(category, timeRange);
-      break;
-    case "patientDistribution":
-      createPatientDistributionChart(timeRange);
-      break;
-    case "waitingTimeByCategory":
-      createWaitingTimeByCategoryChart(timeRange);
-      break;
-  }
-}); 
-
-
-  // Actualiza el gráfico cuando cambian los controles
-  $("#category, #timeRange").change(function () {
-    var category = categorySelect.getValue(true);
-    var timeRange = timeRangeSelect.getValue(true);
-
-    // Borra cualquier gráfico existente
-    $(".card-body").html('<canvas id="dynamicChart"></canvas>');
-
-    // Decide qué gráfico crear basado en la variable selectedGraphType
-    if (selectedGraphType === "averageAttentionTime") {
-      createAverageAttentionTimeChart(category, timeRange);
-    } else if (selectedGraphType === "patientCount") {
-      createPatientCountChart(category, timeRange);
-       } else if (selectedGraphType === "uniquePatientCount") {
-         createUniquePatientCountChart(category, timeRange);
-       } else if (selectedGraphType === "patientDistribution") {
-         createPatientDistributionChart(timeRange);
-       } else if (selectedGraphType === "waitingTimeByCategory") {
-         createWaitingTimeByCategoryChart(timeRange);
-       }
-    
-  });
-});
-
-function timeStringToSeconds(timeString) {
-  var parts = timeString.split(":");
-  return +parts[0] * 60 * 60 + +parts[1] * 60; // Ignorando los segundos fraccionales
-}
-
-function createAverageAttentionTimeChart(
-  category = "all",
-  timeRange = "yearly"
-) {
-  // Establece el rango de fechas de acuerdo al rango de tiempo seleccionado
-  var endDate = moment().endOf("day");
-  var startDate;
-  var format;
-
-  if (timeRange == "yearly") {
-    startDate = moment().subtract(1, "years").startOf("month");
-    format = "MMM-YYYY";
-  } else if (timeRange == "monthly") {
-    startDate = moment().subtract(1, "months").startOf("day");
-    format = "DD-MMM"; // Cambiado para mostrar el día y el mes
-  } else if (timeRange == "weekly") {
-    startDate = moment().subtract(1, "weeks").startOf("day");
-    format = "DD-MMM"; // Cambiado para mostrar el día y el mes
-  }
-
-  $.ajax({
-    url: "Stats/obtenerPromedioTiempoAtencion",
-    type: "GET",
-    data: {
-      fechaInicio: startDate.format("YYYY-MM-DD"),
-      fechaFin: endDate.format("YYYY-MM-DD"),
-      categoria: category,
-      timeRange: timeRange, // Añadido este parámetro
-    },
-    success: function (data) {
-      var resultados = JSON.parse(data);
-
-      var labels = resultados.map(function (resultado) {
-        // Convierte la fecha a la cadena de texto con el formato correcto
-        return moment(resultado.fecha).format(format);
-      });
-
-      var datos = resultados.map(function (resultado) {
-        if (resultado.promedio_tiempo_atencion === null) {
-          return 0;
-        } else {
-          return Math.round(
-            timeStringToSeconds(resultado.promedio_tiempo_atencion) / 60
-          ); // Convertir a minutos y redondear
+    async init() {
+        try {
+            await this.initializeSelects();
+            this.setupEventListeners();
+            await this.loadCategories();
+            // Cargar gráfico inicial
+            await this.updateChart();
+        } catch (error) {
+            console.error('Error initializing dashboard:', error);
         }
-      });
+    }
 
-      var ctx = document.getElementById("dynamicChart");
-      new Chart(ctx, {
-        type: "line",
-        data: {
-          labels: labels,
-          datasets: [
-            {
-              label: "Tiempo promedio de atención (minutos)", // Actualizado para reflejar que los datos están en minutos
-              data: datos,
-              fill: true,
-              borderColor: "rgb(6, 13, 54)",
-              backgroundColor: "#0b4b83",
-              tension: 0.1,
+    async loadCategories() {
+        try {
+            const response = await fetch('Stats/obtenerCategorias');
+            const categorias = await response.json();
+            
+            const options = categorias.map(categoria => ({
+                value: categoria.id,
+                label: categoria.categoria
+            }));
+
+            this.selects.category.setChoices(options, 'value', 'label', true);
+            this.setDefaultValues();
+        } catch (error) {
+            console.error('Error loading categories:', error);
+        }
+    }
+
+    initializeSelects() {
+        const selectConfig = {
+            removeItemButton: false,
+            searchEnabled: false,
+            shouldSort: false,
+            itemSelectText: ''
+        };
+
+        this.selects.category = new Choices('#category', selectConfig);
+        this.selects.timeRange = new Choices('#timeRange', selectConfig);
+        this.selects.graph = new Choices('#graph', selectConfig);
+    }
+
+    setDefaultValues() {
+        this.selects.graph.setChoiceByValue('averageAttentionTime');
+        this.selects.timeRange.setChoiceByValue('monthly');
+        this.selects.category.setChoiceByValue('all');
+    }
+
+    setupEventListeners() {
+        const debounceTime = 300; // ms
+        
+        const debouncedUpdate = this.debounce(() => this.updateChart(), debounceTime);
+
+        document.getElementById('graph').addEventListener('change', (e) => {
+            this.handleGraphChange();
+            debouncedUpdate();
+        });
+
+        document.getElementById('category').addEventListener('change', debouncedUpdate);
+        document.getElementById('timeRange').addEventListener('change', debouncedUpdate);
+    }
+
+    debounce(func, wait) {
+        let timeout;
+        return function executedFunction(...args) {
+            const later = () => {
+                clearTimeout(timeout);
+                func(...args);
+            };
+            clearTimeout(timeout);
+            timeout = setTimeout(later, wait);
+        };
+    }
+
+    handleGraphChange() {
+        const graphType = this.selects.graph.getValue(true);
+        this.selectedGraphType = graphType;
+        this.toggleControls(graphType);
+    }
+
+    toggleControls(graphType) {
+        const isCategoryDisabled = ['waitingTimeByCategory', 'patientDistribution'].includes(graphType);
+        if (isCategoryDisabled) {
+            this.selects.category.disable();
+        } else {
+            this.selects.category.enable();
+        }
+    }
+
+    async updateChart() {
+        try {
+            const category = this.selects.category.getValue(true);
+            const timeRange = this.selects.timeRange.getValue(true);
+            const dateRange = this.calculateDateRange(timeRange);
+
+            const data = await this.fetchChartData(category, timeRange, dateRange);
+            if (data) {
+                this.renderChart(data);
+            }
+        } catch (error) {
+            console.error('Error updating chart:', error);
+        }
+    }
+
+    calculateDateRange(timeRange) {
+        const endDate = moment().endOf('day');
+        let startDate;
+
+        switch (timeRange) {
+            case 'yearly':
+                startDate = moment().subtract(1, 'years').startOf('month');
+                break;
+            case 'monthly':
+                startDate = moment().subtract(1, 'months').startOf('day');
+                break;
+            case 'weekly':
+                startDate = moment().subtract(1, 'weeks').startOf('day');
+                break;
+            case 'year':
+                startDate = moment().startOf('year');
+                break;
+            case 'month':
+                startDate = moment().startOf('month');
+                break;
+            default:
+                startDate = moment().subtract(1, 'months').startOf('day');
+        }
+
+        return {
+            startDate: startDate.format('YYYY-MM-DD'),
+            endDate: endDate.format('YYYY-MM-DD')
+        };
+    }
+
+    async fetchChartData(category, timeRange, dateRange) {
+        const endpoints = {
+            averageAttentionTime: 'obtenerPromedioTiempoAtencion',
+            patientCount: 'obtenerCantidadPacientes',
+            uniquePatientCount: 'obtenerCantidadPacientesUnicos',
+            patientDistribution: 'obtenerTotalPacientesPorCategoria',
+            waitingTimeByCategory: 'obtenerTiempoEsperaPorCategoria'
+        };
+
+        const params = new URLSearchParams({
+            fechaInicio: dateRange.startDate,
+            fechaFin: dateRange.endDate,
+            categoria: category,
+            timeRange: timeRange
+        });
+
+        try {
+            const response = await fetch(`Stats/${endpoints[this.selectedGraphType]}?${params.toString()}`);
+            if (!response.ok) {
+                throw new Error(`HTTP error! status: ${response.status}`);
+            }
+            return await response.json();
+        } catch (error) {
+            console.error('Error fetching data:', error);
+            return null;
+        }
+    }
+
+    renderChart(data) {
+        if (this.currentChart) {
+            this.currentChart.destroy();
+        }
+
+        const canvas = document.getElementById('dynamicChart');
+        const ctx = canvas.getContext('2d');
+        
+        // Limpiar el canvas
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
+        
+        const config = this.getChartConfig(data);
+        this.currentChart = new Chart(ctx, config);
+    }
+
+    getChartConfig(data) {
+        const configs = {
+            averageAttentionTime: this.getTimeChartConfig.bind(this),
+            patientCount: this.getPatientCountConfig.bind(this),
+            uniquePatientCount: this.getUniquePatientCountConfig.bind(this),
+            patientDistribution: this.getDistributionConfig.bind(this),
+            waitingTimeByCategory: this.getWaitingTimeConfig.bind(this)
+        };
+
+        return configs[this.selectedGraphType](data);
+    }
+
+    getBaseChartConfig() {
+        return {
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                plugins: {
+                    legend: {
+                        position: 'top',
+                    }
+                }
+            }
+        };
+    }
+
+    getTimeChartConfig(data) {
+        return {
+            type: 'line',
+            data: {
+                labels: data.map(item => moment(item.fecha).format('DD/MM/YYYY')),
+                datasets: [{
+                    label: 'Tiempo promedio de atención (minutos)',
+                    data: data.map(item => this.timeStringToMinutes(item.promedio_tiempo_atencion)),
+                    fill: true,
+                    borderColor: this.chartColors.primary,
+                    backgroundColor: this.chartColors.background,
+                    tension: 0.1
+                }]
             },
-          ],
-        },
-        options: {
-          responsive: true,
-          scales: {
-            y: {
-              ticks: {
-                // Incluye un signo ' min' después del valor del tick
-                callback: function (value, index, values) {
-                  return value + " min";
-                },
-              },
+            options: {
+                ...this.getBaseChartConfig().options,
+                scales: {
+                    y: {
+                        beginAtZero: true,
+                        ticks: {
+                            callback: value => `${value} min`
+                        }
+                    }
+                }
+            }
+        };
+    }
+
+    getPatientCountConfig(data) {
+        return {
+            type: 'bar',
+            data: {
+                labels: data.map(item => moment(item.fecha).format('DD/MM/YYYY')),
+                datasets: [{
+                    label: 'Cantidad de pacientes',
+                    data: data.map(item => item.cantidad_pacientes),
+                    backgroundColor: this.chartColors.primary,
+                    borderColor: this.chartColors.primary,
+                }]
             },
-          },
-        },
-      });
-    },
-  });
+            options: {
+                ...this.getBaseChartConfig().options,
+                scales: {
+                    y: {
+                        beginAtZero: true,
+                        ticks: {
+                            stepSize: 1
+                        }
+                    }
+                }
+            }
+        };
+    }
+
+    getUniquePatientCountConfig(data) {
+        return {
+            type: 'bar',
+            data: {
+                labels: data.map(item => moment(item.fecha).format('DD/MM/YYYY')),
+                datasets: [{
+                    label: 'Pacientes únicos',
+                    data: data.map(item => item.cantidad_pacientes_unicos),
+                    backgroundColor: this.chartColors.secondary,
+                    borderColor: this.chartColors.secondary,
+                }]
+            },
+            options: {
+                ...this.getBaseChartConfig().options,
+                scales: {
+                    y: {
+                        beginAtZero: true,
+                        ticks: {
+                            stepSize: 1
+                        }
+                    }
+                }
+            }
+        };
+    }
+
+    getDistributionConfig(data) {
+        return {
+            type: 'pie',
+            data: {
+                labels: data.map(item => item.categoria),
+                datasets: [{
+                    data: data.map(item => item.cantidad_pacientes),
+                    backgroundColor: [
+                        this.chartColors.primary,
+                        this.chartColors.secondary,
+                        '#10b981',
+                        '#f59e0b',
+                        '#ef4444'
+                    ]
+                }]
+            },
+            options: {
+                ...this.getBaseChartConfig().options,
+                plugins: {
+                    legend: {
+                        position: 'right'
+                    }
+                }
+            }
+        };
+    }
+
+    getWaitingTimeConfig(data) {
+        return {
+            type: 'bar',
+            data: {
+                labels: data.map(item => item.categoria),
+                datasets: [{
+                    label: 'Tiempo promedio de espera (minutos)',
+                    data: data.map(item => this.timeStringToMinutes(item.promedio_tiempo_espera)),
+                    backgroundColor: this.chartColors.primary,
+                    borderColor: this.chartColors.primary,
+                }]
+            },
+            options: {
+                ...this.getBaseChartConfig().options,
+                scales: {
+                    y: {
+                        beginAtZero: true,
+                        ticks: {
+                            callback: value => `${value} min`
+                        }
+                    }
+                }
+            }
+        };
+    }
+
+    timeStringToMinutes(timeString) {
+        if (!timeString) return 0;
+        const [hours, minutes, seconds] = timeString.split(':').map(Number);
+        return Math.round(hours * 60 + minutes + seconds / 60);
+    }
 }
 
-function createPatientCountChart(category = "all", timeRange = "yearly") {
-  // Establece el rango de fechas de acuerdo al rango de tiempo seleccionado
-  var endDate = moment().endOf("day");
-  var startDate;
-  var format;
-
-  if (timeRange == "yearly") {
-    startDate = moment().subtract(1, "years").startOf("month");
-    format = "MMM-YYYY";
-  } else if (timeRange == "monthly") {
-    startDate = moment().subtract(1, "months").startOf("day");
-    format = "DD-MMM"; // Cambiado para mostrar el día y el mes
-  } else if (timeRange == "weekly") {
-    startDate = moment().subtract(1, "weeks").startOf("day");
-    format = "DD-MMM"; // Cambiado para mostrar el día y el mes
-  }
-
-   console.log("Fecha de inicio:", startDate.format("YYYY-MM-DD"));
-  console.log("Fecha de fin:", endDate.format("YYYY-MM-DD"));
-  console.log("Categoría:", category);
-  console.log("Rango de tiempo:", timeRange);
-
-  $.ajax({
-    url: "Stats/obtenerCantidadPacientes", // Actualizado a obtenerCantidadPacientes
-    type: "GET",
-    data: {
-      fechaInicio: startDate.format("YYYY-MM-DD"),
-      fechaFin: endDate.format("YYYY-MM-DD"),
-      categoria: category,
-      timeRange: timeRange,
-    },
-    success: function (data) {
-    console.log("Datos recibidos del backend:", data);
-
-      var resultados = JSON.parse(data);
-
-      var labels = resultados.map(function (resultado) {
-        // Convierte la fecha a la cadena de texto con el formato correcto
-        return moment(resultado.fecha).format(format);
-      });
-
-      var datos = resultados.map(function (resultado) {
-        return resultado.cantidad_pacientes; // Actualizado para usar cantidad_pacientes
-      });
-
-      var ctx = document.getElementById("dynamicChart"); // Podrías considerar cambiar el id de este canvas a algo más genérico
-      new Chart(ctx, {
-        type: "line",
-        data: {
-          labels: labels,
-          datasets: [
-            {
-              label: "Cantidad de pacientes", // Actualizado para reflejar que los datos están en minutos
-              data: datos,
-              fill: false,
-              borderColor: "#f47628",
-              tension: 0.1,
-            },
-          ],
-        },
-        options: {
-          responsive: true,
-          plugins: {
-            title: {
-              display: true,
-              text: (ctx) =>
-                "Point Style: " + ctx.chart.data.datasets[0].pointStyle,
-            },
-          },
-        },
-      });
-
-    },
-  });
-}
-
-
-
-function createUniquePatientCountChart(category = "all", timeRange = "yearly") {
-  // Establece el rango de fechas de acuerdo al rango de tiempo seleccionado
-  var endDate = moment().endOf("day");
-  var startDate;
-  var format;
-
-  if (timeRange == "yearly") {
-    startDate = moment().subtract(1, "years").startOf("month");
-    format = "MMM-YYYY";
-  } else if (timeRange == "monthly") {
-    startDate = moment().subtract(1, "months").startOf("day");
-    format = "DD-MMM"; // Cambiado para mostrar el día y el mes
-  } else if (timeRange == "weekly") {
-    startDate = moment().subtract(1, "weeks").startOf("day");
-    format = "DD-MMM"; // Cambiado para mostrar el día y el mes
-  }
-
-  console.log("Fecha de inicio:", startDate.format("YYYY-MM-DD"));
-  console.log("Fecha de fin:", endDate.format("YYYY-MM-DD"));
-  console.log("Categoría:", category);
-  console.log("Rango de tiempo:", timeRange);
-
-  $.ajax({
-    url: "Stats/obtenerCantidadPacientesUnicos", // Actualizado a obtenerCantidadPacientes
-    type: "GET",
-    data: {
-      fechaInicio: startDate.format("YYYY-MM-DD"),
-      fechaFin: endDate.format("YYYY-MM-DD"),
-      categoria: category,
-      timeRange: timeRange,
-    },
-    success: function (data) {
-      console.log("Datos recibidos del backend:", data);
-
-      var resultados = JSON.parse(data);
-
-      var labels = resultados.map(function (resultado) {
-        // Convierte la fecha a la cadena de texto con el formato correcto
-        return moment(resultado.fecha).format(format);
-      });
-
-      var datos = resultados.map(function (resultado) {
-        return resultado.cantidad_pacientes_unicos; // Actualizado para usar cantidad_pacientes_unicos
-      });
-
-      var ctx = document.getElementById("dynamicChart"); // Podrías considerar cambiar el id de este canvas a algo más genérico
-      new Chart(ctx, {
-        type: "line",
-        data: {
-          labels: labels,
-          datasets: [
-            {
-              label: "Cantidad de pacientes",
-              data: datos,
-              fill: false,
-              borderColor: "rgb(6, 13, 54)",
-              tension: 0.1,
-              pointStyle: "circle",
-              pointBorderColor: "rgb(6, 13, 54)", // Color de borde del punto
-              pointBackgroundColor: "#fff", // Color de fondo del punto
-              pointBorderWidth: 2, // Ancho del borde del punto
-              pointRadius: 10,
-            },
-          ],
-        },
-        options: {
-          responsive: true,
-          plugins: {
-            title: {
-              display: true,
-              text: (ctx) =>
-                "Point Style: " + ctx.chart.data.datasets[0].pointStyle,
-            },
-          },
-        },
-      });
-    },
-  });
-}
-
-
-
-function createPatientDistributionChart(timeRange = "yearly") {
-  var endDate = moment().endOf("day");
-  var startDate;
-  var format;
-
-  if (timeRange == "yearly") {
-    startDate = moment().subtract(1, "years").startOf("month");
-  } else if (timeRange == "monthly") {
-    startDate = moment().subtract(1, "months").startOf("day");
-  } else if (timeRange == "weekly") {
-    startDate = moment().subtract(1, "weeks").startOf("day");
-  }
-
-  $.ajax({
-    url: "Stats/obtenerTotalPacientesPorCategoria",
-    type: "GET",
-    data: {
-      fechaInicio: startDate.format("YYYY-MM-DD"),
-      fechaFin: endDate.format("YYYY-MM-DD"),
-      timeRange: timeRange,
-    },
-    success: function (data) {
-      var resultados = JSON.parse(data);
-
-      var labels = resultados.map(function (resultado) {
-        return resultado.categoria;
-      });
-
-      var datos = resultados.map(function (resultado) {
-        return resultado.cantidad_pacientes;
-      });
-
-      var ctx = document.getElementById("dynamicChart");
-      new Chart(ctx, {
-        type: "bar",
-        data: {
-          labels: labels,
-          datasets: [
-            {
-              label: "Cantidad de pacientes",
-              data: datos,
-              fill: false,
-              backgroundColor: "rgb(6, 13, 54)",
-            },
-          ],
-        },
-        options: {
-          responsive: true,
-          scales: {
-            y: {
-              beginAtZero: true,
-            },
-          },
-        },
-      });
-    },
-  });
-}
-
-function createWaitingTimeByCategoryChart(timeRange = "yearly") {
-  var endDate = moment().endOf("day");
-  var startDate = moment().subtract(1, "months").startOf("day");
-
-
-  if (timeRange == "yearly") {
-    startDate = moment().subtract(1, "years").startOf("month");
-  } else if (timeRange == "monthly") {
-    startDate = moment().subtract(1, "months").startOf("day");
-  } else if (timeRange == "weekly") {
-    startDate = moment().subtract(1, "weeks").startOf("day");
-  }
-
-
-
-  $.ajax({
-    url: "Stats/obtenerTiempoEsperaPorCategoria",
-    type: "GET",
-    data: {
-      fechaInicio: startDate.format("YYYY-MM-DD"),
-      fechaFin: endDate.format("YYYY-MM-DD"),
-      timeRange: timeRange,
-    },
-    success: function (data) {
-      var resultados = JSON.parse(data);
-
-      var labels = resultados.map(function (resultado) {
-        return resultado.categoria;
-      });
-
-      var datos = resultados.map(function (resultado) {
-        return Math.round(
-          timeStringToSeconds(resultado.promedio_tiempo_espera) / 60
-        );
-      });
-
-      var ctx = document.getElementById("dynamicChart");
-      new Chart(ctx, {
-        type: "bar",
-        data: {
-          labels: labels,
-          datasets: [
-            {
-              label: "Tiempo promedio de espera (minutos)",
-              data: datos,
-              fill: false,
-              backgroundColor: "rgb(6, 13, 54)",
-            },
-          ],
-        },
-        options: {
-          responsive: true,
-          scales: {
-            y: {
-              beginAtZero: true,
-            },
-          },
-        },
-      });
-    },
-  });
-}
+// Inicialización
+document.addEventListener('DOMContentLoaded', () => {
+    window.dashboard = new DashboardManager();
+    dashboard.init();
+});
 
