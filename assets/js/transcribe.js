@@ -45,14 +45,18 @@ $(document).ready(function () {
   });
 
   function processTranscribeStudies(patientDetails) {
+    var studyList = $("#transcribe-study-list");
+    studyList.empty();
+    
+    // Limpiar cualquier selección previa
+    $("#selected-doctor-id").val('');
+    
     var subestudios = patientDetails.subestudios
         ? patientDetails.subestudios.split(";;")
         : [];
 
     if (subestudios.length === 0) {
-        $("#transcribe-study-list").html(
-            '<div class="alert alert-info">No hay estudios disponibles para este paciente.</div>'
-        );
+        studyList.html('<div class="alert alert-info">No hay estudios disponibles para este paciente.</div>');
         $("#transcribe-btn").hide();
         return;
     }
@@ -70,30 +74,25 @@ $(document).ready(function () {
         var estudioInformado = parts[5] === '1';
         var rutaPdf = parts[6];
 
-        // Si hay al menos un estudio no informado, marcamos que hay estudios para transcribir
         if (!estudioInformado) {
             hasStudiesToTranscribe = true;
         }
 
         studyListHtml += `
             <div class="list-group-item">
-                <div class="d-flex align-items-center justify-content-between">
-                    <div>
-                        ${!estudioInformado ? `
-                            <div class="form-check me-2">
-                                <input class="form-check-input" type="checkbox" 
-                                       value="${estudioId}" 
-                                       id="study-${estudioId}">
-                            </div>
-                        ` : ''}
-                        <label class="form-check-label" ${!estudioInformado ? `for="study-${estudioId}"` : ''}>
-                            ${nombreEstudio}
-                            ${detalle ? `<small class="text-muted">(${detalle})</small>` : ''}
-                            ${estudioInformado ? '<span class="badge bg-success ms-2">Informado</span>' : ''}
-                        </label>
-                    </div>
+                <div class="d-flex align-items-center">
+                    ${!estudioInformado ? `
+                        <input class="form-check-input me-3" type="checkbox" 
+                               value="${estudioId}" 
+                               id="study-${estudioId}">
+                    ` : ''}
+                    <label class="form-check-label" ${!estudioInformado ? `for="study-${estudioId}"` : ''}>
+                        ${nombreEstudio}
+                        ${detalle ? `<small class="text-muted">(${detalle})</small>` : ''}
+                        ${estudioInformado ? '<span class="badge bg-success ms-2">Informado</span>' : ''}
+                    </label>
                     ${estudioInformado && rutaPdf ? `
-                        <button class="btn btn-sm btn-info view-pdf-btn" 
+                        <button class="btn btn-sm btn-info view-pdf-btn ms-auto" 
                                 data-pdf-path="${rutaPdf}"
                                 title="Ver PDF">
                             <i class="fas fa-file-pdf"></i> Ver PDF
@@ -104,7 +103,7 @@ $(document).ready(function () {
     });
 
     studyListHtml += '</div>';
-    $("#transcribe-study-list").html(studyListHtml);
+    studyList.html(studyListHtml);
 
     // Mostrar u ocultar el botón de transcribir según si hay estudios disponibles
     if (hasStudiesToTranscribe) {
@@ -125,6 +124,9 @@ $(document).ready(function () {
   function loadDoctorsList(categoryId) {
     var doctorList = $("#transcribe-doctor-list");
     doctorList.empty();
+    
+    // Limpiar el doctor seleccionado al cargar la lista
+    $("#selected-doctor-id").val('');
     
     // Mostrar indicador de carga
     doctorList.html('<div class="loading-spinner">Cargando médico...</div>');
@@ -179,18 +181,19 @@ $(document).ready(function () {
   $("#transcribe-btn").on("click", function () {
     var doctorId = $("#selected-doctor-id").val();
     var selectedStudies = [];
+    
+    if (!doctorId) {
+        alert("Por favor, seleccione un médico.");
+        return;
+    }
+
     $("input[type=checkbox]:checked").each(function () {
-      selectedStudies.push($(this).val());
+        selectedStudies.push($(this).val());
     });
 
     if (selectedStudies.length === 0) {
-      alert("Por favor, seleccione al menos un estudio.");
-      return;
-    }
-
-    if (!doctorId) {
-      alert("Por favor, seleccione un médico.");
-      return;
+        alert("Por favor, seleccione al menos un estudio.");
+        return;
     }
 
     // Construir la URL para la interfaz de transcripción
@@ -289,18 +292,19 @@ $(document).ready(function () {
 
     var doctorId = $("#selected-doctor-id").val();
     var selectedStudies = [];
+    
+    if (!doctorId) {
+        alert("Por favor, seleccione un médico.");
+        return;
+    }
+
     $("input[type=checkbox]:checked").each(function () {
-      selectedStudies.push($(this).val());
+        selectedStudies.push($(this).val());
     });
 
     if (selectedStudies.length === 0) {
-      alert("Por favor, seleccione al menos un estudio.");
-      return;
-    }
-
-    if (!doctorId) {
-      alert("Por favor, seleccione un médico.");
-      return;
+        alert("Por favor, seleccione al menos un estudio.");
+        return;
     }
 
     // Construir la misma URL que usamos para transcribir
@@ -318,5 +322,11 @@ $(document).ready(function () {
 
     // Mostrar el modal QR
     $("#qrModal").modal("show");
+  });
+
+  // Añadir evento para limpiar la selección cuando se cierra el modal
+  $(document).on('hidden.bs.modal', '#transcribeModal', function () {
+    $("#selected-doctor-id").val('');
+    $('.doctor-tag').removeClass('selected');
   });
 });
