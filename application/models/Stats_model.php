@@ -344,4 +344,68 @@ class Stats_model extends CI_Model
         return $result;
     }
 
+    public function obtenerDistribucionEdad($fechaInicio, $fechaFin, $timeRange)
+    {
+        $query = "
+        SELECT 
+            CASE 
+                WHEN edad < 18 THEN 'Menor de 18'
+                WHEN edad BETWEEN 18 AND 30 THEN '18-30'
+                WHEN edad BETWEEN 31 AND 50 THEN '31-50'
+                WHEN edad BETWEEN 51 AND 70 THEN '51-70'
+                ELSE 'Mayor de 70'
+            END as rango_edad,
+            COUNT(*) as cantidad,
+            cat.categoria
+        FROM cola c
+        JOIN categorias cat ON c.id_categoria = cat.id
+        WHERE DATE(c.fecha) BETWEEN ? AND ?
+        AND c.edad IS NOT NULL
+        GROUP BY 
+            CASE 
+                WHEN edad < 18 THEN 'Menor de 18'
+                WHEN edad BETWEEN 18 AND 30 THEN '18-30'
+                WHEN edad BETWEEN 31 AND 50 THEN '31-50'
+                WHEN edad BETWEEN 51 AND 70 THEN '51-70'
+                ELSE 'Mayor de 70'
+            END,
+            cat.categoria
+        ORDER BY rango_edad";
+
+        return $this->db->query($query, array($fechaInicio, $fechaFin))->result();
+    }
+
+    public function obtenerDistribucionSeguro($fechaInicio, $fechaFin, $timeRange)
+    {
+        $query = "
+        SELECT 
+            COALESCE(c.seguro, 'Sin especificar') as seguro,
+            COUNT(*) as cantidad,
+            cat.categoria
+        FROM cola c
+        JOIN categorias cat ON c.id_categoria = cat.id
+        WHERE DATE(c.fecha) BETWEEN ? AND ?
+        GROUP BY c.seguro, cat.categoria
+        ORDER BY cantidad DESC";
+
+        return $this->db->query($query, array($fechaInicio, $fechaFin))->result();
+    }
+
+    public function obtenerPatronesUso($fechaInicio, $fechaFin, $timeRange)
+    {
+        $query = "
+        SELECT 
+            HOUR(c.fecha) as hora_dia,
+            DAYNAME(c.fecha) as dia_semana,
+            COUNT(*) as cantidad,
+            cat.categoria
+        FROM cola c
+        JOIN categorias cat ON c.id_categoria = cat.id
+        WHERE DATE(c.fecha) BETWEEN ? AND ?
+        GROUP BY HOUR(c.fecha), DAYNAME(c.fecha), cat.categoria
+        ORDER BY DAYOFWEEK(c.fecha), HOUR(c.fecha)";
+
+        return $this->db->query($query, array($fechaInicio, $fechaFin))->result();
+    }
+
 }

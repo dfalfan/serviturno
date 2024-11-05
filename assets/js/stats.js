@@ -155,7 +155,10 @@ class DashboardManager {
             uniquePatientCount: 'obtenerCantidadPacientesUnicos',
             patientDistribution: 'obtenerTotalPacientesPorCategoria',
             waitingTimeByCategory: 'obtenerTiempoEsperaPorCategoria',
-            technicianPerformance: 'obtenerRendimientoTecnicos'
+            technicianPerformance: 'obtenerRendimientoTecnicos',
+            ageDistribution: 'obtenerDistribucionEdad',
+            insuranceDistribution: 'obtenerDistribucionSeguro',
+            serviceUsagePatterns: 'obtenerPatronesUso'
         };
 
         const params = new URLSearchParams({
@@ -199,7 +202,10 @@ class DashboardManager {
             uniquePatientCount: this.getUniquePatientCountConfig.bind(this),
             patientDistribution: this.getDistributionConfig.bind(this),
             waitingTimeByCategory: this.getWaitingTimeConfig.bind(this),
-            technicianPerformance: this.getTechnicianPerformanceConfig.bind(this)
+            technicianPerformance: this.getTechnicianPerformanceConfig.bind(this),
+            ageDistribution: this.getAgeDistributionConfig.bind(this),
+            insuranceDistribution: this.getInsuranceDistributionConfig.bind(this),
+            serviceUsagePatterns: this.getServiceUsagePatternsConfig.bind(this)
         };
 
         return configs[this.selectedGraphType](data);
@@ -425,6 +431,131 @@ class DashboardManager {
         if (!timeString) return 0;
         const [hours, minutes, seconds] = timeString.split(':').map(Number);
         return Math.round(hours * 60 + minutes + seconds / 60);
+    }
+
+    getAgeDistributionConfig(data) {
+        const ranges = [...new Set(data.map(item => item.rango_edad))];
+        const categories = [...new Set(data.map(item => item.categoria))];
+        
+        const datasets = categories.map((categoria, index) => ({
+            label: categoria,
+            data: ranges.map(range => {
+                const items = data.filter(item => 
+                    item.rango_edad === range && 
+                    item.categoria === categoria
+                );
+                return items.reduce((sum, item) => sum + parseInt(item.cantidad), 0);
+            }),
+            backgroundColor: this.getColorForIndex(index)
+        }));
+
+        return {
+            type: 'bar',
+            data: {
+                labels: ranges,
+                datasets: datasets
+            },
+            options: {
+                ...this.getBaseChartConfig().options,
+                scales: {
+                    x: {
+                        stacked: true
+                    },
+                    y: {
+                        stacked: true,
+                        beginAtZero: true
+                    }
+                }
+            }
+        };
+    }
+
+    getInsuranceDistributionConfig(data) {
+        const insurances = [...new Set(data.map(item => item.seguro))];
+        const total = data.reduce((sum, item) => sum + parseInt(item.cantidad), 0);
+
+        return {
+            type: 'pie',
+            data: {
+                labels: insurances,
+                datasets: [{
+                    data: insurances.map(insurance => {
+                        const items = data.filter(item => item.seguro === insurance);
+                        return items.reduce((sum, item) => sum + parseInt(item.cantidad), 0);
+                    }),
+                    backgroundColor: insurances.map((_, index) => this.getColorForIndex(index))
+                }]
+            },
+            options: {
+                ...this.getBaseChartConfig().options,
+                plugins: {
+                    tooltip: {
+                        callbacks: {
+                            label: (context) => {
+                                const value = context.raw;
+                                const percentage = ((value / total) * 100).toFixed(1);
+                                return `${context.label}: ${value} (${percentage}%)`;
+                            }
+                        }
+                    }
+                }
+            }
+        };
+    }
+
+    getServiceUsagePatternsConfig(data) {
+        const hours = [...Array(24).keys()];
+        const days = ['Lunes', 'Martes', 'Miércoles', 'Jueves', 'Viernes', 'Sábado', 'Domingo'];
+        
+        // Crear datasets para cada día
+        const datasets = days.map((day, index) => ({
+            label: day,
+            data: hours.map(hour => {
+                const items = data.filter(item => 
+                    item.dia_semana === day && 
+                    parseInt(item.hora_dia) === hour
+                );
+                return items.reduce((sum, item) => sum + parseInt(item.cantidad), 0);
+            }),
+            backgroundColor: this.getColorForIndex(index),
+            borderColor: this.getColorForIndex(index),
+            borderWidth: 1
+        }));
+
+        return {
+            type: 'bar',
+            data: {
+                labels: hours.map(hour => `${hour}:00`),
+                datasets: datasets
+            },
+            options: {
+                ...this.getBaseChartConfig().options,
+                scales: {
+                    x: {
+                        title: {
+                            display: true,
+                            text: 'Hora del día'
+                        }
+                    },
+                    y: {
+                        beginAtZero: true,
+                        title: {
+                            display: true,
+                            text: 'Cantidad de pacientes'
+                        }
+                    }
+                },
+                plugins: {
+                    title: {
+                        display: true,
+                        text: 'Patrones de Uso por Día y Hora'
+                    },
+                    legend: {
+                        position: 'right'
+                    }
+                }
+            }
+        };
     }
 }
 

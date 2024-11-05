@@ -153,4 +153,34 @@ class Stats extends CI_Controller
         $rendimientoTecnicos = $this->stats_model->obtenerRendimientoTecnicos($fechaInicio, $fechaFin, $timeRange);
         echo json_encode($rendimientoTecnicos);
     }
+
+    public function obtenerDistribucionEdad()
+    {
+        $fechaInicio = $this->input->get('fechaInicio');
+        $fechaFin = $this->input->get('fechaFin');
+        $timeRange = $this->input->get('timeRange');
+
+        $distribucionEdad = $this->stats_model->obtenerDistribucionEdad($fechaInicio, $fechaFin, $timeRange);
+        echo json_encode($distribucionEdad);
+    }
+
+    public function obtenerDistribucionSeguro()
+    {
+        $fechaInicio = $this->input->get('fechaInicio');
+        $fechaFin = $this->input->get('fechaFin');
+        $timeRange = $this->input->get('timeRange');
+
+        $distribucionSeguro = $this->stats_model->obtenerDistribucionSeguro($fechaInicio, $fechaFin, $timeRange);
+        echo json_encode($distribucionSeguro);
+    }
+
+    public function obtenerPatronesUso()
+    {
+        $fechaInicio = $this->input->get('fechaInicio');
+        $fechaFin = $this->input->get('fechaFin');
+        $timeRange = $this->input->get('timeRange');
+
+        $patronesUso = $this->stats_model->obtenerPatronesUso($fechaInicio, $fechaFin, $timeRange);
+        echo json_encode($patronesUso);
+    }
 }

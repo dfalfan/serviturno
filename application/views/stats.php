@@ -174,6 +174,9 @@
                             <option value="patientDistribution">Distribución por especialidad</option>
                             <option value="waitingTimeByCategory">Tiempo de espera por categoría</option>
                             <option value="technicianPerformance">Rendimiento de técnicos</option>
+                            <option value="ageDistribution">Distribución por edad</option>
+                            <option value="insuranceDistribution">Distribución por seguro</option>
+                            <option value="serviceUsagePatterns">Patrones de uso del servicio</option>
                         </select>
                     </div>
 
